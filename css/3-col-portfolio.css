@@ -1,0 +1,98 @@
+/*!
+ * Start Bootstrap - 3 Col Portfolio (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+	font-family: "Inconsolata", sans-serif;
+}
+
+.about{
+	font-size:20px;
+	color:black;
+	text-align:center;
+	}
+.about:hover{
+	color:black;
+	cursor: pointer;
+	}
+
+h1{
+	text-align:center;
+	font-weight:bold;
+	font-size: 40px;
+	margin-bottom:20px;
+	}
+	
+h2{
+	text-align:center;
+	}
+	
+h3 a{
+	font-weight: bold;
+	text-align:center;
+	color:black;
+	}
+h3 a:hover{
+	font-weight: bold;
+	text-align:center;
+	color:black;
+	text-decoration: none;
+	}
+h3{
+	font-weight: bold;
+	text-align:center;
+	color:black;
+	}
+
+.portfolio-item {
+	padding: 0;
+}
+.img-responsive {
+	max-width: 80%;
+    max-height: 80%;
+	opacity:1;
+	margin: auto;
+	box-shadow: 5px 5px 2px #888888;
+}
+
+.img-responsive:hover {
+	opacity:0.4;
+}
+
+footer {
+    margin: 10px 0;
+    text-align:center;
+}
+
+.i-am-centered {  
+	margin: 0 auto;
+	float:none;
+    width: 80%;
+
+    }
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+    margin:auto;
+}
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 0;
+  padding-left: 0;
+}
+ul, li {
+	list-style: none;
+	 display: inline;
+}
+ul {
+	white-space: nowrap;
+	text-align: center;
+	}
+
