@@ -33,12 +33,10 @@
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top navbar-toggleable-md" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header" style="left:10px; position: fixed;">
+        <div class="navbar-header " style="left:10px; position: fixed;">
             <a class="navbar-brand" href="https://cartobaldrica.github.io/">Home</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#share-modal" style="cursor:pointer;">Share</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#info-modal" style="cursor:pointer;">About</a>
             <a class="navbar-brand" href="#">Water Use</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -89,6 +87,21 @@
                 <li>
                     <a href="javascript:window.scrollBy(0, $('section[data-scene=miscellaneous]').offset().top - $(window).scrollTop() - 20);">Misc.</a>
                 </li>
+                <li>
+            		<a  data-toggle="modal" data-target="#info-modal">About</a>
+                </li>
+                <li>
+                <div class="dropdown">
+  					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    					Share
+  					</button>
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    					<a class="dropdown-item" target="_blank" href="https://facebook.com/sharer.php?u=http://rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Facebook</a><br/>
+   						<a class="dropdown-item" target="_blank" href="https://twitter.com/home?status=Oregon's%20Groundwater%0Ahttp%3A//rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Twitter</a><br/>
+    					<a class="dropdown-item" target="_blank" href="https://github.com/cartobaldrica/water_atlas">Github</a>
+  					</div>
+				</div>
+				</li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -255,20 +268,7 @@
             </div>
         </div>
     </div>
-    
-    <div class="modal fade" id="share-modal" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <a class="fa fa-facebook-square social2" style="font-size: 8em; display:inline;" href="https://facebook.com/sharer.php?u=http://rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html" target="_blank"></a>
-    				<a class="fa fa-twitter-square social3" style="font-size: 8em; display:inline;" href="https://twitter.com/home?status=Oregon's%20Groundwater%0Ahttp%3A//rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html" target="_blank"></a>
-					<a class="fa fa-github-square social3" style="font-size: 8em; display:inline;" href="https://github.com/cartobaldrica/water_atlas" target="_blank"></a>
-					<br/>
-                </div>
-            </div>
-        </div>
-    </div>
+
     
 </div>
 
@@ -351,7 +351,7 @@
 //<p style="text-align:left; font-weight:bold">Hover for source</p>'
 
     var layers = {  
-             'counties': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_use_counties&maxFeatures=1000&outputFormat=application%2Fjson',
+             'counties': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_use_counties&maxFeatures=1000&outputFormat=application%2Fjson',
             	{style:countyStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.INSTNAME + " : "+feature.properties.total_use+" Mgal/day", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -360,7 +360,7 @@
         				})
     			}}
             	), legend_county],
-            'county_rights': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_use_counties&maxFeatures=1000&outputFormat=application%2Fjson',
+            'county_rights': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_use_counties&maxFeatures=1000&outputFormat=application%2Fjson',
             	{style:rightsStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.INSTNAME + " : "+feature.properties.wa_rights+" Water Rights", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -369,7 +369,7 @@
         				})
     			}}
             	), legend_county],	
-             'mining' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+             'mining' : [L.tileLayer.wms('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
               layers: 'baldricg_atlas:water_use_mining',
               tiled: true,
               format: 'image/png',
@@ -378,7 +378,7 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_mining],
-          'domestic' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+          'domestic' : [L.tileLayer.wms('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
               layers: 'baldricg_atlas:water_use_domestic',
               tiled: true,
               format: 'image/png',
