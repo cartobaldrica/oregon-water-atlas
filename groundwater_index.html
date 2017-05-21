@@ -33,12 +33,10 @@
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top navbar-toggleable-md" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" style="left:10px; position: fixed;">
             <a class="navbar-brand" href="https://cartobaldrica.github.io/">Home</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#share-modal" style="cursor:pointer;">Share</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#info-modal" style="cursor:pointer;">About</a>
             <a class="navbar-brand" href="#">Groundwater</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -68,6 +66,21 @@
                 <li>
                     <a href="javascript:window.scrollBy(0, $('section[data-scene=conservation_management]').offset().top - $(window).scrollTop() - 10);">Management</a>
                 </li>
+                <li>
+            		<a  data-toggle="modal" data-target="#info-modal">About</a>
+                </li>
+                <li>
+                 <div class="dropdown">
+  					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    					Share
+  					</button>
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    					<a class="dropdown-item" target="_blank" href="https://facebook.com/sharer.php?u=http://rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Facebook</a><br/>
+   						<a class="dropdown-item" target="_blank" href="https://twitter.com/home?status=Oregon's%20Groundwater%0Ahttp%3A//rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Twitter</a><br/>
+    					<a class="dropdown-item" target="_blank" href="https://github.com/cartobaldrica/water_atlas">Github</a>
+  					</div>
+				</div>
+				</li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -426,7 +439,7 @@ function otherStyle(feature) {
 //<p style="text-align:left; font-weight:bold">Hover for source</p>'
 
     var layers = {  	
-            'counties': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:gw_counties&maxFeatures=10000&outputFormat=application%2Fjson',
+            'counties': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:gw_counties&maxFeatures=10000&outputFormat=application%2Fjson',
             	{style:countyStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.INSTNAME + " : "+feature.properties.total+" Mgal/day", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -435,10 +448,10 @@ function otherStyle(feature) {
         				})
     			}}
             	), legend_county],	
-            'county_outlines': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:gw_counties&maxFeatures=10000&outputFormat=application%2Fjson',
+            'county_outlines': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:gw_counties&maxFeatures=10000&outputFormat=application%2Fjson',
             	{style:countyStyle2}
             	)],
-            'conservation_critical': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_conservation&maxFeatures=500&outputFormat=application%2Fjson',
+            'conservation_critical': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_conservation&maxFeatures=500&outputFormat=application%2Fjson',
             	{style:critStyle, onEachFeature: function(feature, featureLayer) {
             		if (feature.properties.Type != 'GWMA'){
         				featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip'});
@@ -452,7 +465,7 @@ function otherStyle(feature) {
         			
     			}}
             	), legend_crit],
-            'groundwater_dissolved': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_dissolved&maxFeatures=50&outputFormat=application%2Fjson',
+            'groundwater_dissolved': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_dissolved&maxFeatures=50&outputFormat=application%2Fjson',
             	{style:gwStyle, onEachFeature: function(feature, featureLayer) {
         				featureLayer.bindTooltip(feature.properties.rock_type + "<br>" + "Avg. Recharge Rate: " + feature.properties.rate + " mm/yr", {className: 'label_tooltip', sticky: true});
     					featureLayer.bindPopup(feature.properties.rock_type + "<br>" + "Avg. Recharge Rate: " + feature.properties.rate + " mm/yr", {className: 'label_tooltip', sticky: false});
@@ -463,19 +476,19 @@ function otherStyle(feature) {
         				
     				}}
             	), legend_recharge],
-            'sand_dissolved': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_dissolved&maxFeatures=50&outputFormat=application%2Fjson',
+            'sand_dissolved': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_dissolved&maxFeatures=50&outputFormat=application%2Fjson',
             	{style:sandStyle, onEachFeature: function(feature, featureLayer) {        				
     				}}
             	), legend_recharge],
-            'volcanic_dissolved': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_dissolved&maxFeatures=50&outputFormat=application%2Fjson',
+            'volcanic_dissolved': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_dissolved&maxFeatures=50&outputFormat=application%2Fjson',
             	{style:volStyle, onEachFeature: function(feature, featureLayer) {		
     				}}
             	), legend_recharge],
-            'other_dissolved': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_dissolved&maxFeatures=50&outputFormat=application%2Fjson',
+            'other_dissolved': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_dissolved&maxFeatures=50&outputFormat=application%2Fjson',
             	{style:otherStyle, onEachFeature: function(feature, featureLayer) {        				
     				}}
             	), legend_recharge],
-        	'conservation_management': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_conservation&maxFeatures=500&outputFormat=application%2Fjson',
+        	'conservation_management': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_conservation&maxFeatures=500&outputFormat=application%2Fjson',
             	{style:consStyle, onEachFeature: function(feature, featureLayer) {
             		if (feature.properties.Type == 'GWMA'){
         				featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip'});
@@ -489,35 +502,35 @@ function otherStyle(feature) {
         			
     			}}
             	), legend_manage],
-            'groundwater_reprojected': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
+            'groundwater_reprojected': [L.tileLayer.wms("https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
         			layers: 'baldricg_atlas:groundwater_reprojected',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 15,
         			transparent: true,
     			})],
-    		'irrigation': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
+    		'irrigation': [L.tileLayer.wms("https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
         			layers: 'baldricg_atlas:groundwater_irrigation',
         			format: 'image/png',
         			minZoom: 11,
         			maxZoom: 15,
         			transparent: true,
     			}), legend_irrigation],
-    		'irrigation_points': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
+    		'irrigation_points': [L.tileLayer.wms("https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
         			layers: 'baldricg_atlas:groundwater_irrigation_points',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 10,
         			transparent: true,
     			})],
-    		'elevation': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
+    		'elevation': [L.tileLayer.wms("https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
         			layers: 'baldricg_basemap:or_relief',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 10,
         			transparent: true,
     			})],
-    		'elevation2': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
+    		'elevation2': [L.tileLayer.wms("https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
         			layers: 'baldricg_basemap:or_relief',
         			format: 'image/png',
         			minZoom: 6,

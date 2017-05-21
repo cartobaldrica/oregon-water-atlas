@@ -33,12 +33,10 @@
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top navbar-toggleable-md" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" style="left:10px; position: fixed;">
             <a class="navbar-brand" href="https://cartobaldrica.github.io/">Home</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#share-modal" style="cursor:pointer;">Share</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#info-modal" style="cursor:pointer;">About</a>
             <a class="navbar-brand" href="#">Infrastructure</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -62,6 +60,21 @@
                 <li>
                     <a href="javascript:window.scrollBy(0, $('section[data-scene=bridges]').offset().top - $(window).scrollTop() - 10);">Bridges</a>
                 </li>
+                <li>
+            		<a  data-toggle="modal" data-target="#info-modal">About</a>
+                </li>
+                <li>
+                 <div class="dropdown">
+  					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    					Share
+  					</button>
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    					<a class="dropdown-item" target="_blank" href="https://facebook.com/sharer.php?u=http://rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Facebook</a><br/>
+   						<a class="dropdown-item" target="_blank" href="https://twitter.com/home?status=Oregon's%20Groundwater%0Ahttp%3A//rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Twitter</a><br/>
+    					<a class="dropdown-item" target="_blank" href="https://github.com/cartobaldrica/water_atlas">Github</a>
+  					</div>
+				</div>
+				</li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -355,7 +368,7 @@ function bridgeColor(string){
 //<p style="text-align:left; font-weight:bold">Hover for source</p>'
 
     var layers = {  
-             'basins': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dam_basin&maxFeatures=1000&outputFormat=application%2Fjson', {
+             'basins': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dam_basin&maxFeatures=1000&outputFormat=application%2Fjson', {
             	style:basinStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.HU_8_NAME + " : "+feature.properties.NUMPOINTS+" dams", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -364,7 +377,7 @@ function bridgeColor(string){
         				})
     			}}
             	)],
-            'dams' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_reprojected&maxFeatures=100000&outputFormat=application%2Fjson', {
+            'dams' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_reprojected&maxFeatures=100000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -377,7 +390,7 @@ function bridgeColor(string){
     					).bindTooltip(feature.properties.dam_name + " : " + feature.properties.storage + " Acre-ft" + "<br>" + "Completed: " + feature.properties.date_com_1, {className: 'label_tooltip'});
     				}
 				})],
-			'dam_hazard' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_reprojected&maxFeatures=100000&outputFormat=application%2Fjson', {
+			'dam_hazard' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_reprojected&maxFeatures=100000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -390,7 +403,7 @@ function bridgeColor(string){
     					).bindTooltip(feature.properties.dam_name + " : " + feature.properties.dam_height + " ft." + "<br>" + "Last Inspection: " + feature.properties.inspection, {className: 'label_tooltip'});
     				}
 				})],
-			'hydro' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_hydropower&maxFeatures=100000&outputFormat=application%2Fjson', {
+			'hydro' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_hydropower&maxFeatures=100000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -403,7 +416,7 @@ function bridgeColor(string){
     					).bindTooltip(feature.properties.dam_name + " : " + feature.properties.capacity + " MW" +"<br>"+"Owner: " + feature.properties.owner_name, {className: 'label_tooltip'});
     				}
 				})],
-			'removal' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dam_removal&maxFeatures=100000&outputFormat=application%2Fjson', {
+			'removal' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dam_removal&maxFeatures=100000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -416,7 +429,7 @@ function bridgeColor(string){
     					).bindTooltip(feature.properties.DAM_NAME + " : " + feature.properties.height + " ft." + "<br>" + "Year Removed: " + feature.properties.removal_yr, {className: 'label_tooltip'});
     				}
 				})],
-			'hydro_columbia' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_hydropower&maxFeatures=100000&outputFormat=application%2Fjson', {
+			'hydro_columbia' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_hydropower&maxFeatures=100000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -429,7 +442,7 @@ function bridgeColor(string){
     					).bindTooltip(feature.properties.dam_name + " : " + feature.properties.capacity + " MW", {className: 'label_tooltip', permanent: true, opacity:hydroOpacity(feature.properties.river), direction:'left'});
     				}
 				})],
-			'bridges' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_bridges&maxFeatures=100000&outputFormat=application%2Fjson', {
+			'bridges' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_bridges&maxFeatures=100000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color:'#ffffff',
@@ -553,7 +566,7 @@ function bridgeColor(string){
         			transparent: true,
     			}).addTo(map);
     			
-    			oregonCover.setOpacity(0.4);
+    			oregonCover.setOpacity(0.2);
 			
  				
  				var mini = new L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {

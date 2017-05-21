@@ -34,12 +34,10 @@
 <body>
 
 <div class="navbar navbar-inverse navbar-fixed-top navbar-toggleable-md" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" style="left:10px; position: fixed;">
             <a class="navbar-brand" href="https://cartobaldrica.github.io/">Home</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#share-modal" style="cursor:pointer;">Share</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#info-modal" style="cursor:pointer;">About</a>
             <a class="navbar-brand" href="#">Fish</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -78,6 +76,21 @@
                 <li>
                     <a href="javascript:window.scrollBy(0, $('section[data-scene=hatcheries]').offset().top - $(window).scrollTop() - 10);">Hatcheries</a>
                 </li>
+                <li>
+            		<a  data-toggle="modal" data-target="#info-modal">About</a>
+                </li>
+                <li>
+                 <div class="dropdown">
+  					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    					Share
+  					</button>
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    					<a class="dropdown-item" target="_blank" href="https://facebook.com/sharer.php?u=http://rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Facebook</a><br/>
+   						<a class="dropdown-item" target="_blank" href="https://twitter.com/home?status=Oregon's%20Groundwater%0Ahttp%3A//rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Twitter</a><br/>
+    					<a class="dropdown-item" target="_blank" href="https://github.com/cartobaldrica/water_atlas">Github</a>
+  					</div>
+				</div>
+				</li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -90,7 +103,7 @@
         <div class="col-sm-6 col-md-4 main">
         
             <section data-scene="overview">
-				 	<div class= "overview-background-img background-fullscreen-setting text-responsive"><h4 class="text-center" style="color:black;">Fish</h4><br><h4 class ="text-center" style="font-size:20px; margin-top:0px; color: #000000; text-shadow: gray 0.0em 0.0em 0.0em; margin-left: 25%; margin-right:25%; text-align:justify;">Most Oregon waters are home to multiple species of fish. Fish play a major role for regional indigenous groups, and are a proud food source. Urbanization and river engineering have dramatically altered fish habitats and migration paths, changing the dynamics of Oregon fish populations. The fish included in this chapter aren't comprehensive. Rather, they are the fish whose habitats have been surveyed by the Oregon Department of Fish and Wildlife.</h4>
+				 	<div class= "overview-background-img background-fullscreen-setting text-responsive"><h4 class="text-center" style="color:black;">Fish</h4><br><h4 class ="text-center" style="font-size:20px; margin-top:0px; color: #000000; text-shadow: gray 0.0em 0.0em 0.0em; margin-left: 25%; margin-right:25%; text-align:justify;">Most Oregon waters are home to multiple species of fish. Fish play a major role for regional indigenous groups, and are an important food source. Urbanization and river engineering have dramatically altered fish habitats and migration paths, changing the dynamics of Oregon fish populations. Not every Oregon fish is included in this chapter.</h4>
                 	<br/><br/>
                 	<p class ="text-center" style="font-size:14px; margin-top:0px; color: #000000; text-shadow: black 0em 0em 0em; margin-left: 30%; margin-right:30%; display:block;">Created by Gareth Baldrica-Franklin, Institute for Water and Watersheds, Oregon State University</p></div>
                 	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>                 
@@ -211,7 +224,7 @@
                 <h3>Lamprey</h3>
 				<p>Lampreys are long eel-like fish. They typically spend 3-7 years in freshwater before migrating to the ocean, where they remain for several years. Lamprey return to freshwater to spawn and die. Lamprey are an important food food for indigenous groups throughout the Northwest. The construction of the Columbia River Hydroelectric System severely limited their distribution throughout Oregon waters.</p>
 				<br/><br/><div class="leg"><p style ="font-weight: bold;">Habitat Extent</p>
-				<img src="img/lamprey.jpg" height="115" width="225" style="float: right;"><br/><i style="background: #00b093; opacity: 0.8; margin-right: 8px;"></i><p>Current</p><br/><i style="background: #ff3333; opacity: 0.8; margin-right: 8px;"></i><p>Historical</p><br/>
+				<img src="img/lamprey.jpg" height="110" width="220" style="float: right;"><br/><i style="background: #00b093; opacity: 0.8; margin-right: 8px;"></i><p>Current</p><br/><i style="background: #ff3333; opacity: 0.8; margin-right: 8px;"></i><p>Historical</p><br/>
 				</div>
 				<br/><br/><br/>
 			</section>
@@ -271,7 +284,7 @@
                 <div class="modal-body">
                     <p2>Cover photo retrieved from Wikimedia Commons</p2><br>                    
                     <p2>End photo retrieved from Wikimedia Commons</p2><br>
-                    <p2>Some illustrations by Timothy Knepp, U.S Fish and Wildlife Services, others retrieved from Wikimedia Commons</p2>
+                    <p2>Some illustrations by Timothy Knepp, U.S Fish and Wildlife Services, others retrieved from Wikimedia Commons</p2><br/>
                     <p2 style="font-size:20px">Geographic Data</p2><br>
                     <p2>Fish Barriers: <a href = "http://spatialdata.oregonexplorer.info/geoportal/details;id=f097ec6f0f3b44129761838ffb7dfb28" target="_blank">Oregon Department of Fish and Wildlife/Oregon Spatial Data Library</a></p2><br>
                     <p2>Fish Habitats/Hatcheries: <a href = "https://nrimp.dfw.state.or.us/nrimp/default.aspx?p=259" target="_blank">Oregon Department of Fish and Wildlife</a></p2><br>
@@ -399,7 +412,7 @@
               minZoom: 6,
               continuousWorld: true
               })],
-            'hatcheries' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:hatcheries&maxFeatures=1000&outputFormat=application%2Fjson', {
+            'hatcheries' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:hatcheries&maxFeatures=1000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -531,7 +544,7 @@
 				
 				var miniMap = new L.Control.MiniMap(mini, { toggleDisplay: false});
  				
-				miniMap.addTo(map);
+				//miniMap.addTo(map);
 			
 				new L.Control.Zoom({ position: 'bottomright'}).addTo(map);
 

@@ -37,12 +37,10 @@
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top navbar-toggleable-md" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" style="left:10px; position: fixed;">
             <a class="navbar-brand" href="https://cartobaldrica.github.io/">Home</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#share-modal" style="cursor:pointer;">Share</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#info-modal" style="cursor:pointer;">About</a>
             <a class="navbar-brand" href="#">Precipitation</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -87,6 +85,21 @@
                 <li>
                     <a href="javascript:window.scrollBy(0, $('section[data-scene=december]').offset().top - $(window).scrollTop() - 10);">December</a>
                 </li>
+                <li>
+            		<a  data-toggle="modal" data-target="#info-modal">About</a>
+                </li>
+                <li>
+                 <div class="dropdown">
+  					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    					Share
+  					</button>
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    					<a class="dropdown-item" target="_blank" href="https://facebook.com/sharer.php?u=http://rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Facebook</a><br/>
+   						<a class="dropdown-item" target="_blank" href="https://twitter.com/home?status=Oregon's%20Groundwater%0Ahttp%3A//rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Twitter</a><br/>
+    					<a class="dropdown-item" target="_blank" href="https://github.com/cartobaldrica/water_atlas">Github</a>
+  					</div>
+				</div>
+				</li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

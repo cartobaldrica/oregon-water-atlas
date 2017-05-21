@@ -33,12 +33,10 @@
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top navbar-toggleable-md" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" style="left:10px; position: fixed;">
             <a class="navbar-brand" href="https://cartobaldrica.github.io/">Home</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#share-modal" style="cursor:pointer;">Share</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#info-modal" style="cursor:pointer;">About</a>
             <a class="navbar-brand" href="#">Surface Water</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -62,6 +60,22 @@
                 <li>
                     <a href="javascript:window.scrollBy(0, $('section[data-scene=river_pollution]').offset().top - $(window).scrollTop() - 10);">Pollution</a>
                 </li>
+            	 </li>
+                <li>
+            		<a  data-toggle="modal" data-target="#info-modal">About</a>
+                </li>
+                <li>
+                 <div class="dropdown">
+  					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    					Share
+  					</button>
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    					<a class="dropdown-item" target="_blank" href="https://facebook.com/sharer.php?u=http://rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Facebook</a><br/>
+   						<a class="dropdown-item" target="_blank" href="https://twitter.com/home?status=Oregon's%20Groundwater%0Ahttp%3A//rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Twitter</a><br/>
+    					<a class="dropdown-item" target="_blank" href="https://github.com/cartobaldrica/water_atlas">Github</a>
+  					</div>
+				</div>
+				</li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -482,7 +496,7 @@ function wetlandStyle(feature) {
     }
     
     var layers = {  
-             'basins': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:oregon_watersheds_small&maxFeatures=1000&outputFormat=application%2Fjson', {
+             'basins': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:oregon_watersheds_small&maxFeatures=1000&outputFormat=application%2Fjson', {
             	style:basinStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.Name + "<br>" + feature.properties.HU6NAME + " Basin", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -491,7 +505,7 @@ function wetlandStyle(feature) {
         				})
     			}}
             	)],
-            'watershed_pollution': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:watershed_pollution&maxFeatures=1000&outputFormat=application%2Fjson', {
+            'watershed_pollution': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:watershed_pollution&maxFeatures=1000&outputFormat=application%2Fjson', {
             	style:watershedPollutionStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.Name + "<br>" + feature.properties.NUMPOINTS + " Water Quality Limited Pollutants", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -500,7 +514,7 @@ function wetlandStyle(feature) {
         				})
     			}}
             	)],
-            'councils': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:watershed_councils&maxFeatures=1000&outputFormat=application%2Fjson', {
+            'councils': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:watershed_councils&maxFeatures=1000&outputFormat=application%2Fjson', {
             	style:councilStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.instName, {className: 'label_tooltip'});
         			featureLayer.on({
@@ -509,7 +523,7 @@ function wetlandStyle(feature) {
         				})
     			}}
             	)],
-             'councils_small': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:watershed_councils_small&maxFeatures=1000&outputFormat=application%2Fjson', {
+             'councils_small': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:watershed_councils_small&maxFeatures=1000&outputFormat=application%2Fjson', {
             	style:councilSmall, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.instName, {className: 'label_tooltip'});
         			featureLayer.on({
@@ -519,14 +533,14 @@ function wetlandStyle(feature) {
         				})
     			}}
             	)],
-    		'rivers': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
+    		'rivers': [L.tileLayer.wms("https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
         			layers: 'baldricg_basemap:oregon_surface_water2',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 15,
         			transparent: true,
     			})],
-    		'lakes': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:lakes_or&maxFeatures=5000&outputFormat=application%2Fjson', {
+    		'lakes': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:lakes_or&maxFeatures=5000&outputFormat=application%2Fjson', {
             	style:lakeStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip'});
         			featureLayer.on({
@@ -535,7 +549,7 @@ function wetlandStyle(feature) {
         				})
     			}}
             	)],
-            'wetlands': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:oregon_wetlands&maxFeatures=5000&outputFormat=application%2Fjson', {
+            'wetlands': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:oregon_wetlands&maxFeatures=5000&outputFormat=application%2Fjson', {
             	style:wetlandStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.OGW_Site_N, {className: 'label_tooltip'});
         			featureLayer.on({
@@ -544,7 +558,7 @@ function wetlandStyle(feature) {
         				})
     			}}
             	)],
-            'lake_pollutants': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:lake_pollutants_2012&maxFeatures=5000&outputFormat=application%2Fjson', {
+            'lake_pollutants': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:lake_pollutants_2012&maxFeatures=5000&outputFormat=application%2Fjson', {
             	style:lakePollutionStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.LAKE_NAME + " : " + feature.properties.SUM_count + " Pollutants", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -560,7 +574,7 @@ function wetlandStyle(feature) {
         			maxZoom: 15,
         			transparent: true,
     			})],
-            'surface_rivers': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:surface_rivers&maxFeatures=13000&outputFormat=application%2Fjson', {
+            'surface_rivers': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:surface_rivers&maxFeatures=13000&outputFormat=application%2Fjson', {
             	style:riverStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip', sticky:true});
         			featureLayer.on({
@@ -569,7 +583,7 @@ function wetlandStyle(feature) {
         				})
     			}}
             	)],
-            'river_pollutants': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:river_pollutants_2012&maxFeatures=13000&outputFormat=application%2Fjson', {
+            'river_pollutants': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:river_pollutants_2012&maxFeatures=13000&outputFormat=application%2Fjson', {
             	style:pollutionStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.STREAM_NAM + " : " + feature.properties.SUM_count + " Pollutants", {className: 'label_tooltip', sticky:true});
         			featureLayer.on({
@@ -578,7 +592,7 @@ function wetlandStyle(feature) {
         				})
     			}}
             	)],
-            'river_pollutant_points': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:river_pollutant_points_2012&maxFeatures=13000&outputFormat=application%2Fjson', {
+            'river_pollutant_points': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:river_pollutant_points_2012&maxFeatures=13000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',

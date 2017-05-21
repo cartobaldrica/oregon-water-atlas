@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <meta property="og:title" content="Oregon Water Atlas: Flooding" />
-    <meta property="og:url" content="http://rawgit.com/cartobaldrica/water_atlas/master/flood_index.html" />
+    <meta property="og:url" content="https://cartobaldrica.github.io/flood_index.html" />
     <meta property="og:description" content="Explore Oregon's historical floods and current flood risk." />
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -37,12 +37,10 @@
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top navbar-toggleable-md" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" style="left:10px; position: fixed;">
             <a class="navbar-brand" href="https://cartobaldrica.github.io/">Home</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#share-modal" style="cursor:pointer;">Share</a>
-            <a class="navbar-brand" data-toggle="modal" data-target="#info-modal" style="cursor:pointer;">About</a>
             <a class="navbar-brand" href="#">Flooding</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,8 +62,23 @@
                     <a href="javascript:window.scrollBy(0, $('section[data-scene=flood_1996_february]').offset().top - $(window).scrollTop() - 10);">1996 - February</a>
                 </li>
                 <li>
-                    <a href="javascript:window.scrollBy(0, $('section[data-scene=predicitions]').offset().top - $(window).scrollTop() - 10);">Risk</a>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=predictions]').offset().top - $(window).scrollTop() - 10);">Risk</a>
                 </li>
+                <li>
+            		<a  data-toggle="modal" data-target="#info-modal">About</a>
+                </li>
+                <li>
+                 <div class="dropdown">
+  					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    					Share
+  					</button>
+  					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    					<a class="dropdown-item" target="_blank" href="https://facebook.com/sharer.php?u=http://rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Facebook</a><br/>
+   						<a class="dropdown-item" target="_blank" href="https://twitter.com/home?status=Oregon's%20Groundwater%0Ahttp%3A//rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html">Twitter</a><br/>
+    					<a class="dropdown-item" target="_blank" href="https://github.com/cartobaldrica/water_atlas">Github</a>
+  					</div>
+				</div>
+				</li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -257,26 +270,26 @@
 					minZoom: 6,
         			maxZoom: 15
 				})],
-            'flood_1861': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:1861_floods&maxFeatures=50&outputFormat=application%2Fjson',
+            'flood_1861': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:1861_floods&maxFeatures=50&outputFormat=application%2Fjson',
             	{fillColor: '#bf4040', fillOpacity: .5, color: '#993333', weight: 1, opacity: 0.5}), legend_1861],
             'heppner': [L.circle([45.3448, -119.5436], {
     					opacity: 0,
 					}).bindTooltip('Willow Creek <br> Reservoir', {permanent: true, className: 'label_tooltip',  offset: L.point({x: 80, y: -10})})
     			],
-            'vanport_polygon': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:vanport_polygons&maxFeatures=50&outputFormat=application%2Fjson',
+            'vanport_polygon': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:vanport_polygons&maxFeatures=50&outputFormat=application%2Fjson',
             	{fillColor: '#862d2d', fillOpacity: .5, color: '#bf4040', radius: 4, opacity: 0.5, weight:2}), legend_vanport],
-            'vanport_points': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:vanport_points&maxFeatures=50&outputFormat=application%2Fjson', 
+            'vanport_points': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:vanport_points&maxFeatures=50&outputFormat=application%2Fjson', 
             	{pointToLayer: function (feature, latlng) {
     					return L.circleMarker(latlng, vanportStyle).bindTooltip('Embankment Failure', {permanent: true, className: 'label_tooltip',  offset: L.point({x: 6, y: -8})}); map.dragging.enable();}
     			})],
-    		'flood_1964': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:1964_flood&maxFeatures=1000&outputFormat=application%2Fjson',
+    		'flood_1964': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:1964_flood&maxFeatures=1000&outputFormat=application%2Fjson',
             	{fillColor: '#bf4040', fillOpacity: .5, color: '#993333', radius: 4, opacity: 0}), legend_1964],
             'flood_1861_cities': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:flooded_1861_cities&maxFeatures=10&outputFormat=application%2Fjson', 
             		{pointToLayer: function (feature, latlng) {
     					return L.circleMarker(latlng, vanportStyle).bindTooltip(feature.properties.Name, {permanent: true, className: 'label_tooltip',  offset: L.point({x: 6, y: -8})}); map.dragging.enable();
     				}
     			})],	
-    		'zones': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:flood_risk_zones&maxFeatures=10000&outputFormat=application%2Fjson',
+    		'zones': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:flood_risk_zones&maxFeatures=10000&outputFormat=application%2Fjson',
             	{fillColor: '#bf4040', fillOpacity: .5, color: '#bf4040', radius: 4, opacity: 0, weight:2}), legend_zones],
             'flood_1996_january' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms',{
               	layers: 'baldricg_atlas:flood_1996_january',
