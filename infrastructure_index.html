@@ -400,7 +400,7 @@ function bridgeColor(string){
     				fillOpacity: 1,
     				weight: 0.5
     				}
-    					).bindTooltip(feature.properties.dam_name + " : " + feature.properties.dam_height + " ft." + "<br>" + "Last Inspection: " + feature.properties.inspection, {className: 'label_tooltip'});
+    					).bindTooltip(feature.properties.dam_name + " : " + feature.properties.dam_height + " ft.", {className: 'label_tooltip'});
     				}
 				})],
 			'hydro' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_hydropower&maxFeatures=100000&outputFormat=application%2Fjson', {
