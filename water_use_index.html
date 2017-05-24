@@ -129,7 +129,7 @@
 			
 			<section data-scene="rights">
                 <h3>Water Rights</h3>
-				<p>All water in Oregon is publicly owned. However, in order to extract water from any source, water users must obtain a water permit from the State of Oregon. These permits are known as water rights. Water rights are divided into 13 usage categories by the Oregon Water Resources Department. The numer of water rights in an area shows how many different parties are extracting water, not the amount of water being used.</p>
+				<p>All water in Oregon is publicly owned. However, in order to extract water from any source, water users must obtain a water permit from the State of Oregon. These permits are known as water rights. Water rights are divided into 13 usage categories by the Oregon Water Resources Department. The number of water rights in an area shows how many different parties are extracting water, not the amount of water being used.</p>
 				<div class="leg"><p style ="font-weight: bold;">No. of Water Rights</p><i style="background: #f8000c; opacity: 0.8"></i><p>6001+</p><i style="background: #ff6343; opacity: 0.8"></i><p>4501 - 6000</p><i style="background: #ffa458; opacity: 0.8"></i><p>3001 - 4500</p><i style="background: #ffd58d; opacity: 0.8"></i><p>1501 - 3000</p><i style="background: #feffcd; opacity: 0.8"></i><p>0 - 1500</p>
 				<br/><p>Hover over counties for details</p>
 				</div>
@@ -138,14 +138,14 @@
 			<section data-scene="mining">
                 <h3>Mining</h3>
                 <p style="font-style: italic; font-size:16px;">This map shows 1 of 13 water right usage categories outlined by the Oregon Water Resources Department. Permits for each category have different requirements and stipulations.</p>
-                <p>Mining operations use water for the extraction, grading or processing of minerals or aggregates, as well as for construction and operations at mining sites.</p>
+                <p>Mining operations use water for extraction and grading or processing of minerals or aggregates, as well as for construction and operations at mining sites.</p>
 				<div class ="leg"><i style="background: #d9a7ff; fillOpacity: .8; weight: 1; opacity: 0.8; border:1px solid #d9a7ff"></i><b><p style="text-align: left; margin-left: 25px">Surface Water</b></p><i style="background: #8215ff; fillOpacity: .8; weight: 1; opacity: 0.8; border:1px solid #8215ff"></i><b><p style="text-align: left; margin-left: 25px">Groundwater</b></p></div>
 			</section>
 			
 			<section data-scene="domestic">
                 <h3>Domestic</h3>
                 <p style="font-style: italic; font-size:16px;">This map shows 1 of 13 water right usage categories outlined by the Oregon Water Resources Department. Permits for each category have different requirements and stipulations.</p>
-                <p>Domestic water is used for human consumption, households, or domestic animals. Domestic water rights are different than municipal water utilities. Subcategories include domestic landscaping, group use, and school use. </p>
+                <p>Domestic water is used for human consumption, households, and domestic animals. Domestic water rights are different than municipal water utilities. Subcategories include domestic landscaping, group use, and school use. </p>
 				<div class ="leg"><i style="background: #4bf280; fillOpacity: .8; weight: 1; opacity: 0.8; border:1px solid #4bf280"></i><b><p style="text-align: left; margin-left: 25px">Surface Water</b></p><i style="background: #007116; fillOpacity: .8; weight: 1; opacity: 0.8; border:1px solid #007116"></i><b><p style="text-align: left; margin-left: 25px">Groundwater</b></p><i style="background: #a2a2a2; fillOpacity: .8; weight: 1; opacity: 0.8; border:1px solid #fffff"></i><b><p style="text-align: left; margin-left: 25px">Stored Water</b></p></div>
 			</section>
 			
@@ -485,7 +485,15 @@
               maxZoom: 14,
               minZoom: 6,
               continuousWorld: true
-              }), legend_wildlife]
+              }), legend_wildlife],
+            'elevation2': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
+        			layers: 'baldricg_basemap:or_relief',
+        			format: 'image/png',
+        			minZoom: 6,
+        			maxZoom: 10,
+        			opacity:0.1,
+        			transparent: true,
+    			})]
     		
     };
 
@@ -493,19 +501,19 @@
             overview: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Home',position: 'fullpage'},
             counties: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'County Use', layers:['counties']},
             rights: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Water Rights', layers:['county_rights']},
-            mining: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Mining', layers:['mining']},
-            domestic: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Domestic', layers:['domestic']},
-            agriculture: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Agriculture', layers:['agriculture']},
-            irrigation: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Irrigation', layers:['irrigation']},
-            commercial: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Commercial', layers:['commercial']},
-            recreation: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Recreation', layers:['recreation']},
-            power: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Power', layers:['power']},
-            fish: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Fish', layers:['fish']},
-            livestock: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Livestock', layers:['livestock']},
-            municipal: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Municipal', layers:['municipal']},
-            instream: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Instream', layers:['instream']},
-            miscellaneous: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Miscellaneous', layers:['miscellaneous']},
-            wildlife: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Wildlife', layers:['wildlife']},
+            mining: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Mining', layers:[ 'elevation2','mining']},
+            domestic: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Domestic', layers:[ 'elevation2','domestic']},
+            agriculture: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Agriculture', layers:[ 'elevation2','agriculture']},
+            irrigation: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Irrigation', layers:[ 'elevation2','irrigation']},
+            commercial: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Commercial', layers:[ 'elevation2','commercial']},
+            recreation: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Recreation', layers:[ 'elevation2','recreation']},
+            power: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Power', layers:[ 'elevation2','power']},
+            fish: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Fish', layers:[ 'elevation2','fish']},
+            livestock: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Livestock', layers:[ 'elevation2','livestock']},
+            municipal: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Municipal', layers:[ 'elevation2','municipal']},
+            instream: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Instream', layers:[ 'elevation2','instream']},
+            miscellaneous: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Miscellaneous', layers:[ 'elevation2','miscellaneous']},
+            wildlife: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Wildlife', layers:[ 'elevation2','wildlife']},
             end: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'End', position:'fullpage'}      
     };
     
