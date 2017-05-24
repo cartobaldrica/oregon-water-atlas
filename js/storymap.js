@@ -213,6 +213,8 @@
                 $(".arrow-up").css("left", "25px");
                  $(".arrow-down").css("margin-top", "0px");
                  $(".arrow-down").css("background-color", "rgba(230, 230, 230,0)");
+                 $(".arrow-down").css("padding", "0px");
+                 
 
                 if (scenes[$(this).data('scene')].position === "fullpage") {
                     $(this).addClass('section-opacity')
@@ -226,6 +228,7 @@
                     //$(".arrow-down").css("margin-top", "-375px");
                     $(".arrow-down").css("background-color", "rgba(230, 230, 230,0.2)");
                     $(".arrow-up").css("left", "-200px");
+                    $(".arrow-down").css("padding", "5px");
 
                     //smooth transation.
                     $(".main").fadeTo(0, 0);
