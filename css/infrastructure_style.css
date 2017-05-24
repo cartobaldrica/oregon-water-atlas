@@ -302,6 +302,8 @@ section {
     font-size: 24px;
     color: #ffffff;
     font-weight:bold;
+    padding:5px;
+    border-radius: 5px;
 
 }
 
