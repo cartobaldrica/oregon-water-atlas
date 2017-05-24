@@ -351,7 +351,7 @@
 //<p style="text-align:left; font-weight:bold">Hover for source</p>'
 
     var layers = {  
-             'counties': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_use_counties&maxFeatures=1000&outputFormat=application%2Fjson',
+             'counties': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_use_counties&maxFeatures=1000&outputFormat=application%2Fjson',
             	{style:countyStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.INSTNAME + " : "+feature.properties.total_use+" Mgal/day", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -360,7 +360,7 @@
         				})
     			}}
             	), legend_county],
-            'county_rights': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_use_counties&maxFeatures=1000&outputFormat=application%2Fjson',
+            'county_rights': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_use_counties&maxFeatures=1000&outputFormat=application%2Fjson',
             	{style:rightsStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.INSTNAME + " : "+feature.properties.wa_rights+" Water Rights", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -369,7 +369,7 @@
         				})
     			}}
             	), legend_county],	
-             'mining' : [L.tileLayer.wms('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+             'mining' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
               layers: 'baldricg_atlas:water_use_mining',
               tiled: true,
               format: 'image/png',

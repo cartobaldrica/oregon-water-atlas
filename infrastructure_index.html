@@ -368,7 +368,7 @@ function bridgeColor(string){
 //<p style="text-align:left; font-weight:bold">Hover for source</p>'
 
     var layers = {  
-             'basins': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dam_basin&maxFeatures=1000&outputFormat=application%2Fjson', {
+             'basins': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dam_basin&maxFeatures=1000&outputFormat=application%2Fjson', {
             	style:basinStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.HU_8_NAME + " : "+feature.properties.NUMPOINTS+" dams", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -377,7 +377,7 @@ function bridgeColor(string){
         				})
     			}}
             	)],
-            'dams' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_reprojected&maxFeatures=100000&outputFormat=application%2Fjson', {
+            'dams' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_reprojected&maxFeatures=100000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -390,7 +390,7 @@ function bridgeColor(string){
     					).bindTooltip(feature.properties.dam_name + " : " + feature.properties.storage + " Acre-ft" + "<br>" + "Completed: " + feature.properties.date_com_1, {className: 'label_tooltip'});
     				}
 				})],
-			'dam_hazard' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_reprojected&maxFeatures=100000&outputFormat=application%2Fjson', {
+			'dam_hazard' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_reprojected&maxFeatures=100000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -403,7 +403,7 @@ function bridgeColor(string){
     					).bindTooltip(feature.properties.dam_name + " : " + feature.properties.dam_height + " ft.", {className: 'label_tooltip'});
     				}
 				})],
-			'hydro' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_hydropower&maxFeatures=100000&outputFormat=application%2Fjson', {
+			'hydro' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_hydropower&maxFeatures=100000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -416,7 +416,7 @@ function bridgeColor(string){
     					).bindTooltip(feature.properties.dam_name + " : " + feature.properties.capacity + " MW" +"<br>"+"Owner: " + feature.properties.owner_name, {className: 'label_tooltip'});
     				}
 				})],
-			'removal' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dam_removal&maxFeatures=100000&outputFormat=application%2Fjson', {
+			'removal' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dam_removal&maxFeatures=100000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -429,7 +429,7 @@ function bridgeColor(string){
     					).bindTooltip(feature.properties.DAM_NAME + " : " + feature.properties.height + " ft." + "<br>" + "Year Removed: " + feature.properties.removal_yr, {className: 'label_tooltip'});
     				}
 				})],
-			'hydro_columbia' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_hydropower&maxFeatures=100000&outputFormat=application%2Fjson', {
+			'hydro_columbia' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:dams_hydropower&maxFeatures=100000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -442,7 +442,7 @@ function bridgeColor(string){
     					).bindTooltip(feature.properties.dam_name + " : " + feature.properties.capacity + " MW", {className: 'label_tooltip', permanent: true, opacity:hydroOpacity(feature.properties.river), direction:'left'});
     				}
 				})],
-			'bridges' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_bridges&maxFeatures=100000&outputFormat=application%2Fjson', {
+			'bridges' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_bridges&maxFeatures=100000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color:'#ffffff',

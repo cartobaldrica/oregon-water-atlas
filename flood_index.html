@@ -270,26 +270,26 @@
 					minZoom: 6,
         			maxZoom: 15
 				})],
-            'flood_1861': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:1861_floods&maxFeatures=50&outputFormat=application%2Fjson',
+            'flood_1861': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:1861_floods&maxFeatures=50&outputFormat=application%2Fjson',
             	{fillColor: '#bf4040', fillOpacity: .5, color: '#993333', weight: 1, opacity: 0.5}), legend_1861],
             'heppner': [L.circle([45.3448, -119.5436], {
     					opacity: 0,
 					}).bindTooltip('Willow Creek <br> Reservoir', {permanent: true, className: 'label_tooltip',  offset: L.point({x: 80, y: -10})})
     			],
-            'vanport_polygon': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:vanport_polygons&maxFeatures=50&outputFormat=application%2Fjson',
+            'vanport_polygon': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:vanport_polygons&maxFeatures=50&outputFormat=application%2Fjson',
             	{fillColor: '#862d2d', fillOpacity: .5, color: '#bf4040', radius: 4, opacity: 0.5, weight:2}), legend_vanport],
             'vanport_points': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:vanport_points&maxFeatures=50&outputFormat=application%2Fjson', 
             	{pointToLayer: function (feature, latlng) {
     					return L.circleMarker(latlng, vanportStyle).bindTooltip('Embankment Failure', {permanent: true, className: 'label_tooltip',  offset: L.point({x: 6, y: -8})}); map.dragging.enable();}
     			})],
-    		'flood_1964': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:1964_flood&maxFeatures=1000&outputFormat=application%2Fjson',
+    		'flood_1964': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:1964_flood&maxFeatures=1000&outputFormat=application%2Fjson',
             	{fillColor: '#bf4040', fillOpacity: .5, color: '#993333', radius: 4, opacity: 0}), legend_1964],
             'flood_1861_cities': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:flooded_1861_cities&maxFeatures=10&outputFormat=application%2Fjson', 
             		{pointToLayer: function (feature, latlng) {
     					return L.circleMarker(latlng, vanportStyle).bindTooltip(feature.properties.Name, {permanent: true, className: 'label_tooltip',  offset: L.point({x: 6, y: -8})}); map.dragging.enable();
     				}
     			})],	
-    		'zones': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:flood_risk_zones&maxFeatures=10000&outputFormat=application%2Fjson',
+    		'zones': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:flood_risk_zones&maxFeatures=10000&outputFormat=application%2Fjson',
             	{fillColor: '#bf4040', fillOpacity: .5, color: '#bf4040', radius: 4, opacity: 0, weight:2}), legend_zones],
             'flood_1996_january' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms',{
               	layers: 'baldricg_atlas:flood_1996_january',
