@@ -300,7 +300,6 @@ section {
     font-size: 24px;
     color: #ffffff;
     font-weight:bold;
-    padding:5px;
     border-radius: 5px;
 
 }
@@ -417,6 +416,7 @@ text-shadow: black 0.1em 0.1em 0.2em;
   /* place center */
   margin-left:auto;
   margin-right:auto; 
+  color:black;
 }
 
 
