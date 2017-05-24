@@ -289,6 +289,7 @@
            	fillOpacity: 0.6,
         	weight: 1
     	});
+
     }
 //rivers
     function riverSize(density){
@@ -494,6 +495,14 @@ function wetlandStyle(feature) {
         density >10 ? '#ffd58d':
         '#feffcd';
     }
+//counties
+function countyStyle(feature) {
+        return {
+           color: '#bfbfbf', 
+           opacity: 1, 
+           weight: 1
+        };
+    }
     
     var layers = {  
              'basins': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:oregon_watersheds_small&maxFeatures=1000&outputFormat=application%2Fjson', {
@@ -604,18 +613,21 @@ function wetlandStyle(feature) {
     				}
     					).bindTooltip(feature.properties.STREAM_NAM + " : " + feature.properties.SUM_count + " Pollutants", {className: 'label_tooltip'});
     				}
-				})]
+				})],
+			'counties': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:oregon_line&maxFeatures=10&outputFormat=application%2Fjson',
+            	{style:countyStyle}
+            	)],
 			
     };
 
     var scenes = {
             overview: {lat: 44.1347254, lng:-122.7411479, zoom: 7, position:'fullpage'},
             rivers: {lat: 44.1347254, lng:-122.7411479, zoom: 7, layers:['surface_rivers','hydrography']},
-            watersheds: {lat: 44.1347254, lng:-122.7411479, zoom: 7, layers:['basins']},
+            watersheds: {lat: 44.1347254, lng:-122.7411479, zoom: 7, layers:['counties','basins']},
             lakes: {lat: 44.1347254, lng:-122.7411479, zoom: 7, layers:['lakes']},
             councils: {lat: 44.1347254, lng:-122.7411479, zoom: 7, layers:['councils','councils_small']},
             wetlands: {lat: 44.1347254, lng:-122.7411479, zoom: 7, layers:['wetlands']},
-            river_pollution: {lat: 44.1347254, lng:-122.7411479, zoom: 7, layers:['watershed_pollution']},
+            river_pollution: {lat: 44.1347254, lng:-122.7411479, zoom: 7, layers:['counties','watershed_pollution']},
             end: {lat: 44.1347254, lng:-122.7411479, zoom: 7, position:'fullpage'}
     };
     
@@ -710,7 +722,8 @@ function wetlandStyle(feature) {
 			
 				new L.Control.Zoom({ position: 'bottomright'}).addTo(map);
 				
-
+				
+				map.setMaxBounds(map.getBounds());
 				/*if (scene == 'portland'){
 				miniMap;
 				}*/

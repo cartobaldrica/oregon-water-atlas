@@ -110,7 +110,7 @@
                 <br/><h5>"Remember. Dikes are safe at present. You will be warned if necessary. You will have time to leave. Don't get excited."</h5>
                 <h5>from a flyer provided by the Housing Authority of Portland on the morning of Memorial Day, 1948.</h5>
                 <h3>Vanport 1948</h3>
-                <p style = "color: #bf4040">The Vanport flood was one of the most catastrophic events in Oregon history, fundamentally altering the foundation of race relations in Portland (and Oregon) forever.</p><p>In the 1940s, the city of Vanport was the second largest in Oregon and also housed the state's largest African-American population.</p>
+                <p style = "color: #bf4040">The Vanport flood was one of the most catastrophic events in Oregon history, fundamentally altering the foundation of race relations in Portland (and Oregon) forever.</p><p> In the 1940s, the city of Vanport was the second largest in Oregon and also housed the state's largest African-American population.</p>
                 <p>The city was protected by an embankment that kept the Columbia River out of the city. On Memorial Day, 1948, the Columbia swelled 15 feet higher than its normal level. The flood punctured the embankment, spilling water into the city. The flood displaced 18,000 people, many of them African-Americans.</p>
                 <br/><br/><div class="leg"><i style="background: #862d2d; fillOpacity: .5; color:#bf4040; weight: 2; opacity: 0.5; radius: 4"></i><b><p>Vanport City Limits</b></p></div>
                 <br>
@@ -278,7 +278,7 @@
     			],
             'vanport_polygon': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:vanport_polygons&maxFeatures=50&outputFormat=application%2Fjson',
             	{fillColor: '#862d2d', fillOpacity: .5, color: '#bf4040', radius: 4, opacity: 0.5, weight:2}), legend_vanport],
-            'vanport_points': [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:vanport_points&maxFeatures=50&outputFormat=application%2Fjson', 
+            'vanport_points': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:vanport_points&maxFeatures=50&outputFormat=application%2Fjson', 
             	{pointToLayer: function (feature, latlng) {
     					return L.circleMarker(latlng, vanportStyle).bindTooltip('Embankment Failure', {permanent: true, className: 'label_tooltip',  offset: L.point({x: 6, y: -8})}); map.dragging.enable();}
     			})],
@@ -408,6 +408,7 @@
 				/*if (scene == 'portland'){
 				miniMap;
 				}*/
+				map.setMaxBounds(map.getBounds());
 
             return map;
         }

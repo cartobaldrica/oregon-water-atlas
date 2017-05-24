@@ -111,7 +111,7 @@
 			</section>  
 			
 			 <section data-scene="basins">
-                <h3>Dam Density</h3>
+                <h3>Dams per Basin</h3>
 				<p>Dams fundamentally change the environment of their surrounding watersheds. They reduce flow, alter the habitats of freshwater organisms, and affect the amount of sediment that is transported by the river. At the same time, the presence of dams can reduce flood severity and provide water storage. The basins outlined in this map represent the watersheds of many of the largest rivers in Oregon.</p>
 				<br/><br/><div class="leg"><p style ="font-weight: bold;"># of Dams</p></br><i style="background: #333333; opacity: 0.8"></i><p>51+</p></br><i style="background: #666666; opacity: 0.8"></i><p>31 - 50</p></br><i style="background: #a6a6a6; opacity: 0.8"></i><p>16 - 30</p></br><i style="background: #cccccc; opacity: 0.8"></i><p>6 - 15</p></br><i style="background: #f2f2f2; opacity: 0.8"></i><p>< 5</p>
 				<br/><p>Hover over basins for details</p>
@@ -136,7 +136,7 @@
 			            
             <section data-scene="removal">
                 <h3>Dam Removal</h3>
-            	<p>Over 30 dams in Oregon have been removed. Many of the dams were removed due to lack of use and pressure from NGOs. Depending on the size of the dam, removal can be a dangerous and very expensive process. Studies have shown surrounding ecosystems are quick to recover after dams are removed.</p>
+            	<p>Over 30 dams in Oregon have been removed. Many of the dams were removed due to lack of use and pressure from non-profit organizations. Depending on the size of the dam, removal can be a dangerous and very expensive process. Studies have shown surrounding ecosystems are quick to recover after dams are removed.</p>
             	<br/><br/>
             	<div class="leg">
             	<p style="font-weight:bold">Dam Height in Feet</p>
@@ -206,7 +206,7 @@
                     <h2 class="modal-title" style="color:black;">About</h2>
                 </div>
                 <div class="modal-body">
-                    <p2>Overview Photo by Walter Siegmund - retrieved from Wikimedia Commons</p2><br>
+                    <p2>Cover Photo by Walter Siegmund - retrieved from Wikimedia Commons</p2><br>
                     <p2 style="font-size:20px">Geographic Data</p2><br>
                     <p2>Dams/Storage/Risk/Height: <a href = "http://spatialdata.oregonexplorer.info/geoportal/details;id=523fed781b444e278e86fd0c63fd7c53" target="_blank">Oregon Spatial Data Library</a></p2><br>
                 	<p2>Dam Dates: <a href = "http://nid.usace.army.mil/cm_apex/f?p=838:12" target="_blank">National Inventory of Dams</a></p2><br>
@@ -588,6 +588,7 @@ function bridgeColor(string){
 				/*if (scene == 'portland'){
 				miniMap;
 				}*/
+				map.setMaxBounds(map.getBounds());
 
             return map;
         }

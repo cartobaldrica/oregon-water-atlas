@@ -210,16 +210,7 @@
                 </div>
                 <div class="modal-body">
                     <p2 style="font-size:20px">Geographic Data</p2><br>
-                    <p2>1861, 1964, 1996 Flood Extent and Insurance Zones: FEMA - retrieved from Oregon Spatial Data Library</p2><br>
-                	<p2>Vanport: Oregon Historical Society</p2><br>
-                	<p2>1996 Satellite Imagery: Landsat Image Archive</p2><br>
-                	<p2>Demographics: U.S Census Bureau</p2><br>
-                	<p2 style="font-size:20px">Text Data</p2><br>
-                	<p2>1861 Flood: Oregon Historical Quarterly</p2><br>
-                	<p2>Vanport Flood: Oregon Historical Society, Smithsonian</p2><br>
-                	<p2>1964 Flood: The Oregonian</p2><br>
-                	<p2>1996 Flood: Oregonian</p2><br>
-                	<p2>Flood Insurance and Demographics: FEMA, Oregon Risk MAP</p2><br>
+					<p2>30-year Normal Precipitation Data: <a href = "http://www.prism.oregonstate.edu/" target="_blank">PRISM Climate Group, Oregon State University</a></p2><br>
                 </div>
                 <div class="modal-footer">
                     <p2>Created with Leaflet</p>
@@ -456,6 +447,7 @@
 				/*if (scene == 'portland'){
 				miniMap;
 				}*/
+				map.setMaxBounds(map.getBounds());
 
             return map;
         }
