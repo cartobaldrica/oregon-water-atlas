@@ -412,7 +412,7 @@
               minZoom: 6,
               continuousWorld: true
               })],
-            'hatcheries' : [L.geoJson.ajax('https://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:hatcheries&maxFeatures=1000&outputFormat=application%2Fjson', {
+            'hatcheries' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:hatcheries&maxFeatures=1000&outputFormat=application%2Fjson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -544,7 +544,7 @@
 				
 				var miniMap = new L.Control.MiniMap(mini, { toggleDisplay: false});
  				
-				//miniMap.addTo(map);
+				miniMap.addTo(map);
 			
 				new L.Control.Zoom({ position: 'bottomright'}).addTo(map);
 
