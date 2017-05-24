@@ -209,8 +209,10 @@
             sections.on('viewing', function () {
                 $(this).addClass('viewing');
 
-                $(".arrow-down").css("left", "2%");
-                $(".arrow-up").css("left", "2%");
+                $(".arrow-down").css("left", "25px");
+                $(".arrow-up").css("left", "25px");
+                 $(".arrow-down").css("margin-top", "0px");
+                 $(".arrow-down").css("background-color", "rgba(230, 230, 230,0)");
 
                 if (scenes[$(this).data('scene')].position === "fullpage") {
                     $(this).addClass('section-opacity')
@@ -221,6 +223,8 @@
                         .css("display", "block");
 
                     $(".arrow-down").css("left", "50%");
+                    //$(".arrow-down").css("margin-top", "-375px");
+                    $(".arrow-down").css("background-color", "rgba(230, 230, 230,0.2)");
                     $(".arrow-up").css("left", "-200px");
 
                     //smooth transation.
@@ -239,11 +243,13 @@
                     $(".arrow-down").removeClass("glyphicon-arrow-down")
                         .addClass("glyphicon-home");
                     	$(".arrow-down").css("top", "50%");
+                    	$(".arrow-down").css("margin-top", "0px");
+                    	$(".arrow-down").css("background-color", "rgba(230, 230, 230,0)");
 
                 } else {
                     $(".arrow-down").removeClass("glyphicon-home")
                         .addClass("glyphicon-arrow-down");
-                        $(".arrow-down").css("top", "92%");
+                        $(".arrow-down").css("top", "94%");
                         
                 }
 
@@ -274,7 +280,7 @@
 
             $('.arrow-down').click(function () {
                 if ($(".arrow-down")[0].className.includes("down")) {
-                    window.scrollBy(0, $(".viewing").offset().top - $(window).scrollTop() + $('.viewing').height()-5);
+                    window.scrollBy(0, $(".viewing").offset().top - $(window).scrollTop() + $('.viewing').height()-10);
                 } else if ($(".arrow-down")[0].className.includes("home")) {
                     window.scrollTo(0, 0);
                 }
