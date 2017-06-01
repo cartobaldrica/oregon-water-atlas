@@ -347,6 +347,7 @@ div.leg p {
     font-size: 16px;
     color: white;
     line-height: 25px;
+    height:25px !important;
     margin: 0;
     text-shadow: black 0.1em 0.1em 0.2em;
 }
