@@ -113,4 +113,11 @@ ul {
 	white-space: nowrap;
 	text-align: center;
 	}
-
+#dropdownMenuButton, .btn-secondary {color: black; background-color:rgba(0,0,0,0); 
+      border:0; vertical-align:middle;}
+.dropdown-menu{min-width:80px;}
+.dropdown-item{color:black; padding-left:5px;}
+.dropdown-item:hover{color:gray;}
+.btn{
+	padding:0px;
+	}

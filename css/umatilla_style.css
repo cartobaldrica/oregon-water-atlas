@@ -6,6 +6,7 @@
     padding: 20px;
     padding-top: 12px;
     padding-bottom: 600px;
+    margin-bottom:20px;
 }
 
 .main .page-header {
@@ -107,11 +108,6 @@
 .dropdown-item:hover{color:gray;}
 
 
-.glyphicon-one-fine-full-dot:before {
-    content:"\25cf";
-    font-size: 2em;
-}
-
 h4{
 	font-family: "Inconsolata", sans-serif;
 	font-weight:bold;
@@ -142,10 +138,10 @@ h4{
     -khtml-opacity: 1;
 }
 .end-background-img {
-    background: url(end_surface.jpg) no-repeat center center fixed;
+    background: url(end_umatilla.jpg) no-repeat center center fixed;
 }
 .overview-background-img {
-    background: url(overview_surface.jpg) no-repeat center center fixed;
+    background: url(overview_umatilla.jpg) no-repeat center center fixed;
 }
 
 
@@ -177,10 +173,11 @@ h4{
     }
 
     .main {
-        padding-right: 40px;
+        padding-right: 20px;
         padding-left: 35px;
         z-index: 1001;
         width: 450px;
+        background-color:rgba(255,255,255,0.7);
     }
 
 }
@@ -204,7 +201,7 @@ h4{
 
     .main {
         padding-right: 10px;
-        padding-left: 10px;
+        padding-left: 25px;
         z-index: 1001;
         width: 100%
         background-color:rgba(0, 0, 0, 0);
@@ -267,7 +264,7 @@ h4{
 
 .breakpoint-current {
     left: 0;
-    margin-top: -40px;
+    margin-top: -150px;
     position: fixed;
    /* top: 33.3333%; */
     width: 1px;
@@ -338,8 +335,6 @@ div.leg i2 {
 }
 
 div.leg img {
-    width: 16px;
-    height: 16px;
     margin-right: 3px;
     float: left;
 }
@@ -366,7 +361,6 @@ h1{
 p{
 	font-family: "Inconsolata", sans-serif;
 	font-size: 20px;
-	display: inline;
 	color:black;
 }
 p2{
@@ -435,7 +429,9 @@ font-family: 'La Belle Aurore', cursive;
   font-size:14px;
   border: 2px solid rgba(255,255,255,0);
   box-shadow: 2px 2px rgba(0,0,0,0);
+  color: #666666;
   white-space: pre-wrap;
+  text-shadow: -1px 0 #e6e6e6,0 1px #e6e6e6,1px 0 #e6e6e6,0 -1px #e6e6e6;
 }
 .leaflet-tooltip-left.label_tooltip2::before, .leaflet-tooltip-left.label_tooltip3::before{
   border-left-color: white;
@@ -449,10 +445,12 @@ font-family: 'La Belle Aurore', cursive;
   background-color: rgba(255,255,255,0);
   font-family: "Inconsolata", sans-serif;
   font-weight: bold; 
+  color: #666666;
   font-size:12px;
   border: 2px solid rgba(255,255,255,0);
   box-shadow: 2px 2px rgba(0,0,0,0);
   white-space: pre-wrap;
+  text-shadow: -1px 0 #e6e6e6,0 1px #e6e6e6,1px 0 #e6e6e6,0 -1px #e6e6e6;
 }
 .circle {
       -webkit-border-radius: 25px;
@@ -466,6 +464,12 @@ font-family: 'La Belle Aurore', cursive;
   /* place center */
   margin-left:auto;
   margin-right:auto; 
+}
+.line{
+width: 112px;
+height: 47px;
+border-bottom: 1px solid black;
+position: absolute;
 }
 
 
