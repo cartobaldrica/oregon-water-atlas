@@ -256,15 +256,6 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-           'labels': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
-        			layers: 'baldricg_basemap:basemap_dark_labels',
-        			format: 'image/png',
-        			minZoom: 6,
-        			maxZoom: 15,
-        			transparent: true,
-        			tiled: true, 
-        			tilesorigin: [-180, 90]
-    			})],
     		'labels2': [L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
 					subdomains: 'abcd',
@@ -302,7 +293,7 @@
               	continuousWorld: true
               	})],
             'flood_1996_february' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms',{
-              	layers: 'baldricg_atlas:flood_1996_february',
+              	layers: 'baldricg_atlas:flood_1996_februray',
               	tiled: true,
               	format: 'image/png',
               	transparent: true,
@@ -310,15 +301,6 @@
               	minZoom: 6,
               	continuousWorld: true
               })],
-              'flood_demographics2' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms',{
-              	layers: 'baldricg_atlas:flood_demographics',
-              	tiled: true,
-              	format: 'image/png',
-              	transparent: true,
-              	maxZoom: 14,
-              	minZoom: 6,
-              	continuousWorld: true
-              }), legend],
               'satellite': [L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 					attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
 					minZoom: 6,
