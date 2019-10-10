@@ -249,7 +249,7 @@
 //<p style="text-align:left; font-weight:bold">Hover for source</p>'
 
     var layers = {  
-            'contaminants' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:contaminants&maxFeatures=100000&outputFormat=application%2Fjson', {
+            'contaminants' : [L.geoJson.ajax('assets/dw/contaminants.geojson', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: contaminant_level(feature.properties.MOD_RISK),
@@ -261,7 +261,7 @@
     					).bindTooltip(feature.properties.PWS_NAME, {className: 'label_tooltip'});
     				}
 				}), legend_contaminants],
-			'bottle': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:bottled_water&maxFeatures=100&outputFormat=application%2Fjson', {
+			'bottle': [L.geoJson.ajax('assets/dw/bottled_water.geojson', {
 					pointToLayer: function (feature, latlng) {
             				var bottleIcon = new L.Icon({
             						iconUrl: 'img/bottle.png',
@@ -274,7 +274,7 @@
                 			layer.bindTooltip(feature.properties.Name, {className: 'label_tooltip', sticky: true});
             		}
     			}),legend_bottle],	
-    		'grid1': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:contaminant_point_grid&maxFeatures=10000&outputFormat=application%2Fjson', {
+    		'grid1': [L.geoJson.ajax('assets/dw/contaminant_point_grid.geojson', {
     				pointToLayer: function (feature, latlng) {
     					return L.circleMarker(latlng, 
     						{
@@ -287,7 +287,7 @@
 							}
 								).bindTooltip('Contaminants: ' + feature.properties.NUMPOINTS, {opacity: setOpacity(feature.properties.level, 1), className: 'label_tooltip'});}
     			}),legend_grid],	
-            'surface': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:drinking_sw&maxFeatures=500&outputFormat=application%2Fjson',
+            'surface': [L.geoJson.ajax('assets/dw/drinking_sw.geojson',
             	{style:surface_style, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.PWS_NAME, {className: 'label_tooltip'});
         			featureLayer.on({
@@ -296,30 +296,31 @@
         				})
     			}}
             	), legend_sw],
-            'ground': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:drinking_gw&maxFeatures=10000&outputFormat=application%2Fjson',
+            'ground': [L.geoJson.ajax('assets/dw/drinking_gw.geojson',
             	{style:ground_style, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.TINWSYS_NA, {className: 'label_tooltip'});
     			}}
             	), legend_gw],	
-            'ground2': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
-        			layers: 'baldricg_atlas:drinking_gw',
+            'ground2': [L.tileLayer.wms("https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms", {
+        			layers: 'OREGON_WATER:drinking_gw',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 15,
         			transparent: true,
     			})],
-    		'ground3': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
-        			layers: 'baldricg_atlas:drinking_gw',
+    		'ground3': [L.tileLayer.wms("https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms", {
+        			layers: 'OREGON_WATER:drinking_gw',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 15,
         			transparent: true,
     			}), legend_gw],
-    		'surface2': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
-        			layers: 'baldricg_atlas:drinking_sw',
+    		'surface2': [L.tileLayer.wms("https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms", {
+        			layers: 'OREGON_WATER:drinking_sw',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 15,
+					opacity:0.8,
         			transparent: true,
     			})]
     		
@@ -366,24 +367,34 @@
         			tilesorigin: [-180, 90]
     			}).addTo(map);
     			*/
+				map.createPane('labels');
+				map.getPane('labels').style.pointerEvents = 'none';
+				map.getPane('labels').style.zIndex = 400;
     			
-    			var CartoDB_DarkMatterNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+    			var CartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
 					subdomains: 'abcd',
 					maxZoom: 15,
-					minZoom: 6
+					minZoom: 6,
+				}).addTo(map);
+
+				var CartoDB_DarkMatterNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', {
+					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+					subdomains: 'abcd',
+					maxZoom: 15,
+					minZoom: 6,
+					pane:'labels'
 				}).addTo(map);
 				
-				oregonCover = L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
-        			layers: 'baldricg_atlas:oregon_cover_white',
-        			format: 'image/png',
-        			minZoom: 6,
-        			maxZoom: 15,
-        			transparent: true,
-    			}).addTo(map);
-    			
-    			oregonCover.setOpacity(0.1);
- 				
+				var or_cover = L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+					layers: 'OREGON_WATER:oregon_cover_white',
+					format: 'image/png',
+					maxZoom:10,
+					minZoom:5,
+					opacity:0.1,
+					transparent:true,
+				}).addTo(map);
+    			 				
  				
  				var mini = new L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',

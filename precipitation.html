@@ -28,6 +28,7 @@
 
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/leaflet.ajax.min.js"></script>
     <script src="js/storymap.js"></script>
@@ -119,7 +120,7 @@
             
              <section data-scene="annual">
                 <h3>Annual</h3>
-                <p style="padding-right:150px; text-align:justify;">The Cascade Mountains are the cause of the stark contrast between Eastern and Western Oregon. They form a "rain shadow," effectively shielding the interior parts of the state from precipitation.</p>
+                <p style="padding-right:150px; text-align:justify;">The Cascade Mountains are the cause of the stark contrast between Eastern and Western Oregon. They form a "rain shadow", effectively shielding the interior parts of the state from precipitation.</p>
                 <div class="leg"><p style="line-height: 16px;">Avg. Rainfall <br/> in Inches</p><br/><i style="background: #dbd1cb;"></i><p>&nbsp< 10</p><i style="background: #d4cac6;"></i><p>&nbsp10 - 20</p><i style="background: #a1a7dd;"></i><p>&nbsp20 - 30</p><i style="background: #6986f1;"></i><p>&nbsp30 - 40</p><i style="background: #006bff;"></i><p>&nbsp40 - 60</p><i style="background: #0056de;"></i><p>&nbsp60 - 80</p><i style="background: #0044b8;"></i><p>&nbsp80 - 100</p><i style="background: #003293;"></i><p>&nbsp100 - 140</p><i style="background: #002375;"></i><p>&nbsp> 140</p></div>
 			</section>  
 			
@@ -239,13 +240,27 @@
 
 
 <script type="text/javascript">
+
+    L.TopoJSON = L.GeoJSON.extend({  
+  		addData: function(jsonData) {    
+    		if (jsonData.type === 'Topology') {
+      			for (key in jsonData.objects) {
+       			 geojson = topojson.feature(jsonData, jsonData.objects[key]);
+       			 L.GeoJSON.prototype.addData.call(this, geojson);
+      		}
+    	}    
+    	else {
+      		L.GeoJSON.prototype.addData.call(this, jsonData);
+    		}
+  		}  
+	});
    	
     var legend_zones = '<i style="background: #bf4040; fillOpacity: .5; color:#993333; weight: 1; opacity: 0.5"></i><b><p>Flood Risk Zones</b></p>';
 	var county_style = {color:'#ffffff', opacity: 0.8, weight: .5,fillOpacity:0};
 
     var layers = {  
-          'annual' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_annual',
+          'annual' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_annual',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -253,11 +268,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-          'counties': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:gw_counties&maxFeatures=10000&outputFormat=application%2Fjson',
-            	{style:county_style}
-            	)],
-          'january' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_january',
+          'january' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_january',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -265,8 +277,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-          'february' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_february',
+          'february' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_february',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -274,8 +286,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-           'march' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_march',
+           'march' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_march',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -283,8 +295,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-        	'april' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_april',
+        	'april' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_april',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -292,8 +304,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-            'may' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_may',
+            'may' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_may',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -301,8 +313,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-          'june' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_june',
+          'june' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_june',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -310,8 +322,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-          'july' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_july',
+          'july' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_july',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -319,8 +331,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-           'august' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_august',
+           'august' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_august',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -328,8 +340,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-        	'september' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_september',
+        	'september' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_september',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -337,8 +349,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-            'october' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_october',
+            'october' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_october',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -346,8 +358,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-            'november' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_november',
+            'november' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_november',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -355,8 +367,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_zones],
-            'december' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:precip_december',
+            'december' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:precip_december',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -369,19 +381,19 @@
 
     var scenes = {
             overview: {lat: 44.1847254, lng:-121.88479, zoom: 7,name:'HOME', position: 'fullpage'},
-            annual: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'ANNUAL', layers:['annual','counties']},
-            january: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'JANUARY', layers:['january','counties']},
-        	february: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'FEBRUARY', layers:['february','counties']},
-        	march: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'MARCH', layers:['march','counties']},
-        	april: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'APRIL', layers:['april','counties']},
-        	may: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'MAY', layers:['may','counties']},
-        	june: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'JUNE', layers:['june','counties']},
-        	july: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'JULY', layers:['july','counties']},
-        	august: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'AUGUST', layers:['august','counties']},
-			september: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'SEPTEMBER', layers:['september','counties']},
-			october: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'OCTOBER', layers:['october','counties']},
-			november: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'NOVEMBER', layers:['november','counties']},
-			december: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'DECEMBER', layers:['december','counties']},
+            annual: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'ANNUAL', layers:['annual']},
+            january: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'JANUARY', layers:['january']},
+        	february: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'FEBRUARY', layers:['february']},
+        	march: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'MARCH', layers:['march']},
+        	april: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'APRIL', layers:['april']},
+        	may: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'MAY', layers:['may']},
+        	june: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'JUNE', layers:['june']},
+        	july: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'JULY', layers:['july']},
+        	august: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'AUGUST', layers:['august']},
+			september: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'SEPTEMBER', layers:['september']},
+			october: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'OCTOBER', layers:['october']},
+			november: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'NOVEMBER', layers:['november']},
+			december: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'DECEMBER', layers:['december']},
 			end: {lat: 44.1847254, lng:-121.88479, zoom: 7, name:'END', position:'fullpage'}
 
 
@@ -418,7 +430,29 @@
         			tiled: true, 
         			tilesorigin: [-180, 90]
     			}).addTo(map);
+                
     	*/
+                const orCounties = new L.TopoJSON(null, {
+					interactive:false
+				});
+
+				$.getJSON('assets/base/or_counties.json')
+					.done(addCounties);
+
+				function addCounties(topoData) {  
+					orCounties.addData(topoData);
+					orCounties.eachLayer(orHandle);
+					orCounties.addTo(map);
+				}
+
+				function orHandle(layer){
+					layer.setStyle({
+							color: '#ffffff',
+							fillOpacity: 0,
+							weight: 0.5,
+							opacity:0.8
+					});
+				}
     	
     			var CartoDB_Positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',

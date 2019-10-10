@@ -25,6 +25,7 @@
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="js/leaflet.ajax.min.js"></script>
     <script src="js/storymap.js"></script>
 	<script src="js/ekko-lightbox.js"></script>
@@ -165,6 +166,7 @@
 				<br/>
 				<img src="img/chinook_salt.jpg" width="170" height="60" style="display:inline;">
 				<img src="img/chinook_fresh.jpg" width="170" height="60" style="display:inline;">
+				<br/>
 				<br/>
 				<div class="leg">
 				<p style ="font-weight: bold; line-height:20px;">Season</p><br/>
@@ -318,13 +320,30 @@
 
 
 <script type="text/javascript">
-
+L.TopoJSON = L.GeoJSON.extend({  
+  		addData: function(jsonData) {    
+    		if (jsonData.type === 'Topology') {
+      			for (key in jsonData.objects) {
+       			 geojson = topojson.feature(jsonData, jsonData.objects[key]);
+       			 L.GeoJSON.prototype.addData.call(this, geojson);
+      		}
+    	}    
+    	else {
+      		L.GeoJSON.prototype.addData.call(this, jsonData);
+    		}
+  		}  
+	});
 //	
 //<p style="text-align:left; font-weight:bold">Hover for source</p>'
 
+	function setBarrierColor(value){
+        return value == 'Falls' || value == 'CascadeGradientVelocity' || value == 'Ford' ? '#00b093' :
+			'#ff7575';
+    }
+
     var layers = {  
-          'redband' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:rainbow_redband',
+          'redband' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:redband_rainbow',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -332,8 +351,8 @@
               minZoom: 6,
               continuousWorld: true
               })],
-            'bull' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:bulltrout',
+            'bull' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:bulltrout',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -341,8 +360,8 @@
               minZoom: 6,
               continuousWorld: true
               })],
-            'coho' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:coho',
+            'coho' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:coho',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -350,8 +369,8 @@
               minZoom: 6,
               continuousWorld: true
               })],
-            'chum' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:chum',
+            'chum' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:chum',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -359,8 +378,8 @@
               minZoom: 6,
               continuousWorld: true
               })],
-            'sockeye' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:sockeye',
+            'sockeye' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:sockeye',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -368,8 +387,8 @@
               minZoom: 6,
               continuousWorld: true
               })],
-            'lamprey' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:lamprey',
+            'lamprey' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:lamprey',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -377,8 +396,8 @@
               minZoom: 6,
               continuousWorld: true
               })],
-            'steelhead' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:steelhead',
+            'steelhead' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:steelhead',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -386,8 +405,8 @@
               minZoom: 6,
               continuousWorld: true
               })],
-            'chinook' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:chinook',
+            'chinook' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:chinook',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -395,8 +414,8 @@
               minZoom: 6,
               continuousWorld: true
               })],
-            'sturgeon' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:sturgeon',
+            'sturgeon' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:sturgeon',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -404,8 +423,8 @@
               minZoom: 6,
               continuousWorld: true
               })],
-            'barriers' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:fish_barriers',
+            'barriers' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:fish_barriers',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -413,12 +432,12 @@
               minZoom: 6,
               continuousWorld: true
               })],
-            'hatcheries' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:hatcheries&maxFeatures=1000&outputFormat=application%2Fjson', {
+            'hatcheries' : [L.geoJson.ajax('assets/fish/hatcheries.json', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
     				fillColor: '#00b093',
-    				radius: 4,
+    				radius: 6,
     				opacity: 1,
     				weight: 1,
     				fillOpacity: 1
@@ -477,8 +496,8 @@
     			}).addTo(map);
     			*/
     			
-    			L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
-        			layers: 'baldricg_basemap:or_relief',
+    			L.tileLayer.wms("https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms", {
+        			layers: 'OREGON_WATER:or_relief',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 10,
@@ -504,34 +523,56 @@
     			}).addTo(map);
     			
     			oregonWater.setOpacity(0.3);
+
+                map.createPane('states');
+				map.getPane('states').style.pointerEvents = 'none';
+				map.getPane('states').style.zIndex = 150;
     			
-    			L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
-        			layers: 'baldricg_basemap:states_light',
-        			format: 'image/png',
-        			minZoom: 6,
-        			maxZoom: 10,
-        			opacity:0.5,
-        			transparent: true,
-    			}).addTo(map);
+    			const states = new L.TopoJSON(null, {
+					interactive:false,
+					pane:'states'
+				});
+
+				$.getJSON('assets/base/states.json')
+					.done(addStates);
+
+				function addStates(topoData) {  
+					states.addData(topoData);
+					states.eachLayer(stateHandle);
+					states.addTo(map);
+				}
+
+				function stateHandle(layer){
+					layer.setStyle({
+							fillColor: '#bfbfbf',
+							color:'#ffffff',
+							fillOpacity: 0.2,
+							weight: 1,
+							opacity:0.7
+					});
+				}
     			
-    			var CartoDB_PositronOnlyLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+    			map.createPane('labels');
+				map.getPane('labels').style.pointerEvents = 'none';
+				map.getPane('labels').style.zIndex = 400;
+    			
+
+				var CartoDB_DarkMatterNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
 					subdomains: 'abcd',
+					maxZoom: 15,
 					minZoom: 6,
-        			maxZoom: 15,
-					}).addTo(map);
-					
-				CartoDB_PositronOnlyLabels.setOpacity(0.6);
-    			
-    			var oregonCover = L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
-        			layers: 'baldricg_atlas:oregon_cover_white',
-        			format: 'image/png',
-        			minZoom: 6,
-        			maxZoom: 15,
-        			transparent: true,
-    			}).addTo(map);
-    			
-    			oregonCover.setOpacity(0.4);
+					pane:'labels'
+				}).addTo(map);
+				
+				var or_cover = L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+					layers: 'OREGON_WATER:oregon_cover_white',
+					format: 'image/png',
+					maxZoom:10,
+					minZoom:5,
+					opacity:0.1,
+					transparent:true,
+				}).addTo(map);
 			
  				
  				var mini = new L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {

@@ -352,7 +352,7 @@
 //<p style="text-align:left; font-weight:bold">Hover for source</p>'
 
     var layers = {  
-             'counties': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_use_counties&maxFeatures=1000&outputFormat=application%2Fjson',
+             'counties': [L.geoJson.ajax('assets/water_use/water_use_counties.json',
             	{style:countyStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.INSTNAME + " : "+feature.properties.total_use+" Mgal/day", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -361,7 +361,7 @@
         				})
     			}}
             	), legend_county],
-            'county_rights': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:water_use_counties&maxFeatures=1000&outputFormat=application%2Fjson',
+            'county_rights': [L.geoJson.ajax('assets/water_use/water_use_counties.json',
             	{style:rightsStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.INSTNAME + " : "+feature.properties.wa_rights+" Water Rights", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -370,8 +370,8 @@
         				})
     			}}
             	), legend_county],	
-             'mining' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_mining',
+             'mining' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_mining',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -379,8 +379,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_mining],
-          'domestic' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_domestic',
+          'domestic' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_domestic',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -388,8 +388,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_domestic],
-          'agriculture' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_agriculture',
+          'agriculture' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_agriculture',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -397,8 +397,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_agriculture],
-        'irrigation' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_irrigation_points',
+        'irrigation' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_irrigation_points',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -406,8 +406,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_irrigation],
-          'commercial' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_commercial',
+          'commercial' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_commercial',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -415,8 +415,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_commercial],
-          'recreation' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_recreation',
+          'recreation' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_recreation',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -424,8 +424,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_recreation],
-        'power' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_power',
+        'power' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_power',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -433,8 +433,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_power],
-          'fish' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_fish',
+          'fish' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_fish',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -442,8 +442,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_fish],
-          'livestock' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_livestock',
+          'livestock' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_livestock',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -451,8 +451,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_livestock],
-        	'municipal' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_municipal',
+        	'municipal' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_municipal',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -460,8 +460,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_municipal],
-          'instream' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_instream',
+          'instream' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_instream',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -469,8 +469,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_instream],
-          'miscellaneous' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_miscellaneous',
+          'miscellaneous' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_miscellaneous',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -478,8 +478,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_miscellaneous],
-          'wildlife' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
-              layers: 'baldricg_atlas:water_use_wildlife',
+          'wildlife' : [L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+              layers: 'OREGON_WATER:water_use_wildlife',
               tiled: true,
               format: 'image/png',
               transparent: true,
@@ -487,8 +487,8 @@
               minZoom: 6,
               continuousWorld: true
               }), legend_wildlife],
-            'elevation2': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
-        			layers: 'baldricg_basemap:or_relief',
+            'elevation2': [L.tileLayer.wms("https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms", {
+        			layers: 'OREGON_WATER:or_relief',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 10,
@@ -550,23 +550,35 @@
     			}).addTo(map);
     			*/
     			
-    			var CartoDB_DarkMatterNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+    			map.createPane('labels');
+				map.getPane('labels').style.pointerEvents = 'none';
+				map.getPane('labels').style.zIndex = 400;
+    			
+    			var CartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
 					subdomains: 'abcd',
 					maxZoom: 15,
-					minZoom: 6
+					minZoom: 6,
+				}).addTo(map);
+
+				var CartoDB_DarkMatterNoLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png', {
+					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+					subdomains: 'abcd',
+					maxZoom: 15,
+					minZoom: 6,
+                    opacity:1,
+					pane:'labels'
 				}).addTo(map);
 				
-				oregonCover = L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
-        			layers: 'baldricg_atlas:oregon_cover_white',
-        			format: 'image/png',
-        			minZoom: 6,
-        			maxZoom: 15,
-        			transparent: true,
-    			}).addTo(map);
-    			
-    			oregonCover.setOpacity(0.1);
- 				
+				var or_cover = L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+					layers: 'OREGON_WATER:oregon_cover_white',
+					format: 'image/png',
+					maxZoom:10,
+					minZoom:5,
+					opacity:0.1,
+					transparent:true,
+				}).addTo(map);
+    			 				
  				var mini = new L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
 					subdomains: 'abcd',

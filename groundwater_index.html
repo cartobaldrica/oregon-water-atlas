@@ -287,7 +287,7 @@
     
     function countyStyle(feature) {
         return {
-           fillColor: setCountyColor(feature.properties.total), 
+           fillColor: setCountyColor(feature.properties.total_use), 
            fillOpacity: .8, 
            color: '#ffffff', 
            radius: 4, 
@@ -440,19 +440,19 @@ function otherStyle(feature) {
 //<p style="text-align:left; font-weight:bold">Hover for source</p>'
 
     var layers = {  	
-            'counties': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:gw_counties&maxFeatures=10000&outputFormat=application%2Fjson',
+            'counties': [L.geoJson.ajax('assets/groundwater/gw_counties.json',
             	{style:countyStyle, onEachFeature: function(feature, featureLayer) {
-        			featureLayer.bindTooltip(feature.properties.INSTNAME + " : "+feature.properties.total+" Mgal/day", {className: 'label_tooltip'});
+        			featureLayer.bindTooltip(feature.properties.INSTNAME + " : "+feature.properties.total_use+" Mgal/day", {className: 'label_tooltip'});
         			featureLayer.on({
         					mouseover: highlightCounty,
         					mouseout: resetCounty
         				})
     			}}
             	), legend_county],	
-            'county_outlines': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:gw_counties&maxFeatures=10000&outputFormat=application%2Fjson',
+            'county_outlines': [L.geoJson.ajax('assets/groundwater/gw_counties.json',
             	{style:countyStyle2}
             	)],
-            'conservation_critical': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_conservation&maxFeatures=500&outputFormat=application%2Fjson',
+            'conservation_critical': [L.geoJson.ajax('assets/groundwater/groundwater_conservation.json',
             	{style:critStyle, onEachFeature: function(feature, featureLayer) {
             		if (feature.properties.Type != 'GWMA'){
         				featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip'});
@@ -466,7 +466,7 @@ function otherStyle(feature) {
         			
     			}}
             	), legend_crit],
-            'groundwater_dissolved': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_dissolved&maxFeatures=50&outputFormat=application%2Fjson',
+            'groundwater_dissolved': [L.geoJson.ajax('assets/groundwater/groundwater_dissolved.json',
             	{style:gwStyle, onEachFeature: function(feature, featureLayer) {
         				featureLayer.bindTooltip(feature.properties.rock_type + "<br>" + "Avg. Recharge Rate: " + feature.properties.rate + " mm/yr", {className: 'label_tooltip', sticky: true});
     					featureLayer.bindPopup(feature.properties.rock_type + "<br>" + "Avg. Recharge Rate: " + feature.properties.rate + " mm/yr", {className: 'label_tooltip', sticky: false});
@@ -477,19 +477,19 @@ function otherStyle(feature) {
         				
     				}}
             	), legend_recharge],
-            'sand_dissolved': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_dissolved&maxFeatures=50&outputFormat=application%2Fjson',
+            'sand_dissolved': [L.geoJson.ajax('assets/groundwater/groundwater_dissolved.json',
             	{style:sandStyle, onEachFeature: function(feature, featureLayer) {        				
     				}}
             	), legend_recharge],
-            'volcanic_dissolved': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_dissolved&maxFeatures=50&outputFormat=application%2Fjson',
+            'volcanic_dissolved': [L.geoJson.ajax('assets/groundwater/groundwater_dissolved.json',
             	{style:volStyle, onEachFeature: function(feature, featureLayer) {		
     				}}
             	), legend_recharge],
-            'other_dissolved': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_dissolved&maxFeatures=50&outputFormat=application%2Fjson',
+            'other_dissolved': [L.geoJson.ajax('assets/groundwater/groundwater_dissolved.json',
             	{style:otherStyle, onEachFeature: function(feature, featureLayer) {        				
     				}}
             	), legend_recharge],
-        	'conservation_management': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:groundwater_conservation&maxFeatures=500&outputFormat=application%2Fjson',
+        	'conservation_management': [L.geoJson.ajax('assets/groundwater/groundwater_conservation.json',
             	{style:consStyle, onEachFeature: function(feature, featureLayer) {
             		if (feature.properties.Type == 'GWMA'){
         				featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip'});
@@ -503,36 +503,29 @@ function otherStyle(feature) {
         			
     			}}
             	), legend_manage],
-            'groundwater_reprojected': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
-        			layers: 'baldricg_atlas:groundwater_reprojected',
-        			format: 'image/png',
-        			minZoom: 6,
-        			maxZoom: 15,
-        			transparent: true,
-    			})],
-    		'irrigation': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
-        			layers: 'baldricg_atlas:groundwater_irrigation',
+    		'irrigation': [L.tileLayer.wms("https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms", {
+        			layers: 'OREGON_WATER:groundwater_irrigation',
         			format: 'image/png',
         			minZoom: 11,
         			maxZoom: 15,
         			transparent: true,
     			}), legend_irrigation],
-    		'irrigation_points': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
-        			layers: 'baldricg_atlas:groundwater_irrigation_points',
+    		'irrigation_points': [L.tileLayer.wms("https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms", {
+        			layers: 'OREGON_WATER:groundwater_irrigation_points',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 10,
         			transparent: true,
     			})],
-    		'elevation': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
-        			layers: 'baldricg_basemap:or_relief',
+    		'elevation': [L.tileLayer.wms("https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms", {
+        			layers: 'OREGON_WATER:or_relief',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 10,
         			transparent: true,
     			})],
-    		'elevation2': [L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
-        			layers: 'baldricg_basemap:or_relief',
+    		'elevation2': [L.tileLayer.wms("https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms", {
+        			layers: 'OREGON_WATER:or_relief',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 10,
@@ -595,15 +588,14 @@ function otherStyle(feature) {
 					minZoom: 6,
 				}).addTo(map);
 				
-				oregonCover = L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
-        			layers: 'baldricg_atlas:oregon_cover_white',
-        			format: 'image/png',
-        			minZoom: 6,
-        			maxZoom: 15,
-        			transparent: true,
-    			}).addTo(map);
-    			
-    			oregonCover.setOpacity(0.1);
+				var or_cover = L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+					layers: 'OREGON_WATER:oregon_cover_white',
+					format: 'image/png',
+					maxZoom:10,
+					minZoom:5,
+					opacity:0.1,
+					transparent:true,
+				}).addTo(map);
  				
  				var mini = new L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',

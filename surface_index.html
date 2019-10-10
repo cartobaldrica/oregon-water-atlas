@@ -24,7 +24,8 @@
 
     <script src="http://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="js/leaflet.ajax.min.js"></script>
     <script src="js/storymap.js"></script>
 	<script src="js/ekko-lightbox.js"></script>
@@ -239,6 +240,20 @@
 
 
 <script type="text/javascript">
+
+	L.TopoJSON = L.GeoJSON.extend({  
+  		addData: function(jsonData) {    
+    		if (jsonData.type === 'Topology') {
+      			for (key in jsonData.objects) {
+       			 geojson = topojson.feature(jsonData, jsonData.objects[key]);
+       			 L.GeoJSON.prototype.addData.call(this, geojson);
+      		}
+    	}    
+    	else {
+      		L.GeoJSON.prototype.addData.call(this, jsonData);
+    		}
+  		}  
+	});
     
 //basin
       function setBasinColor(string){
@@ -503,9 +518,10 @@ function countyStyle(feature) {
            weight: 1
         };
     }
+
     
     var layers = {  
-             'basins': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:oregon_watersheds_small&maxFeatures=1000&outputFormat=application%2Fjson', {
+             'basins': [L.geoJson.ajax('assets/surface/oregon_watersheds_small.json', {
             	style:basinStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.Name + "<br>" + feature.properties.HU6NAME + " Basin", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -514,7 +530,7 @@ function countyStyle(feature) {
         				})
     			}}
             	)],
-            'watershed_pollution': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:watershed_pollution&maxFeatures=1000&outputFormat=application%2Fjson', {
+            'watershed_pollution': [L.geoJson.ajax('assets/surface/watershed_pollution.json', {
             	style:watershedPollutionStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.Name + "<br>" + feature.properties.NUMPOINTS + " Water Quality Limited Pollutants", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -523,7 +539,7 @@ function countyStyle(feature) {
         				})
     			}}
             	)],
-            'councils': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:watershed_councils&maxFeatures=1000&outputFormat=application%2Fjson', {
+            'councils': [L.geoJson.ajax('assets/surface/watershed_councils.json', {
             	style:councilStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.instName, {className: 'label_tooltip'});
         			featureLayer.on({
@@ -532,7 +548,7 @@ function countyStyle(feature) {
         				})
     			}}
             	)],
-             'councils_small': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:watershed_councils_small&maxFeatures=1000&outputFormat=application%2Fjson', {
+             'councils_small': [L.geoJson.ajax('assets/surface/watershed_councils_small.json', {
             	style:councilSmall, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.instName, {className: 'label_tooltip'});
         			featureLayer.on({
@@ -549,7 +565,7 @@ function countyStyle(feature) {
         			maxZoom: 15,
         			transparent: true,
     			})],
-    		'lakes': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:lakes_or&maxFeatures=5000&outputFormat=application%2Fjson', {
+    		'lakes': [L.geoJson.ajax('assets/surface/surface_lakes.json', {
             	style:lakeStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip'});
         			featureLayer.on({
@@ -558,7 +574,7 @@ function countyStyle(feature) {
         				})
     			}}
             	)],
-            'wetlands': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:oregon_wetlands&maxFeatures=5000&outputFormat=application%2Fjson', {
+            'wetlands': [L.geoJson.ajax('assets/surface/oregon_wetlands.json', {
             	style:wetlandStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.OGW_Site_N, {className: 'label_tooltip'});
         			featureLayer.on({
@@ -567,7 +583,7 @@ function countyStyle(feature) {
         				})
     			}}
             	)],
-            'lake_pollutants': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:lake_pollutants_2012&maxFeatures=5000&outputFormat=application%2Fjson', {
+            'lake_pollutants': [L.geoJson.ajax('assets/surface/lake_pollutants.json', {
             	style:lakePollutionStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.LAKE_NAME + " : " + feature.properties.SUM_count + " Pollutants", {className: 'label_tooltip'});
         			featureLayer.on({
@@ -583,7 +599,7 @@ function countyStyle(feature) {
         			maxZoom: 15,
         			transparent: true,
     			})],
-            'surface_rivers': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:surface_rivers&maxFeatures=13000&outputFormat=application%2Fjson', {
+            'surface_rivers': [L.geoJson.ajax('assets/surface/surface_rivers_dissolved.json', {
             	style:riverStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip', sticky:true});
         			featureLayer.on({
@@ -592,7 +608,7 @@ function countyStyle(feature) {
         				})
     			}}
             	)],
-            'river_pollutants': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:river_pollutants_2012&maxFeatures=13000&outputFormat=application%2Fjson', {
+            'river_pollutants': [L.geoJson.ajax('assets/surface/river_pollutants.json', {
             	style:pollutionStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.STREAM_NAM + " : " + feature.properties.SUM_count + " Pollutants", {className: 'label_tooltip', sticky:true});
         			featureLayer.on({
@@ -601,19 +617,6 @@ function countyStyle(feature) {
         				})
     			}}
             	)],
-            'river_pollutant_points': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:river_pollutant_points_2012&maxFeatures=13000&outputFormat=application%2Fjson', {
-            	pointToLayer: function (feature, latlng) {
-    			return L.circleMarker(latlng, {
-    				color: '#ffffff',
-    				fillColor: pointColor(feature.properties.SUM_count),
-    				radius: pointRadius(feature.properties.length_mi),
-    				opacity: 1,
-    				fillOpacity: 1,
-    				weight: 0.5
-    				}
-    					).bindTooltip(feature.properties.STREAM_NAM + " : " + feature.properties.SUM_count + " Pollutants", {className: 'label_tooltip'});
-    				}
-				})],
 			'counties': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:oregon_line&maxFeatures=10&outputFormat=application%2Fjson',
             	{style:countyStyle}
             	)],
@@ -668,6 +671,15 @@ function countyStyle(feature) {
         			maxZoom: 10,
 				}).addTo(map);
 				*/
+
+
+				map.createPane('states');
+				map.getPane('states').style.pointerEvents = 'none';
+				map.getPane('states').style.zIndex = 150;
+
+				map.createPane('borders');
+				map.getPane('borders').style.pointerEvents = 'none';
+				map.getPane('borders').style.zIndex = 300;
 			
 				L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
         			layers: 'baldricg_basemap:or_relief',
@@ -695,9 +707,69 @@ function countyStyle(feature) {
         			opacity:0.8,
         			transparent: true,
     			}).addTo(map);
+
+
+				const orCounties = new L.TopoJSON(null, {
+					interactive:false,
+					pane:'borders'
+				});
+
+				$.getJSON('assets/base/or_counties.json')
+					.done(addCounties);
+
+				function addCounties(topoData) {  
+					orCounties.addData(topoData);
+					orCounties.eachLayer(orHandle);
+					orCounties.addTo(map);
+				}
+
+				function orHandle(layer){
+					layer.setStyle({
+							color: '#ffffff',
+							fillOpacity: 0,
+							weight: 0.5,
+							opacity:1
+					});
+				}
+
+				const states = new L.TopoJSON(null, {
+					interactive:false,
+					pane:'states'
+				});
+
+				$.getJSON('assets/base/states.json')
+					.done(addStates);
+
+				function addStates(topoData) {  
+					states.addData(topoData);
+					states.eachLayer(stateHandle);
+					states.addTo(map);
+				}
+
+				function stateHandle(layer){
+					layer.setStyle({
+							fillColor: '#bfbfbf',
+							color:'#ffffff',
+							fillOpacity: 0.3,
+							weight: 1,
+							opacity:0.2
+					});
+				}
+
+				const oregonCover = new L.TopoJSON(null, {
+					interactive:false
+				});
+
+				var or_cover = L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+					layers: 'OREGON_WATER:oregon_cover_white',
+					format: 'image/png',
+					maxZoom:10,
+					minZoom:5,
+					opacity:0.5,
+					transparent:true,
+				}).addTo(map);
 				
-				
-				oregonCover = L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
+				/*oregonCover = L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
         			layers: 'baldricg_atlas:oregon_cover_white',
         			format: 'image/png',
         			minZoom: 6,
@@ -705,7 +777,7 @@ function countyStyle(feature) {
         			transparent: true,
     			}).addTo(map);
     			
-    			oregonCover.setOpacity(0.1);
+    			oregonCover.setOpacity(0.1);*/
  				
  				var mini = new L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
