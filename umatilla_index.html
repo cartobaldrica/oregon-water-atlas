@@ -24,11 +24,18 @@
 
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="js/leaflet.ajax.min.js"></script>
     <script src="js/storymap.js"></script>
 	<script src="js/ekko-lightbox.js"></script>
 	<script src="js/control-minimap.js" type="text/javascript"></script>
+
+	<style>
+        .leaflet-container {
+    		background: #ecf9f2;
+		}
+    </style>
 	
 </head>
 <body>
@@ -149,7 +156,7 @@
 				<br/><p>The main feature of the project was Cold Springs Reservoir, which was created from diversions directly from the Umatilla River.</p>
 				<br/>
 				<div class ="leg">
-				<img src="img/xmarker.png" height="15" width="15"><p style ="line-height:14px;">&nbspDam</p><br/>
+				<img src="img/xmarker_blue.png" height="15" width="15"><p style ="line-height:14px;">&nbspDam</p><br/>
 				<i style = "background: #ffb3b3;"></i><p>Irrigation Districts</p>
 				</div>
 			</section> 
@@ -159,7 +166,7 @@
 				<p>Upstream, the Mckay reservoir was created in the 1920s to provide more water to the irrigators of the lower Umatilla.</p>
 				<br/>
 				<div class ="leg">
-				<img src="img/xmarker.png" height="15" width="15"><p style ="line-height:14px;">&nbspDam</p><br/>
+				<img src="img/xmarker_blue.png" height="15" width="15"><p style ="line-height:14px;">&nbspDam</p><br/>
 				</div>
 			</section> 
 			
@@ -208,9 +215,9 @@
 				<p>A series of pumps, pipelines and canals, would transfer river directly from the Columbia to Cold Springs Reservoir and the irrigation districts to the south. Additionally, fish ladders were improved or installed at five dams along the river.</p>
 				<br/>
 				<div class ="leg">
-				<img src="img/xmarker_blue.png" height="15" width="15" style="margin-right:6px;"><p style ="line-height:14px;">&nbspPumping Station</p><br/>
-				<img src="img/white_line.png" height="3" width="18"><p style ="line-height:5px;">&nbspCanal</p><br/>
-				<img src="img/white_line_dash.png" height="3" width="18"><p style ="line-height:10px;">&nbspPipeline</p><br/>
+				<img src="img/pump_marker.png" height="15" width="15" style="margin-right:6px;"><p style ="line-height:14px;">&nbspPumping Station</p><br/>
+				<img src="img/white_line.png" height="3" width="18" style="filter:invert(100%);"><p style ="line-height:5px;">&nbspCanal</p><br/>
+				<img src="img/white_line_dash.png" height="3" width="18" style="filter:invert(100%);"><p style ="line-height:10px;">&nbspPipeline</p><br/>
 				</div>
 			</section> 
 			
@@ -248,14 +255,6 @@
         <div id="map" class="col-sm-6 col-md-8 sidebar"></div>
     </div>
     
-    <i class="fa fa-info-circle social" style="right:70px;" data-toggle="modal" data-target="#info-modal"></i>
-    
-	<a class="fa fa-facebook-square social2" style="right:55px;" href="https://facebook.com/sharer.php?u=http://rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html" target="_blank"></a>
-        
-    <a class="fa fa-twitter-square social3" style="right:40px;" href="https://twitter.com/home?status=Oregon's%20Groundwater%0Ahttp%3A//rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html" target="_blank"></a>
-	
-	<a class="fa fa-github-square social3" style="right:25px;" href="https://github.com/cartobaldrica/water_atlas" target="_blank"></a>
-	
     <ul class="navbar text-center"></ul>
 
     
@@ -303,6 +302,19 @@
 
 
 <script type="text/javascript">
+	L.TopoJSON = L.GeoJSON.extend({  
+  		addData: function(jsonData) {    
+    		if (jsonData.type === 'Topology') {
+      			for (key in jsonData.objects) {
+       			 geojson = topojson.feature(jsonData, jsonData.objects[key]);
+       			 L.GeoJSON.prototype.addData.call(this, geojson);
+      		}
+    	}    
+    	else {
+      		L.GeoJSON.prototype.addData.call(this, jsonData);
+    		}
+  		}  
+	});
 	//dams             
     function damSize(string){
         if (string == "COLD SPRINGS RES. (USBR)" | string == "MCKAY RES. (USBR)") {return 15}
@@ -355,8 +367,8 @@
         };
     }
     function projectSize(density){
-		if (density=='pipe'){return '#ffffff'}
-        else {return '#ffffff'}
+		if (density=='pipe'){return '#000000'}
+        else {return '#000000'}
     }
     
     function projectDash(density){
@@ -375,7 +387,7 @@
     
     function projectStyle2(feature) {
         return {
-           color: '#3366cc', 
+           color: '#000000', 
            opacity: 0.8, 
            weight: 1
         };
@@ -399,12 +411,12 @@
     	});
     }
     //city style
-	var city_style = {fillColor: '#a6a6a6', fillOpacity: .8, color: '#a6a6a6', radius: 1, opacity: 1, weight: 1};
+	var city_style = {fillColor: '#a6a6a6', fillOpacity: .6, color: '#a6a6a6', radius: 1, opacity: 0.6, weight: 1};
 	function city_style2(feature){ 
 		return {fillColor: '#a6a6a6', fillOpacity: cityOpacity(feature.properties.CITY_NAME), color: '#a6a6a6', radius: 1, opacity: cityOpacity(feature.properties.CITY_NAME), weight: 1};
 		}
 	function cityOpacity(string){
-        if (string == "Hermiston" | string == "Pendleton") {return 1}
+        if (string == "Hermiston" || string == "Pendleton") {return 0.6}
         else {return 0}
     	}
 	//reservation
@@ -443,7 +455,7 @@
 
 
     var layers = {  
-            'dams' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_rivers&maxFeatures=100&outputFormat=application%2Fjson', {
+            'dams' : [L.geoJson.ajax('assets/umatilla/umatilla_rivers.json', {
             	pointToLayer: function (feature, latlng) {
     			return L.circleMarker(latlng, {
     				color: '#ffffff',
@@ -456,7 +468,7 @@
     					).bindTooltip(feature.properties.dam_name + " : " + feature.properties.storage + " Acre-ft" + "<br>" + "Completed: " + feature.properties.date_com_1, {className: 'label_tooltip'});
     				}
 				})],
-    		'rivers': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_rivers&maxFeatures=100&outputFormat=application%2Fjson', {
+    		'rivers': [L.geoJson.ajax('assets/umatilla/umatilla_rivers.json', {
             	style:riverStyle, onEachFeature: function(feature, featureLayer) {
             		if (feature.properties.type != 'canal'){
         			featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip', sticky:true});
@@ -467,7 +479,7 @@
         			}
     			}}
             	)],
-            'rivers2': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_rivers&maxFeatures=100&outputFormat=application%2Fjson', {
+            'rivers2': [L.geoJson.ajax('assets/umatilla/umatilla_rivers.json', {
             	style:riverStyle2, onEachFeature: function(feature, featureLayer) {
             		if (feature.properties.type != 'canal'){
         			featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip', sticky:true});
@@ -478,7 +490,7 @@
         			}
     			}}
             	)],
-            'rivers3': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_rivers&maxFeatures=100&outputFormat=application%2Fjson', {
+            'rivers3': [L.geoJson.ajax('assets/umatilla/umatilla_rivers.json', {
             	style:riverStyle3, onEachFeature: function(feature, featureLayer) {
             		if (feature.properties.type != 'canal'){
         			featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip', sticky:true});
@@ -489,7 +501,7 @@
         			}
     			}}
             	)],
-            'cities': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_cities&maxFeatures=50&outputFormat=application%2Fjson',
+            'cities': [L.geoJson.ajax('assets/umatilla/umatilla_cities.json',
             	{style:city_style, onEachFeature: function(feature, featureLayer) {
             		if (feature.properties.CITY_NAME == 'Pendleton' || feature.properties.CITY_NAME == 'Hermiston'){
         				featureLayer.bindTooltip(feature.properties.CITY_NAME, {className: 'label_tooltip2', permanent: true, offset: L.point({x: 0, y: 0})});
@@ -498,22 +510,22 @@
         			} else{
         				featureLayer.bindTooltip(feature.properties.CITY_NAME, {className: 'label_tooltip3', permanent:true, offset: L.point({x: 6, y: 0})});
         			}
-    			}}
+    			}, interactive:false, pane:'background'}
             	)],
-            'cities2': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_cities&maxFeatures=50&outputFormat=application%2Fjson',
+            'cities2': [L.geoJson.ajax('assets/umatilla/umatilla_cities.json',
             	{style:city_style2, onEachFeature: function(feature, featureLayer) {
             		if (feature.properties.CITY_NAME == 'Hermiston'){
         				featureLayer.bindTooltip(feature.properties.CITY_NAME, {className: 'label_tooltip2', permanent: true, offset: L.point({x: 0, y: 0})});
         			} else if (feature.properties.CITY_NAME == 'Pendleton'){
         				featureLayer.bindTooltip(feature.properties.CITY_NAME, {className: 'label_tooltip2', permanent: true, offset: L.point({x: -40, y: 0})});
         			}
-    			}}
+    			}, interactive:false, pane:'background'},
             	)],
-            'reservation': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_reservation&maxFeatures=50&outputFormat=application%2Fjson',
+            'reservation': [L.geoJson.ajax('assets/umatilla/umatilla_reservation.json',
             	{style:reservation_style, onEachFeature: function(feature, featureLayer) {
-    			}}
+    			}, interactive:false, pane:'background'}
             	)],
-            'lakes': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_lakes&maxFeatures=50&outputFormat=application%2Fjson',
+            'lakes': [L.geoJson.ajax('assets/umatilla/umatilla_lakes.json',
             	{style:lake_style, onEachFeature: function(feature, featureLayer) {
         				featureLayer.bindTooltip(feature.properties.GNIS_Name, {className: 'label_tooltip'});
         				featureLayer.on({
@@ -522,9 +534,9 @@
         				})
     			}}
             	)],
-            'irrigation': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_irrigation_districts&maxFeatures=50&outputFormat=application%2Fjson',
+            'irrigation': [L.geoJson.ajax('assets/umatilla/umatilla_irrigation_districts.json',
             	{style:irrigation_style, onEachFeature: function(feature, featureLayer) {
-    				}}
+    				}, interactive:false, pane:'background'}
             	)],
             'labels': [L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
@@ -532,10 +544,10 @@
 					minZoom: 6,
         			maxZoom: 15,
 				})],
-			'dams' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_dams&maxFeatures=50&outputFormat=application%2Fjson', {
+			'dams' : [L.geoJson.ajax('assets/umatilla/umatilla_dams.json', {
             	pointToLayer: function (feature, latlng) {
             				var bottleIcon = new L.Icon({
-            						iconUrl: 'img/xmarker.png',
+            						iconUrl: 'img/xmarker_blue.png',
             						iconSize: [damSize(feature.properties.dam_name),damSize(feature.properties.dam_name)],
             						iconAnchor: [0, 0]	
     						});
@@ -545,10 +557,10 @@
                 			layer.bindTooltip(feature.properties.dam_name, {className: 'label_tooltip', sticky: true});
             		}
 				})],
-			'projectPoints' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_project_points&maxFeatures=50&outputFormat=application%2Fjson', {
+			'projectPoints' : [L.geoJson.ajax('assets/umatilla/umatilla_project_points.json', {
             	pointToLayer: function (feature, latlng) {
             				var bottleIcon = new L.Icon({
-            						iconUrl: 'img/xmarker_blue.png',
+            						iconUrl: 'img/pump_marker.png',
             						iconSize: [14,14],
             						iconAnchor: [7, 0]	
     						});
@@ -558,21 +570,21 @@
                 			layer.bindTooltip(feature.properties.name, {className: 'label_tooltip', sticky: true});
             		}
 				})],
-			'projectLines': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_project_lines&maxFeatures=100&outputFormat=application%2Fjson', {
+			'projectLines': [L.geoJson.ajax('assets/umatilla/umatilla_project_lines.json', {
             	style:projectStyle, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip', sticky:true});
     			}}
             	)],
-            'projectLines2': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:umatilla_project_lines&maxFeatures=100&outputFormat=application%2Fjson', {
+            'projectLines2': [L.geoJson.ajax('assets/umatilla/umatilla_project_lines.json', {
             	style:projectStyle2, onEachFeature: function(feature, featureLayer) {
         			featureLayer.bindTooltip(feature.properties.NAME, {className: 'label_tooltip', sticky:true});
     			}}
             	)],
-            'roads': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_basemap:oregon_primary_light&maxFeatures=10000&outputFormat=application%2Fjson', {
-            	style:roadStyle}
+            'roads': [L.geoJson.ajax('assets/umatilla/oregon_primary_light.json', {
+            	style:roadStyle, interactive:false}
             	)],
-            'roads2': [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_basemap:oregon_interstate_light&maxFeatures=10000&outputFormat=application%2Fjson', {
-            	style:roadStyle}
+            'roads2': [L.geoJson.ajax('assets/umatilla/oregon_interstate_light.json', {
+            	style:roadStyle, interactive:false}
             	)]
 			
     };
@@ -642,23 +654,23 @@
 					
 				Esri_WorldImagery.setOpacity(0.3);*/
 				
-				L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
+				/*L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
         			layers: 'baldricg_basemap:north_america_green',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 50,
         			opacity:1,
         			transparent: true,
-    			}).addTo(map);
-				
-				L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
-        			layers: 'baldricg_atlas:oregon_DEM',
-        			format: 'image/png',
-        			minZoom: 6,
-        			maxZoom: 50,
-        			opacity:1,
-        			transparent: true,
-    			}).addTo(map);
+    			}).addTo(map);*/
+
+
+				map.createPane('background');
+				map.getPane('background').style.pointerEvents = 'none';
+				map.getPane('background').style.zIndex = 300;
+
+				map.createPane('labels');
+				map.getPane('labels').style.pointerEvents = 'none';
+				map.getPane('labels').style.zIndex = 700;
 				
 				var Esri_WorldShadedRelief = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
 					attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
@@ -667,7 +679,7 @@
 				}).addTo(map);
 				
 						    			
-    			L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
+    			/*L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
         			layers: 'baldricg_atlas:umatilla_basin',
         			format: 'image/png',
         			minZoom: 6,
@@ -695,7 +707,51 @@
         			transparent: true,
     			}).addTo(map);
     			
-    			oregonCover.setOpacity(0.7);
+    			oregonCover.setOpacity(0.7);*/
+
+				const orCounties = new L.TopoJSON(null, {
+					interactive:false
+				});
+
+				$.getJSON('assets/base/or_counties.json')
+					.done(addCounties);
+
+				function addCounties(topoData) {  
+					orCounties.addData(topoData);
+					orCounties.eachLayer(orHandle);
+					orCounties.addTo(map);
+				}
+
+				function orHandle(layer){
+					layer.setStyle({
+							color: '#ffffff',
+							fillOpacity: 0,
+							weight: 0.1,
+							opacity:0.8
+					});
+				}
+
+				const cover = new L.TopoJSON(null, {
+					interactive:false
+				});
+
+				$.getJSON('assets/umatilla/umatilla_cover.json')
+					.done(addCover);
+
+				function addCover(topoData) {  
+					cover.addData(topoData);
+					cover.eachLayer(coverHandle);
+					cover.addTo(map);
+				}
+
+				function coverHandle(layer){
+					layer.setStyle({
+							color: '#bfbfbf',
+							fillOpacity: 0.3,
+							weight: 0.1,
+							opacity:0
+					});
+				}
 
 			
  				
