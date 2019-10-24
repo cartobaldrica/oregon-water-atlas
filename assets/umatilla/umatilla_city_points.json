@@ -1,0 +1,11 @@
+{"type":"FeatureCollection", "features": [
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-119.34751531886351,45.9151418480631]},"properties":{"id":null,"name":"Umatilla"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-119.28900904651145,45.84154711599919]},"properties":{"id":null,"name":"Hermiston"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-119.2191094474382,45.783656699145574]},"properties":{"id":null,"name":"Stanfield"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-119.19262766100516,45.74331816399757]},"properties":{"id":null,"name":"Echo"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-118.80279113049095,45.670339287432114]},"properties":{"id":null,"name":"Pendleton"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-118.83235219441619,45.484658854651634]},"properties":{"id":null,"name":"Pilot Rock"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-118.56445505259357,45.766104817439974]},"properties":{"id":null,"name":"Adams"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-118.49301581477421,45.81414154631851]},"properties":{"id":null,"name":"Athena"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-118.65929679935375,45.851092876225074]},"properties":{"id":null,"name":"Helix"}}
+]}

@@ -1,0 +1,6 @@
+{"type":"FeatureCollection", "features": [
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-119.12204442518346,45.922709001478076]},"properties":{"id":null,"name":"COLUMBIA RIVER PUMP","AVG_ANNUAL":38250}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-119.32902738541542,45.91415031755764]},"properties":{"id":null,"name":"WEST EXTENSION PUMPING PLANT","AVG_ANNUAL":2400}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-119.17792079034403,45.86301294024415]},"properties":{"id":null,"name":"COLD SPRINGS PUMPING PLANT","AVG_ANNUAL":24100}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[-119.20077316421452,45.79256200688497]},"properties":{"id":null,"name":"STANFIELD RELIFT PUMPING PLANT","AVG_ANNUAL":7400}}
+]}
