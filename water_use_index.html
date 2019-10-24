@@ -502,19 +502,19 @@
             overview: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Home',position: 'fullpage'},
             counties: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'County Use', layers:['counties']},
             rights: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Water Rights', layers:['county_rights']},
-            mining: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Mining', layers:[ 'elevation2','mining']},
-            domestic: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Domestic', layers:[ 'elevation2','domestic']},
-            agriculture: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Agriculture', layers:[ 'elevation2','agriculture']},
-            irrigation: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Irrigation', layers:[ 'elevation2','irrigation']},
-            commercial: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Commercial', layers:[ 'elevation2','commercial']},
-            recreation: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Recreation', layers:[ 'elevation2','recreation']},
-            power: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Power', layers:[ 'elevation2','power']},
-            fish: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Fish', layers:[ 'elevation2','fish']},
-            livestock: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Livestock', layers:[ 'elevation2','livestock']},
-            municipal: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Municipal', layers:[ 'elevation2','municipal']},
-            instream: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Instream', layers:[ 'elevation2','instream']},
-            miscellaneous: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Miscellaneous', layers:[ 'elevation2','miscellaneous']},
-            wildlife: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Wildlife', layers:[ 'elevation2','wildlife']},
+            mining: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Mining', layers:[ 'mining']},
+            domestic: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Domestic', layers:[ 'domestic']},
+            agriculture: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Agriculture', layers:['agriculture']},
+            irrigation: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Irrigation', layers:['irrigation']},
+            commercial: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Commercial', layers:['commercial']},
+            recreation: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Recreation', layers:['recreation']},
+            power: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Power', layers:[ 'power']},
+            fish: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Fish', layers:['fish']},
+            livestock: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Livestock', layers:['livestock']},
+            municipal: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Municipal', layers:['municipal']},
+            instream: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Instream', layers:['instream']},
+            miscellaneous: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Miscellaneous', layers:['miscellaneous']},
+            wildlife: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Wildlife', layers:['wildlife']},
             end: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'End', position:'fullpage'}      
     };
     
@@ -569,6 +569,15 @@
                     opacity:1,
 					pane:'labels'
 				}).addTo(map);
+
+                var elevation = L.tileLayer.wms("https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms", {
+        			layers: 'OREGON_WATER:or_relief',
+        			format: 'image/png',
+        			minZoom: 6,
+        			maxZoom: 10,
+        			opacity:0.1,
+        			transparent: true,
+    			}).addTo(map);
 				
 				var or_cover = L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
 					layers: 'OREGON_WATER:oregon_cover_white',

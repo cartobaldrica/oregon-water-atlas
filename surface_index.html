@@ -681,8 +681,8 @@ function countyStyle(feature) {
 				map.getPane('borders').style.pointerEvents = 'none';
 				map.getPane('borders').style.zIndex = 300;
 			
-				L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
-        			layers: 'baldricg_basemap:or_relief',
+				L.tileLayer.wms("https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms", {
+        			layers: 'OREGON_WATER:or_relief',
         			format: 'image/png',
         			minZoom: 6,
         			maxZoom: 10,
@@ -690,7 +690,7 @@ function countyStyle(feature) {
         			transparent: true,
     			}).addTo(map);
     			
-    			L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
+    			/*L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
         			layers: 'baldricg_basemap:states_light',
         			format: 'image/png',
         			minZoom: 6,
@@ -706,7 +706,7 @@ function countyStyle(feature) {
         			maxZoom: 10,
         			opacity:0.8,
         			transparent: true,
-    			}).addTo(map);
+    			}).addTo(map);*/
 
 
 				const orCounties = new L.TopoJSON(null, {

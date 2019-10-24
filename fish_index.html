@@ -505,7 +505,7 @@ L.TopoJSON = L.GeoJSON.extend({
         			transparent: true,
     			}).addTo(map);
     			
-    			L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
+    			/*L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
         			layers: 'baldricg_atlas:water_counties_2',
         			format: 'image/png',
         			minZoom: 6,
@@ -520,9 +520,30 @@ L.TopoJSON = L.GeoJSON.extend({
         			minZoom: 6,
         			maxZoom: 15,
         			transparent: true,
-    			}).addTo(map);
+    			}).addTo(map);*/
+
+				const orCounties = new L.TopoJSON(null, {
+					interactive:false
+				});
+
+				$.getJSON('assets/base/or_counties.json')
+					.done(addCounties);
+
+				function addCounties(topoData) {  
+					orCounties.addData(topoData);
+					orCounties.eachLayer(orHandle);
+					orCounties.addTo(map);
+				}
+
+				function orHandle(layer){
+					layer.setStyle({
+							color: '#ffffff',
+							fillOpacity: 0,
+							weight: 1,
+							opacity:0.8
+					});
+				}
     			
-    			oregonWater.setOpacity(0.3);
 
                 map.createPane('states');
 				map.getPane('states').style.pointerEvents = 'none';
