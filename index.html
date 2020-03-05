@@ -9,20 +9,23 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Oregon Water Atlas</title>
+    <title>Oregon Water Geoportal</title>
 
 	<link rel="shortcut icon" href="img/oregon.ico" type="image/x-icon">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="css/perfect-scrollbar.css" />
 
     <!-- Custom CSS -->
-    <link href="css/3-col-portfolio.css" rel="stylesheet">
+    <link href="css/hub-style.css" rel="stylesheet">
     
     <!-- Fonts -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inconsolata" />
-
-
+    <link href="https://fonts.googleapis.com/css?family=Catamaran&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mukta:300,400,700&display=swap" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -33,207 +36,211 @@
 </head>
 
 <body>
+    
+    <nav class="navbar navbar-expand-lg" id="nav" >
+        <!--<img src="img/your-water.jpg">-->
+        <a class="navbar-brand" href="#">Oregon: Your Water All Year</a>
+        <!---<ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-align-justify" style="color:white; font-size:30px;"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Home</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Oregon Water Atlas</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Year of Water</a>
+              </div>
+            </li>
+          </ul>-->
+      </nav>
+      <!--<nav class="navbar navbar-expand-lg" id="nav2">
+        <div style="margin-left:15px;">
+            <span class="navbar-text" style="margin-top:0; margin-bottom:0;">
+                Brief description of the site. Brief description of the site. Brief description of the site. Brief description of the site. Brief description of the site. Brief description of the site.
+            </span>
+        </div>
+      </nav>-->
 
+    <div id="background"></div>
+       <!-- <div class="container">
+        
+            <div class="row" style="margin-bottom:30px;">
+                <div class="col-lg-3 col-sm-2 col-xm-3"></div>
+                <div class="col-lg-6 col-sm-8 col-xm-6"></div>
+                <div class="col-lg-3 col-sm-2 col-xm-3"></div>
+            </div>
+               
+        </div>-->
+    
+            <!-- Projects Row -->
+            <div id="scrollbar">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 portfolio-item" style="margin-bottom: 25px; ">
+                        <div class="container"> 
+                            <div class="col-xs-12 col-sm-5" id="text-container">
+                                <a href="https://www.facebook.com/Oregon.YearofWater/" style="color:black; text-decoration: none;">
+                                    <img class="icon-img" src="img/year-of-water.png" style="width:50%;">
+                                    <!--<h2>Year of Water</h2>-->
+                                    <p>A university-led, statewide initiative to convey the connectedness of water – where it comes
+                                        from, where it goes, and why we should care. The Year of Water not only highlights the role
+                                        Oregon’s research universities play as community and industry leaders and partners seeking to
+                                        understand and address water-related challenges, but also leverages the work of many of
+                                        Oregon’s public higher education institutions and showcases events of organizations working on
+                                        behalf of water.</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 portfolio-item" style="margin-bottom: 25px; ">
+                        <div class="container"> 
+                            <div class="col-xs-12 col-sm-5" id="text-container">
+                                <a href="atlas.html" style="color:black; text-decoration: none;">
+                                    <img class="icon-img" src="img/oregon_water_atlas_logo.png" style="width:100%;" >
+                                    <!--<h2>Oregon Water Atlas</h2>-->
+                                    <p>The Oregon Water Atlas is an aggregation and visualization of Oregon’s water data. It was
+                                        created as a response to the wide array of publicly available data scatted across the Internet.
+                                        The Oregon Water Atlas was created using entirely open-source software and coding libraries.</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 portfolio-item" style="margin-bottom: 25px; ">
+                        <div class="container"> 
+                            <div class="col-xs-12 col-sm-5" id="text-container">
+                                <a href="https://www.oregonwaterstories.com/" target="_blank" style="color:black; text-decoration: none;">
+                                    <img class="icon-img" src="img/oregon-water-stories.png" style="width:100%;" >
+                                    <!--<h2>Oregon Water Stories</h2>-->
+                                    <p>Oregon Water Stories is a project designed by Professor Melissa Haeffner for the 2018
+                                        Freshman Inquiry class, Human/Nature at Portland State University. The goal of the project is to
+                                        gather stories from around the state of Oregon that relates to the modern relationship between
+                                        humans and water.</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 portfolio-item" style="margin-bottom: 25px; ">
+                        <div class="container"> 
+                            <div class="col-xs-12 col-sm-5" id="text-container">
+                                <a href="https://aol.wdt.pdx.edu/map" target="_blank" style="color:black; text-decoration: none;">
+                                    <img class="icon-img" src="img/oregon-lakes.png" style="width:100%;" >
+                                    <!--<h2>Atlas of Oregon Lakes</h2>-->
+                                    <p>The Atlas of Oregon Lakes is a resource for the public, resource management agencies, and
+                                        scientists to enhance management and enjoyment of our lakes. The online atlas is an updated
+                                        version of the popular Atlas of Oregon Lakes published in 1985.</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 portfolio-item" style="margin-bottom: 25px; ">
+                        <div class="container"> 
+                            <div class="col-xs-12 col-sm-5" id="text-container">
+                                <a href="http://pnwatlas.oregonstate.edu/#/water" target="_blank" style="color:black; text-decoration: none;">
+                                    <img class="icon-img" src="img/apnw_water.png" style="width:100%;" >
+                                    <!--<h2>Atlas of the Pacific Northwest: Water Chapter</h2>-->
+                                    <p>The Atlas of the Pacific Northwest (2018) edition is the first to be released in a digital, fully-
+                                        interactive format, designed to highlight facets of the Pacific Northwest landscape with novel
+                                        approaches to data presentation. Here you can link directly to one of its 10 chapters, Water.</p>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 portfolio-item" style="margin-bottom: 25px; ">
+                        <div class="container"> 
+                            <div class="col-xs-12 col-sm-5" id="text-container">
+                                <a href="https://oregonexplorer.info/topics/Climate%2C-Water%2C-and-Air" target="_blank" style="color:black; text-decoration: none;">
+                                    <img class="icon-img" src="img/oe_home_logo.png" style="width:80%; margin-left:0;" >
+                                    <!--<h2>Oregon Explorer: Water</h2>-->
+                                    <p></p>
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- /.row -->
+            </div>
+            <!--<i style="font-size:36px;" id="arrow" class="animated zoomIn infinite glyphicon glyphicon-chevron-down chevron-down"></i>-->
+            <i style="font-size:36px; z-index:10;" id="arrow" class="animated zoomIn infinite glyphicon glyphicon-chevron-down chevron-down"></i>
+            <div id="foot-row" class="row" style="bottom:0; position:fixed; background:white; width:100%; padding:10px;">
+                <div class="col-xs-12 col-sm-12" >
+                    <a href="https://inr.oregonstate.edu/" target="_blank"><img src="img/INR-icon.png" style="width:250px;" ></a>
+                    <a href="https://oregonstate.edu/" target="_blank"><img src="img/osu-icon.jpg" style="width:200px;" ></a>
+                    <a href="https://www.pdx.edu/" target="_blank"><img src="img/psu-icon.jpg" style="width:200px;" ></a>
+                </div>
+            </div>
+            
+    
+            <!-- Pagination -->
+            <!-- /.row -->
+    
+            <!-- Footer 
+            <footer class="footer">
+                <div class="foot-row">
+                    <div class="col-lg-12" >
+                        <a href="http://water.oregonstate.edu/" target="_blank"><img src="img/IWW-logo.png" style="width:250px;" ></a>
+                        <a href="http://geoviz.ceoas.oregonstate.edu/index.html#" target="_blank"><img src="img/geoviz_osu.png" style="width:150px;" ></a>
+                        <a href="https://water.usgs.gov/wrri/index.php" target="_blank"><img src="img/USGS_logo.png" style="width:150px;" ></a>
+                    </div>
+                </div>
+            </footer>-->
+
+    
 
     <!-- Page Content -->
-    <div class="container">
-
-        <!-- Page Header -->
-        <div class="row text-center">
-            <li><img src="img/oregon.jpg" style="max-width:20%;" ></li>
-		</div>
-        
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>Oregon Water Atlas</h1>
-                <a class="about" data-toggle="modal" data-target="#info-modal"><p style="text-align:center; margin-top:20px;">About</p></a>
-                <hr>
-                <h2 style ="margin-bottom: 0px;">Chapters</h2>
-            </div>
-        </div>
-        
-        <hr>
-        <!-- /.row -->
-
-		<div class="modal fade" id="info-modal" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <p class="modal-title" style="font-size:30px;">About</p>
-                </div>
-                <div class="modal-body">
-                    <p>The Oregon Water Atlas is an aggregation and visualization of Oregon’s water data. It was created as a response to the wide array of publicly available data scatted across the Internet. The Oregon Water Atlas was created using entirely open-source software and coding libraries, including QGIS, Leaflet, storymap.js, and Bootstrap.</p>
-                	<p>The Oregon Water Atlas is funded by the Oregon Institute for Water and Watersheds through the USGS 104(b) initiative. It was created for an undergraduate honors thesis at Oregon State University. The accompanying research paper can be found <a href="http://hdl.handle.net/1957/61174">here</a>.</p>
-                </div>
-                <div class="modal-footer">
-                    <p>Created by Gareth Baldrica-Franklin</p>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        <!-- Projects Row -->
-        
-        <div class="row no-gutter" style="margin-bottom: 50px;">
-            <div class="col-xs-12 col-sm-4 portfolio-item">
-                <div class="col-sm-6 portfolio-item"> 
-                <a  href="precipitation.html" target="_blank">
-                    <img class="img-responsive" src="img/precip_home.png" alt="">
-                </a>
-                </div>
-                <div class="col-sm-6 portfolio-item"> 
-                	<h4>
-                    	<a  href="precipitation.html" target="_blank">Precipitation</a>
-                	</h4>
-                	<p style="font-weight:bold; padding-right:20px; margin-top:-5px; font-size:16px;">rain, weather, annual, monthly</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 portfolio-item col-centered">
-                <div class="col-sm-6 portfolio-item"> 
-                <a  href="groundwater_index.html" target="_blank">
-                    <img class="img-responsive" src="img/ground_home.png" alt="">
-                </a>
-                </div>
-                <div class="col-sm-6 portfolio-item"> 
-                <h4>
-                    <a  href="groundwater_index.html" target="_blank">Groundwater</a>
-                </h4>
-                <p style="font-weight:bold; padding-right:20px; margin-top:-5px; font-size:16px;">aquifers, recharge, irrigation, use, conservation</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 portfolio-item col-centered">
-                <div class="col-sm-6 portfolio-item"> 
-                	<a  href="surface_index.html" target="_blank">
-                    	<img class="img-responsive" src="img/surface_home.png" alt="">
-                	</a>
-                </div>
-                <div class="col-sm-6 portfolio-item"> 
-                	<h4>
-                    	<a  href="surface_index.html" target="_blank">Surface Water</a>
-               		</h4>
-               		<p style="font-weight:bold; padding-right:20px; margin-top:-5px; font-size:16px;">rivers, lakes, watersheds, wetlands, pollution</p>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Projects Row -->
-        <div class="row no-gutter" style="margin-bottom: 50px;">
-            <div class="col-xs-12 col-sm-4 portfolio-item ">
-                <div class="col-sm-6 portfolio-item"> 
-                <a href="flood_index.html" target="_blank">
-                    <img class="img-responsive" src="img/flood_home.png" alt="">
-                </a>
-                </div>
-                <div class="col-sm-6 portfolio-item"> 
-                <h4>
-                    <a  href="flood_index.html" target="_blank">Flooding</a>
-                </h4>
-                <p style="font-weight:bold; padding-right:20px; margin-top:-5px; font-size:16px;">1861, Vanport, 1964, 1996, flood risk</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 portfolio-item nopadding">
-                <div class="col-sm-6 portfolio-item"> 
-                <a  href="infrastructure_index.html" target="_blank">
-                    <img class="img-responsive" src="img/infra_home.png" alt="">
-                </a>
-                </div>
-                <div class="col-sm-6 portfolio-item"> 
-                 <h4>
-                    <a  href="infrastructure_index.html" target="_blank">Infrastructure</a>
-                </h4>
-                <p style="font-weight:bold; padding-right:20px; margin-top:-5px; font-size:16px;">dams, hazards, hydroelectricity, dam removal, bridges</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 portfolio-item">
-                <div class="col-sm-6 portfolio-item"> 
-                <a href="water_use_index.html" target="_blank">
-                    <img class="img-responsive" src="img/use_home.png" alt="">
-                </a>
-                </div>
-                <div class="col-sm-6 portfolio-item"> 
-                 <h4>
-                   <a  href="water_use_index.html" target="_blank"> Water Use</a>
-                </h4>
-                <p style="font-weight:bold; padding-right:20px; margin-top:-5px; font-size:16px;">total use, water rights, use categories</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Projects Row -->
-        <div class="row no-gutter">
-            <div class="col-xs-12 col-sm-4 portfolio-item">
-                <div class="col-sm-6 portfolio-item"> 
-                <a  href="drinking_index.html" target="_blank">
-                    <img class="img-responsive" src="img/drinking_home.png" alt="">
-                </a>
-                </div>
-                <div class="col-sm-6 portfolio-item"> 
-                   <h4>
-                    <a  href="drinking_index.html" target="_blank">Drinking Water</a>
-                </h4>
-                <p style="font-weight:bold; padding-right:20px; margin-top:-5px; font-size:16px;">surface, ground, bottled, contaminants</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 portfolio-item">
-                <div class="col-sm-6 portfolio-item"> 
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    					<img class="img-responsive" src="img/conflict_home.png" alt="">
-  				</button>
-  				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    					<a class="dropdown-item" target="_blank" href="http://oregonwater.info/umatilla_index.html">Umatilla</a><br/>
-  					</div>
-                </div>
-                <div class="col-sm-6 portfolio-item"> 
-                <h4>
-                    <a  href="water_use_index.html" target="_blank">Conflict</a>
-                </h4>
-                <p style="font-weight:bold; padding-right:20px; margin-top:-5px; font-size:16px;">water rights, shortages, Umatilla, Klamath</p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 portfolio-item">
-                <div class="col-sm-6 portfolio-item"> 
-                <a  href="fish_index.html" target="_blank">
-                    <img class="img-responsive" src="img/fish_home.png" alt="">
-                </a>
-                </div>
-                <h4>
-                    <a  href="fish_index.html" target="_blank">Fish</a>
-                </h4>
-                <p style="font-weight:bold; padding-right:20px; margin-top:-5px; font-size:16px;">barriers, trout, salmon, lamprey, sturgeon, hatcheries</p>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Pagination -->
-        <!-- /.row -->
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                	<p>Gareth Baldrica-Franklin, Institute for Water and Watersheds, Oregon State University, 2017</p>
-            		<a href="http://water.oregonstate.edu/" target="_blank"><img src="img/IWW-logo.png" style="max-width:20%;" ></a>
-            		<a href="http://geoviz.ceoas.oregonstate.edu/index.html#" target="_blank"><img src="img/geoviz_osu.png" style="max-width:15%;" ></a>
-            		<a href="https://water.usgs.gov/wrri/index.php" target="_blank"><img src="img/USGS_logo.png" style="max-width:10%;" ></a>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
 
     </div>
     <!-- /.container -->
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/perfect-scrollbar.js"></script>
+    <script>
+        
+        //////////////////////////adjust scrollbar height//////////////////////
+        
+        //var container = document.getElementById('scrollbar');
+		//Ps.initialize(container);
+
+        function resizeMiddle() {
+            var h = $('#foot-row').height();
+                $('#scrollbar').css("padding-bottom", h);
+        }
+
+        $(document).ready(resizeMiddle);
+	    $(window).resize(resizeMiddle);
+	
+    </script>
 
 </body>
 

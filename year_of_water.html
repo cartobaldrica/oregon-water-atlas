@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Year of Water</title>
+
+	<link rel="shortcut icon" href="img/oregon.ico" type="image/x-icon">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" /> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/perfect-scrollbar.css" />
+
+    <!-- Custom CSS -->
+    <link href="css/year-of-water.css" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mukta:300,400,700&display=swap" rel="stylesheet">
+
+
+
+    <!-- jQuery -->
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/papaparse@4.3.6/papaparse.min.js"></script>
+    <script src="js/perfect-scrollbar.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-lg" id="nav" style="border-bottom:2px solid black;">
+        <img src="img/year-of-water.png" style="height:100px; display:block; margin:auto;">
+      </nav>
+
+    <div id="background"></div>
+
+            <div class="row" style="margin-bottom: 20px; height:100%; ">
+                <!-- Projects Row -->
+                <!--<div id="tabs" style="position:fixed; top:120px; background:white; z-index:5; width:25%;">
+                    <button>Intro</button>
+                    <button>Research</button>
+                    <button>Books</button>
+                    <button>Events</button>
+                </div>-->
+                <!--<div id="buttons" style="position:fixed; top:120px;">
+                    <div class="dropdown">
+                        <button class="dropbtn"><b id="dataType">Select Theme</b><p id="arrow">&#9660;</p></button>
+                        <div class="dropdown-content"  onmouseleave="themeRemove()">
+                            <button type="button" id="but1" class="selection" style="background:rgba(242, 242, 242, 0.8);" onclick="themeClick('Overall','#overall','overall')">Overall</button>
+                            <button type="button" id="but2" class="selection" onclick="themeClick('Environment','#environment','environment')">Environment</button>
+                            <button type="button" id="but3" class="selection" onclick="themeClick('Health','#health','health')">Health</button>
+                            <button type="button" id="but4" class="selection" onclick="themeClick('Safety','#safety','safety')">Safety</button>
+                            <button type="button" id="but5" class="selection" onclick="themeClick('Economy','#economy','economy')">Economy</button>
+                            <button type="button" id="but6" class="selection" onclick="themeClick('Arts','#arts','arts')">Arts & Culture</button>
+                            <button type="button" id="but7" class="selection" onclick="themeClick('Tech','#tech','tech')">Tech. & Innovation</button>
+                        </div>
+                    </div>
+                </div>-->
+                <div id="buttons" style="position:fixed; top:120px; z-index:3;">
+                    <div class="dropdown">
+                        <button class="dropbtn"><b id="dataType">Select Theme</b><p id="arrow">&#9660;</p></button>
+                        <div class="dropdown-content" style="width:100%;">
+                            <button type="button" id="but1" class="selection" style="background:rgba(242, 242, 242, 0.8);">Intro</button>
+                            <button type="button" id="but2" class="selection">Research</button>
+                            <button type="button" id="but3" class="selection">Books</button>
+                            <button type="button" id="but4" class="selection">Events</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="theme_checks" style="position:fixed; top:160px; width:25%; z-index:2;">
+                    <div id="buttons" style="width:100%;">
+                        <div class="dropdown">
+                            <button class="dropbtn"><b id="dataType">Select Theme</b><p id="arrow">&#9660;</p></button>
+                            <div class="dropdown-content" style="width:100%; z-index:10;">
+                                <input type="checkbox" id="environment_check" name="environment" value="environment" onclick="themeClick('Environment','#environment','environment','#environment_check')">
+                                <label for="environment">Environment</label><br>
+                                <input type="checkbox" id="health_check" name="health" value="health" onclick="themeClick('Health','#health','health','#health_check')">
+                                <label for="health">Health</label><br>
+                                <input type="checkbox" id="safety_check" name="safety" value="safety" onclick="themeClick('Safety','#safety','safety','#safety_check')">
+                                <label for="environment">Safety</label><br>
+                                <input type="checkbox" id="economy_check" name="economy" value="economy" onclick="themeClick('Economy','#economy','economy','#economy_check')">
+                                <label for="environment">Economy</label><br>
+                                <input type="checkbox" id="arts_check" name="arts" value="arts" onclick="themeClick('Arts','#arts','arts','#arts_check')">
+                                <label for="arts">Arts & Culture</label><br>
+                                <input type="checkbox" id="tech_check" name="tech" value="tech" onclick="themeClick('Tech','#tech','tech','#tech_check')">
+                                <label for="tech">Tech. & Innovation</label><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="panel" class="col-xs-12 col-sm-3" style="padding-left: 0; z-index:1; padding-right:0; margin-top:184px;">
+                    <div id="scrollbar" style="padding:10px;">
+                        <div id ="overall">
+                            <h2 class="theme_title">Introduction</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>   
+                        <!--<div id ="environment" style="display:none;">
+                            <h2 class="theme_title">Environment</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>  
+                        <div id ="health" style="display:none;">
+                            <h2 class="theme_title">Health</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>  
+                        <div id ="safety" style="display:none;">
+                            <h2 class="theme_title">Safety</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>  
+                        <div id ="economy" style="display:none;">
+                            <h2 class="theme_title">Economy</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>  
+                        <div id ="arts" style="display:none;">
+                            <h2 class="theme_title">Arts & Culture</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>   
+                        <div id ="tech" style="display:none;">
+                            <h2 class="theme_title">Technology & Innovation</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>  -->
+                        <div id="projects"></div>
+                    </div>
+                </div>
+                
+                <div class="col-xs-12 col-sm-9" style="margin-bottom: 25px; height:100%; display:block; padding:0;">
+                    <div id="map" style="z-index:0; "></div>
+                </div>
+        </div>
+
+
+
+    </div>
+
+    <script>
+        var container;
+        var scrollbarTheme = '#overall';
+
+        var southWest = L.latLng(21.172626315855425, -149.58519708215204),
+            northEast = L.latLng(66.10396253416393, -82.34035998361294),
+            bounds = L.latLngBounds(southWest, northEast);
+        
+        var map = L.map('map', {center: [43.80, -120.55], zoom: 7, scrollWheelZoom:false});
+
+        var Esri_sat= L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+            maxZoom:20,
+            minZoom:5,
+            opacity:1
+        });
+        
+        var Esri_WorldTerrain = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+            maxZoom:20,
+            minZoom:5,
+            opacity:1
+        }).addTo(map);
+
+        var or_cover = L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
+            layers: 'OREGON_WATER:oregon_cover',
+            format: 'image/png',
+            maxZoom:10,
+            minZoom:5,
+            opacity:0.2,
+            transparent:true,
+        }).addTo(map);
+
+            var theme_points = $.getJSON("assets/yow/theme_points.geojson", function(data){
+                theme_points = L.geoJson(data, {
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng, {
+                            color: '#ffffff',
+                            fillColor: '#000000',
+                            radius: 5,
+                            opacity: 1,
+                            fillOpacity: 1,
+                            weight: 1
+                        }).bindPopup('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">')
+                        .bindTooltip('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">');
+                    }
+                }).addTo(map);
+            });
+
+        /*function hoverTheme(theme){
+            map.removeLayer(theme_points);
+            theme_points = $.getJSON("assets/yow/theme_points.geojson", function(data){
+            theme_points = L.geoJson(data, {
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng, {
+                        color: '#ffffff',
+                        fillColor: '#00000',
+                        radius: 5,
+                        opacity: 1,
+                        fillOpacity: 1,
+                        weight: 1
+                        }
+    				);
+    			},
+                filter:function(feature,layer){
+                    if (theme == 'overall')
+                        return true;
+                    else{
+                        return feature.properties.theme_1 == theme ? true:
+                            false;
+                    }
+                }
+                }).addTo(map);
+            });
+        }   */
+
+        var filter = [];
+
+        function themeClick(theme, select, theme_l, check_ID){
+            $("#projects").empty();
+            
+            if ($(check_ID).prop("checked"))
+                filter.push(theme);
+            else{
+                var ind; 
+                for (var i = 0; i < filter.length; i++){
+                    if (filter[i] == theme)
+                        ind = i;
+                }
+                filter.splice(ind,1);
+            }
+            
+            if (filter && filter.length > 0)
+                var removal = "selection";
+            else    
+                var removal = "none";
+
+            console.log(removal);
+
+            map.removeLayer(theme_points);
+            theme_points = $.getJSON("assets/yow/theme_points.geojson", function(data){
+            theme_points = L.geoJson(data, {
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng, {
+                        color: '#ffffff',
+                        fillColor: '#000000',
+                        radius: 5,
+                        opacity: 1,
+                        fillOpacity: 1,
+                        weight: 1
+                    }).bindPopup('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">')
+                    .bindTooltip('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">');
+                },
+                filter:function(feature,layer){
+                    if (removal == 'none')
+                        return true;
+                    else{
+                        return $.inArray(feature.properties.theme_1, filter) != -1 ? true:
+                            false;
+                    }
+                }
+                }).addTo(map);
+            });
+
+            //$(scrollbarTheme).css("display","none");
+            //$(select).css("display","block")
+            //scrollbarTheme = select;
+
+            for (var i = 0; i in dataTable; i++){
+                for (var j = 0; j < filter.length; j++){
+                    if (filter[j] == dataTable[i].theme_1){
+                        $("#projects").append("<div class='project' style='margin-bottom:10px;'><h2 style='margin-bottom:0px;'>" + dataTable[i].name + "</h2><a href='" + dataTable[i].website + "'>" + dataTable[i].website + "</a><p>" + dataTable[i].descriptio + "</p><img style='width:100%' src='img/" + dataTable[i].image + ".jpg'>'</div>");
+                    }
+                }
+            }
+
+            resizeMap();
+
+        }
+
+        /*function themeRemove(){
+            map.removeLayer(theme_points);
+            theme_points = $.getJSON("assets/yow/theme_points.geojson", function(data){
+            theme_points = L.geoJson(data, {
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng, {
+                        color: '#ffffff',
+                        fillColor: '#000000',
+                        radius: 5,
+                        opacity: 1,
+                        fillOpacity: 1,
+                        weight: 1
+                    }).bindPopup('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">')
+                    .bindTooltip('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">');
+                },
+                filter:function(feature,layer){
+                        if (clickTheme){
+                            return feature.properties.theme_1 == clickTheme ? true:
+                                false;
+                        }
+                        else    
+                            return true;
+                    }
+                }).addTo(map);
+            })
+        } */
+
+        var dataTable = {};
+
+        function doStuff(data) {
+            for (var i = 0;i in data;i++){
+                dataTable[i] = data[i];
+            }
+        }
+
+        function parseData(url, callBack) {
+            Papa.parse(url, {
+                download: true,
+                header:true,
+                dynamicTyping: true,
+                complete: function(results) {
+                    callBack(results.data);
+                }
+            });
+        }
+
+        parseData("assets/yow/theme_points.csv", doStuff); 
+
+        function resizeMap(){
+            if ($(window).width() <= 768){
+                if ($("#scrollbar").height() > $("#panel").height()){
+                    var h = $("#scrollbar").height() - $("#panel").height() + 20;
+                    $("#map").css("top",h + "px");
+                }
+            }
+            else{
+                $("#map").css("top","120px");
+            }
+        }
+
+        $(document).ready(resizeMap);
+	    $(window).resize(resizeMap);
+
+	
+    </script>
+
+</body>
+
+</html>
