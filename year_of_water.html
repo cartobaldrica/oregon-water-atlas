@@ -15,8 +15,8 @@
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" /> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="css/perfect-scrollbar.css" />
 
     <!-- Custom CSS -->
@@ -26,16 +26,6 @@
     <link href="https://fonts.googleapis.com/css?family=Catamaran&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Mukta:300,400,700&display=swap" rel="stylesheet">
-
-
-
-    <!-- jQuery -->
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/papaparse@4.3.6/papaparse.min.js"></script>
-    <script src="js/perfect-scrollbar.js"></script>
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -51,308 +41,242 @@
         <img src="img/year-of-water.png" style="height:100px; display:block; margin:auto;">
       </nav>
 
-    <div id="background"></div>
 
-            <div class="row" style="margin-bottom: 20px; height:100%; ">
-                <!-- Projects Row -->
-                <!--<div id="tabs" style="position:fixed; top:120px; background:white; z-index:5; width:25%;">
-                    <button>Intro</button>
-                    <button>Research</button>
-                    <button>Books</button>
-                    <button>Events</button>
-                </div>-->
-                <!--<div id="buttons" style="position:fixed; top:120px;">
-                    <div class="dropdown">
-                        <button class="dropbtn"><b id="dataType">Select Theme</b><p id="arrow">&#9660;</p></button>
-                        <div class="dropdown-content"  onmouseleave="themeRemove()">
-                            <button type="button" id="but1" class="selection" style="background:rgba(242, 242, 242, 0.8);" onclick="themeClick('Overall','#overall','overall')">Overall</button>
-                            <button type="button" id="but2" class="selection" onclick="themeClick('Environment','#environment','environment')">Environment</button>
-                            <button type="button" id="but3" class="selection" onclick="themeClick('Health','#health','health')">Health</button>
-                            <button type="button" id="but4" class="selection" onclick="themeClick('Safety','#safety','safety')">Safety</button>
-                            <button type="button" id="but5" class="selection" onclick="themeClick('Economy','#economy','economy')">Economy</button>
-                            <button type="button" id="but6" class="selection" onclick="themeClick('Arts','#arts','arts')">Arts & Culture</button>
-                            <button type="button" id="but7" class="selection" onclick="themeClick('Tech','#tech','tech')">Tech. & Innovation</button>
-                        </div>
-                    </div>
-                </div>-->
-                <div id="buttons" style="position:fixed; top:120px; z-index:3;">
-                    <div class="dropdown">
-                        <button class="dropbtn"><b id="dataType">Select Theme</b><p id="arrow">&#9660;</p></button>
-                        <div class="dropdown-content" style="width:100%;">
-                            <button type="button" id="but1" class="selection" style="background:rgba(242, 242, 242, 0.8);">Intro</button>
-                            <button type="button" id="but2" class="selection">Research</button>
-                            <button type="button" id="but3" class="selection">Books</button>
-                            <button type="button" id="but4" class="selection">Events</button>
-                        </div>
-                    </div>
-                </div>
-                <div id="theme_checks" style="position:fixed; top:160px; width:25%; z-index:2;">
-                    <div id="buttons" style="width:100%;">
-                        <div class="dropdown">
-                            <button class="dropbtn"><b id="dataType">Select Theme</b><p id="arrow">&#9660;</p></button>
-                            <div class="dropdown-content" style="width:100%; z-index:10;">
-                                <input type="checkbox" id="environment_check" name="environment" value="environment" onclick="themeClick('Environment','#environment','environment','#environment_check')">
-                                <label for="environment">Environment</label><br>
-                                <input type="checkbox" id="health_check" name="health" value="health" onclick="themeClick('Health','#health','health','#health_check')">
-                                <label for="health">Health</label><br>
-                                <input type="checkbox" id="safety_check" name="safety" value="safety" onclick="themeClick('Safety','#safety','safety','#safety_check')">
-                                <label for="environment">Safety</label><br>
-                                <input type="checkbox" id="economy_check" name="economy" value="economy" onclick="themeClick('Economy','#economy','economy','#economy_check')">
-                                <label for="environment">Economy</label><br>
-                                <input type="checkbox" id="arts_check" name="arts" value="arts" onclick="themeClick('Arts','#arts','arts','#arts_check')">
-                                <label for="arts">Arts & Culture</label><br>
-                                <input type="checkbox" id="tech_check" name="tech" value="tech" onclick="themeClick('Tech','#tech','tech','#tech_check')">
-                                <label for="tech">Tech. & Innovation</label><br>
+    <div id="background"></div>
+       <!-- <div class="container">
+        
+            <div class="row" style="margin-bottom:30px;">
+                <div class="col-lg-3 col-sm-2 col-xm-3"></div>
+                <div class="col-lg-6 col-sm-8 col-xm-6"></div>
+                <div class="col-lg-3 col-sm-2 col-xm-3"></div>
+            </div>
+               
+        </div>-->
+    
+            <!-- Projects Row -->
+            <div id="panel" style="margin-top:120px;">
+                <div class="row" style="height:100%;">
+                    <div class="col-xs-12 col-sm-12 portfolio-item" style="margin-bottom: 25px; ">
+                        <div class="container"> 
+                            <div class="col-xs-12 col-sm-1"></div>
+                            <div class="col-xs-12 col-sm-5" id="text-container">
+                                <a href="https://www.facebook.com/Oregon.YearofWater/" style="color:black; text-decoration: none;">
+                                    <img class="icon-img" src="img/year-of-water.png" style="width:100%; margin-top:200px;">
+                                </a>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                    
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="panel" class="col-xs-12 col-sm-3" style="padding-left: 0; z-index:1; padding-right:0; margin-top:184px;">
-                    <div id="scrollbar" style="padding:10px;">
-                        <div id ="overall">
-                            <h2 class="theme_title">Introduction</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>   
-                        <!--<div id ="environment" style="display:none;">
-                            <h2 class="theme_title">Environment</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>  
-                        <div id ="health" style="display:none;">
-                            <h2 class="theme_title">Health</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>  
-                        <div id ="safety" style="display:none;">
-                            <h2 class="theme_title">Safety</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>  
-                        <div id ="economy" style="display:none;">
-                            <h2 class="theme_title">Economy</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>  
-                        <div id ="arts" style="display:none;">
-                            <h2 class="theme_title">Arts & Culture</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>   
-                        <div id ="tech" style="display:none;">
-                            <h2 class="theme_title">Technology & Innovation</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>  -->
-                        <div id="projects"></div>
+                <div class="row" style="margin-top:100px;height:100%;">
+                    <div class="col-xs-12 col-sm-12 portfolio-item" style="margin-bottom: 25px; ">
+                        <div class="container"> 
+                            <div class="col-xs-12 col-sm-1"></div>
+                            <div class="col-xs-12 col-sm-5" >
+                                <h1>About</h1>
+                                <p class="text-container">The Year of Water is a university-led, statewide initiative to convey the connectedness of water
+                                    – where it comes from, where it goes, and why we should care. The Year of Water not only
+                                    highlights the role Oregon’s research universities play as community and industry leaders and
+                                    partners seeking to understand and address water-related challenges, but also leverages the
+                                    work of many of Oregon’s public higher education institutions and showcases events of
+                                    organizations working on behalf of water.
+                                    <br/><br/>
+                                    Through this initiative, we aspire to leverage and foster water collaborations within and outside
+                                    of the universities; increase awareness and coordination to discover synergies across the
+                                    universities; promote water literacy; and broaden the collective impact and benefits of our work.
+                                </p>
+                                <h3 style="margin-bottom:30px;">Leading Units</h3>
+                                <h4>Oregon State University</h4>
+                                <p class="text-container">
+                                    &#9679 College of Liberal Arts
+                                    <br/>
+                                    &#9679 Extension Service
+                                    <br/>
+                                    &#9679 Hydrophiles
+                                    <br/>
+                                    &#9679 Institute for Natural Resources (sponsor)
+                                    <br/>
+                                    &#9679 Institute for Water and Watersheds (sponsor)
+                                    <br/>
+                                    &#9679 OSU Libraries and Press
+                                    <br/>
+                                    &#9679 Water Conflict Management and Transformation Program
+                                    <br/>
+                                    &#9679 Water Resources Graduate Program
+                                    <br/>
+                                </p>
+                                <h4>Portland State University</h4>
+                                <p class="text-container">
+                                    &#9679 College of Liberal Arts and Sciences, Deans’ Office (sponsor)
+                                    <br/>
+                                    &#9679 Department of Environmental Science and Management
+                                    <br/>
+                                    &#9679 Department of Geography
+                                    <br/>
+                                    &#9679 Institute for Natural Resources
+                                    <br/>
+                                    &#9679 USGS-PSU Partnership (this includes OHSU)
+                                    <br/>
+                                </p>
+                                <h4>University of Oregon</h4>
+                                <p class="text-container">
+                                    &#9679 Department of Indigenous, Race, and Ethnic Studies
+                                    <br/>
+                                    &#9679 Environmental and Natural Resources Law Center @ UO Law School
+                                    <br/>
+                                    &#9679 Institute for Sustainable Environment
+                                    <br/>
+                                    &#9679 Office of the Vice President for Research and Innovation (sponsor)
+                                    <br/>
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="col-xs-12 col-sm-9" style="margin-bottom: 25px; height:100%; display:block; padding:0;">
-                    <div id="map" style="z-index:0; "></div>
+                <div class="row" style="margin-top:600px; height:100%;">
+                    <div class="col-xs-12 col-sm-12 portfolio-item" style="margin-bottom: 25px; ">
+                        <div class="container" style="padding-bottom:100px;"> 
+                            <div class="col-xs-12 col-sm-1"></div>
+                            <div class="col-xs-12 col-sm-5" id="text-container">
+                                <h1>Table of Contents</h1>
+                                <div class="table" style="margin-top:25px;">
+                                    <div class="table-item">
+                                        <a href="basins.html" style="color:black; text-decoration: none;">
+                                            <h2 style="font-size:36px; font-weight:bold;">Oregon's Basins</h2>
+                                            <p style="font-size:20px; margin-right:50px;">Profiles of Oregon's water basins.</p>
+                                        </a>
+                                    </div>
+                                    <div class="table-item">
+                                        <a href="research_projects.html" style="color:black; text-decoration: none;">
+                                            <h2 style="font-size:36px; font-weight:bold;">Water Research</h2>
+                                            <p style="font-size:20px; margin-right:50px;">A database of water-related research and associated products.</p>
+                                        </a>
+                                    </div>
+                                    <div class="table-item">
+                                        <a href="https://water.oregonstate.edu/educational-resources/water-education-programs-oregon" style="color:black; text-decoration: none;">
+                                            <h2 style="font-size:36px; font-weight:bold;">Water-related Education Programs</h2>
+                                            <p style="font-size:20px; margin-right:50px;">Oregon universities that offer opportunities to pursue advanced degrees related to
+                                                water resources.</p>
+                                        </a>
+                                    </div>
+                                    <div class="table-item">
+                                        <a href="https://www.facebook.com/pg/Oregon.YearofWater/events/" style="color:black; text-decoration: none;">
+                                            <h2 style="font-size:36px; font-weight:bold;">Calendar</h2>
+                                            <p style="font-size:20px; margin-right:50px;">View upcoming events.</p>
+                                        </a>
+                                    </div>
+                                    <div class="table-item">
+                                        <a href="https://www.facebook.com/Oregon.YearofWater/" style="color:black; text-decoration: none;">
+                                            <h2 style="font-size:36px; font-weight:bold;">Blog</h2>
+                                            <p style="font-size:20px; margin-right:50px;">Informational posts relating to the Year of Water.</p>
+                                        </a>
+                                    </div>
+                                    <div class="table-item">
+                                        <a href="https://www.facebook.com/Oregon.YearofWater/" style="color:black; text-decoration: none;">
+                                            <h2 style="font-size:36px; font-weight:bold;">WaterReads</h2>
+                                            <p style="font-size:20px; margin-right:50px;">Collection of water-related books published under Oregon university presses.</p>
+                                        </a>
+                                    </div>
+                                    <div class="table-item">
+                                        <a href="involvement.html" style="color:black; text-decoration: none;">
+                                            <h2 style="font-size:36px; font-weight:bold;">How to be Involved</h2>
+                                            <p style="font-size:20px; margin-right:50px;">Find out what you can do to support the Year of Water.</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                    
+                            </div>
+                        </div>
+                    </div>
                 </div>
-        </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 portfolio-item" style="margin-bottom: 25px; ">
+                        <div class="container"> 
+                            <div class="col-xs-12 col-sm-6" id="text-container">
+                                
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 portfolio-item" style="margin-bottom: 25px; ">
+                        <div class="container"> 
+                            <div class="col-xs-12 col-sm-6" id="text-container">
+                                
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- /.row -->
+            </div>
+            <!--<i style="font-size:36px; z-index:10;" id="arrow" class="animated zoomIn infinite glyphicon glyphicon-chevron-down chevron-down"></i>-->
+            <div id="foot-row" class="row" style="bottom:0; position:fixed; background:white; width:100%; padding:10px;">
+                <div class="col-xs-12 col-sm-1"></div>
+                <div class="col-xs-12 col-sm-10" >
+                    <ul>
+                        <li><a href="https://inr.oregonstate.edu/" target="_blank"><img src="img/INR-IWW_logo.png" style="width:300px;" ></a></li>
+                        <li><a href="https://oregonstate.edu/" target="_blank"><img src="img/osu-icon.jpg" style="width:200px;" ></a></li>
+                        <li><a href="https://www.pdx.edu/" target="_blank"><img src="img/psu-icon.jpg" style="width:200px;" ></a></li>
+                        <li><a href="https://www.uoregon.edu/" target="_blank"><img src="img/uofo_logo.jpg" style="width:200px;" ></a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-1"></div>
+            </div>
+            
+    
+            <!-- Pagination -->
+            <!-- /.row -->
+    
+            <!-- Footer 
+            <footer class="footer">
+                <div class="foot-row">
+                    <div class="col-lg-12" >
+                        <a href="http://water.oregonstate.edu/" target="_blank"><img src="img/IWW-logo.png" style="width:250px;" ></a>
+                        <a href="http://geoviz.ceoas.oregonstate.edu/index.html#" target="_blank"><img src="img/geoviz_osu.png" style="width:150px;" ></a>
+                        <a href="https://water.usgs.gov/wrri/index.php" target="_blank"><img src="img/USGS_logo.png" style="width:150px;" ></a>
+                    </div>
+                </div>
+            </footer>-->
 
+    
 
+    <!-- Page Content -->
 
     </div>
+    <!-- /.container -->
 
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/perfect-scrollbar.js"></script>
     <script>
-        var container;
-        var scrollbarTheme = '#overall';
-
-        var southWest = L.latLng(21.172626315855425, -149.58519708215204),
-            northEast = L.latLng(66.10396253416393, -82.34035998361294),
-            bounds = L.latLngBounds(southWest, northEast);
         
-        var map = L.map('map', {center: [43.80, -120.55], zoom: 7, scrollWheelZoom:false});
-
-        var Esri_sat= L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-            maxZoom:20,
-            minZoom:5,
-            opacity:1
-        });
+        //////////////////////////adjust scrollbar height//////////////////////
         
-        var Esri_WorldTerrain = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png', {
-            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-            maxZoom:20,
-            minZoom:5,
-            opacity:1
-        }).addTo(map);
+        //var container = document.getElementById('scrollbar');
+		//Ps.initialize(container);
 
-        var or_cover = L.tileLayer.wms('https://geoserver.library.oregonstate.edu/geoserver/OREGON_WATER/wms', {
-            layers: 'OREGON_WATER:oregon_cover',
-            format: 'image/png',
-            maxZoom:10,
-            minZoom:5,
-            opacity:0.2,
-            transparent:true,
-        }).addTo(map);
-
-            var theme_points = $.getJSON("assets/yow/theme_points.geojson", function(data){
-                theme_points = L.geoJson(data, {
-                    pointToLayer: function (feature, latlng) {
-                        return L.circleMarker(latlng, {
-                            color: '#ffffff',
-                            fillColor: '#000000',
-                            radius: 5,
-                            opacity: 1,
-                            fillOpacity: 1,
-                            weight: 1
-                        }).bindPopup('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">')
-                        .bindTooltip('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">');
-                    }
-                }).addTo(map);
-            });
-
-        /*function hoverTheme(theme){
-            map.removeLayer(theme_points);
-            theme_points = $.getJSON("assets/yow/theme_points.geojson", function(data){
-            theme_points = L.geoJson(data, {
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, {
-                        color: '#ffffff',
-                        fillColor: '#00000',
-                        radius: 5,
-                        opacity: 1,
-                        fillOpacity: 1,
-                        weight: 1
-                        }
-    				);
-    			},
-                filter:function(feature,layer){
-                    if (theme == 'overall')
-                        return true;
-                    else{
-                        return feature.properties.theme_1 == theme ? true:
-                            false;
-                    }
-                }
-                }).addTo(map);
-            });
-        }   */
-
-        var filter = [];
-
-        function themeClick(theme, select, theme_l, check_ID){
-            $("#projects").empty();
-            
-            if ($(check_ID).prop("checked"))
-                filter.push(theme);
-            else{
-                var ind; 
-                for (var i = 0; i < filter.length; i++){
-                    if (filter[i] == theme)
-                        ind = i;
-                }
-                filter.splice(ind,1);
-            }
-            
-            if (filter && filter.length > 0)
-                var removal = "selection";
-            else    
-                var removal = "none";
-
-            console.log(removal);
-
-            map.removeLayer(theme_points);
-            theme_points = $.getJSON("assets/yow/theme_points.geojson", function(data){
-            theme_points = L.geoJson(data, {
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, {
-                        color: '#ffffff',
-                        fillColor: '#000000',
-                        radius: 5,
-                        opacity: 1,
-                        fillOpacity: 1,
-                        weight: 1
-                    }).bindPopup('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">')
-                    .bindTooltip('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">');
-                },
-                filter:function(feature,layer){
-                    if (removal == 'none')
-                        return true;
-                    else{
-                        return $.inArray(feature.properties.theme_1, filter) != -1 ? true:
-                            false;
-                    }
-                }
-                }).addTo(map);
-            });
-
-            //$(scrollbarTheme).css("display","none");
-            //$(select).css("display","block")
-            //scrollbarTheme = select;
-
-            for (var i = 0; i in dataTable; i++){
-                for (var j = 0; j < filter.length; j++){
-                    if (filter[j] == dataTable[i].theme_1){
-                        $("#projects").append("<div class='project' style='margin-bottom:10px;'><h2 style='margin-bottom:0px;'>" + dataTable[i].name + "</h2><a href='" + dataTable[i].website + "'>" + dataTable[i].website + "</a><p>" + dataTable[i].descriptio + "</p><img style='width:100%' src='img/" + dataTable[i].image + ".jpg'>'</div>");
-                    }
-                }
-            }
-
-            resizeMap();
-
+        function resizeMiddle() {
+            var h = $('#foot-row').height();
+                $('#scrollbar').css("padding-bottom", h);
         }
 
-        /*function themeRemove(){
-            map.removeLayer(theme_points);
-            theme_points = $.getJSON("assets/yow/theme_points.geojson", function(data){
-            theme_points = L.geoJson(data, {
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, {
-                        color: '#ffffff',
-                        fillColor: '#000000',
-                        radius: 5,
-                        opacity: 1,
-                        fillOpacity: 1,
-                        weight: 1
-                    }).bindPopup('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">')
-                    .bindTooltip('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">');
-                },
-                filter:function(feature,layer){
-                        if (clickTheme){
-                            return feature.properties.theme_1 == clickTheme ? true:
-                                false;
-                        }
-                        else    
-                            return true;
-                    }
-                }).addTo(map);
-            })
-        } */
-
-        var dataTable = {};
-
-        function doStuff(data) {
-            for (var i = 0;i in data;i++){
-                dataTable[i] = data[i];
-            }
-        }
-
-        function parseData(url, callBack) {
-            Papa.parse(url, {
-                download: true,
-                header:true,
-                dynamicTyping: true,
-                complete: function(results) {
-                    callBack(results.data);
-                }
-            });
-        }
-
-        parseData("assets/yow/theme_points.csv", doStuff); 
-
-        function resizeMap(){
-            if ($(window).width() <= 768){
-                if ($("#scrollbar").height() > $("#panel").height()){
-                    var h = $("#scrollbar").height() - $("#panel").height() + 20;
-                    $("#map").css("top",h + "px");
-                }
-            }
-            else{
-                $("#map").css("top","120px");
-            }
-        }
-
-        $(document).ready(resizeMap);
-	    $(window).resize(resizeMap);
-
+        $(document).ready(resizeMiddle);
+	    $(window).resize(resizeMiddle);
 	
     </script>
 
