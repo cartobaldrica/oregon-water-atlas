@@ -37,6 +37,16 @@ body {
 	margin-left:0;
 }
 
+div#background{
+	position:fixed;
+	left:0;
+	height:calc(100% - 213px);
+	width:100%;
+	background:url(../img/oregon_watersheds.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
 	
 @media (min-width: 200px) {
 	#nav2{
@@ -70,6 +80,10 @@ body {
 	#buttons{
 		width:25%;
 	}
+	div#background{
+		background-position:50% 50%;
+		opacity:0.8;
+	}
 }
 @media (max-width: 768px) {
 	#panel{
@@ -88,8 +102,31 @@ body {
 	#buttons{
 		width:100%;
 	}
+	div#background{
+		background-position:95% 65%;
+		opacity:0.5;
+	}
 }
-
+ul {
+	text-align: justify;
+	padding-left:0;
+}
+ul:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+ul:before {
+    content: '';
+    display: block;
+    margin-top: -1.25em;
+}
+li {
+    display: inline-block;
+    margin-right: -.25em;
+    position: relative;
+    top: 1.25em;
+}
 
 .navbar{
 	height:120px !important;
@@ -132,21 +169,11 @@ a.dropdown-item{
 	width:100%;
 }
 
-div#background{
-	position:absolute;
-	top:0;
-	left:0;
-	height:100%;
-	width:100%;
-}
-
 .container{
-	border:2px black solid;
 	padding:0;
 	margin-left:15px;
 	width:calc(100% - 30px);
 	padding:5px;
-	background:rgba(0,0,0,0.1);
 }
 
 .footer {
@@ -181,6 +208,12 @@ div.theme{
 div.theme:hover{
 	background:lightgray;
 	cursor:pointer;
+}
+.table-item{
+	padding:10px;
+}
+.table-item:hover{
+	background:rgba(0,0,0,0.1);
 }
 .leaflet-popup-content, .leaflet-tooltip{
 	font-family: 'Mukta';
@@ -260,6 +293,12 @@ h4{
 	
 	}
 
+.text-container{
+	font-size:20px;
+	margin-right:50px;
+}
+	
+
 .portfolio-item {
 	padding: 0;
 }
@@ -292,6 +331,7 @@ div.title-container h2{
 	opacity:0.4;
 }
 
+
 footer {
     margin: 10px 0;
     text-align:center;
@@ -321,14 +361,6 @@ footer {
   padding-right: 0;
   padding-left: 0;
 }
-ul, li {
-	list-style: none;
-	 display: inline;
-}
-ul {
-	white-space: nowrap;
-	text-align: center;
-	}
 #dropdownMenuButton, .btn-secondary {color: black; background-color:rgba(0,0,0,0); 
       border:0; vertical-align:middle;}
 .dropdown-menu{min-width:80px;}
