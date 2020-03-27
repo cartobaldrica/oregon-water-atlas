@@ -22,7 +22,7 @@
 
 body {
    /* padding-top: 70px;  Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-   font-family: 'Mukta';
+   font-family: 'Lora', serif;
    height:100%;
 	width:100%;
 	overflow-x:hidden; 
@@ -82,7 +82,12 @@ div#background{
 	}
 	div#background{
 		background-position:50% 50%;
-		opacity:0.8;
+		opacity:1;
+	}
+	#searchBar{
+		width:25%;
+		position:fixed;
+		top:120px;
 	}
 }
 @media (max-width: 768px) {
@@ -104,9 +109,15 @@ div#background{
 	}
 	div#background{
 		background-position:95% 65%;
-		opacity:0.5;
+		opacity:0.3;
+	}
+	#searchBar{
+		width:100%;
+		position:fixed;
+		top:120px;
 	}
 }
+
 ul {
 	text-align: justify;
 	padding-left:0;
@@ -155,6 +166,18 @@ li {
 	margin: 7px; 
 }
 
+#search{
+	width:calc(100% - 10px);
+	height:35px;
+	margin:5px;
+	padding-top:5px;
+	font-size:22px;
+}
+#searchBar{
+	background:white;
+	z-index:10000;	
+}
+
 .dropdown-menu{
 	left:-130px;
 	padding:10px;
@@ -162,6 +185,20 @@ li {
 }
 a.dropdown-item{
 	font-size:16px;
+}
+
+a.project{
+	color:black;
+	background:white;
+}
+a.project:hover{
+	text-decoration:none;
+}
+a.project > div:hover{
+	background:rgb(244,244,244);
+}
+a.project > div{
+	padding:5px;
 }
 
 #scrollbar{
@@ -216,7 +253,7 @@ div.theme:hover{
 	background:rgba(0,0,0,0.1);
 }
 .leaflet-popup-content, .leaflet-tooltip{
-	font-family: 'Mukta';
+	font-family: 'Lora', serif;
 	white-space:normal;
 	width:300px;
 	padding:15px;
@@ -244,7 +281,7 @@ div.theme:hover{
 }
 h1{
 	text-align:left;
-	font-weight:500;
+	font-weight:bold;
 	font-size: 90px;
 	margin-bottom:5px;
 	letter-spacing: 2px;
