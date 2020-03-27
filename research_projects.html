@@ -51,8 +51,6 @@
         <img src="img/year-of-water.png" style="height:100px; display:block; margin:auto;">
       </nav>
 
-    <div id="background"></div>
-
             <div class="row" style="margin-bottom: 20px; height:100%; ">
                 <!-- Projects Row -->
                 <!--<div id="tabs" style="position:fixed; top:120px; background:white; z-index:5; width:25%;">
@@ -75,7 +73,7 @@
                         </div>
                     </div>
                 </div>-->
-                <div id="buttons" style="position:fixed; top:120px; z-index:3;">
+                <!--<div id="buttons" style="position:fixed; top:120px; z-index:3;">
                     <div class="dropdown">
                         <button class="dropbtn"><b id="dataType">Select Theme</b><p id="arrow">&#9660;</p></button>
                         <div class="dropdown-content" style="width:100%;">
@@ -85,62 +83,66 @@
                             <button type="button" id="but4" class="selection">Events</button>
                         </div>
                     </div>
+                </div>-->
+                <div id="searchBar">
+                    <input id="search" type="text" placeholder="Search For a Project...">
+                    <button style="margin-left:5px;" onclick="advSearch()">Advanced Search</button>
+                    <!--<button style="margin-left:5px;" onclick="reset()">Reset</button>-->
+                    <!--<button onclick="search()">Search</button>-->
                 </div>
-                <div id="theme_checks" style="position:fixed; top:160px; width:25%; z-index:2;">
-                    <div id="buttons" style="width:100%;">
-                        <div class="dropdown">
-                            <button class="dropbtn"><b id="dataType">Select Theme</b><p id="arrow">&#9660;</p></button>
-                            <div class="dropdown-content" style="width:100%; z-index:10;">
-                                <input type="checkbox" id="environment_check" name="environment" value="environment" onclick="themeClick('Environment','#environment','environment','#environment_check','theme')">
+                <!--<div id="buttons" style="position:fixed; top:150px;">
+                    <div class="dropdown">
+                        <button class="dropbtn"><b id="dataType">Select Theme</b><p id="arrow">&#9660;</p></button>
+                        <div class="dropdown-content" style="width:100%; z-index:10;">
+                            <input type="checkbox" id="environment_check" name="environment" value="environment" onclick="themeClick('Environment','#environment_check','theme')">
+                            <label for="environment">Environment</label><br>
+                            <input type="checkbox" id="health_check" name="health" value="health" onclick="themeClick('Health','#health_check','theme')">
+                            <label for="health">Health</label><br>
+                            <input type="checkbox" id="safety_check" name="safety" value="safety" onclick="themeClick('Safety','#safety_check','theme')">
+                            <label for="environment">Safety</label><br>
+                            <input type="checkbox" id="economy_check" name="economy" value="economy" onclick="themeClick('Economy','#economy_check','theme')">
+                            <label for="environment">Economy</label><br>
+                            <input type="checkbox" id="arts_check" name="arts" value="arts" onclick="themeClick('Arts','#arts_check','theme')">
+                            <label for="arts">Arts & Culture</label><br>
+                            <input type="checkbox" id="tech_check" name="tech" value="tech" onclick="themeClick('Tech','#tech_check','theme')">
+                            <label for="tech">Tech. & Innovation</label><br>
+                            <input type="checkbox" id="2018_check" name="tech" value="tech" onclick="themeClick(2018,'#2018_check','date')">
+                            <label for="tech">2018</label><br>
+                            <input type="checkbox" id="2019_check" name="tech" value="tech" onclick="themeClick(2019,'#2019_check','date')">
+                            <label for="tech">2019</label><br>
+                            <input id="search" type="text" placeholder="Search..">
+                            <button onclick="search()">Search</button>
+                        </div>
+                    </div>
+                </div>-->
+                <div id="panel" class="col-xs-12 col-sm-3" style="padding-left: 0; z-index:1; padding-right:0; margin-top:180px;">
+                    <div id="scrollbar" style="padding:10px;">
+                        <div id="advancedSearch" style="display:none;">
+                            <div style="display:inline-block;">
+                                <input type="checkbox" id="environment_check" name="environment" value="environment" onclick="themeClick('Environment','#environment_check','theme')">
                                 <label for="environment">Environment</label><br>
-                                <input type="checkbox" id="health_check" name="health" value="health" onclick="themeClick('Health','#health','health','#health_check','theme')">
+                                <input type="checkbox" id="health_check" name="health" value="health" onclick="themeClick('Health','#health_check','theme')">
                                 <label for="health">Health</label><br>
-                                <input type="checkbox" id="safety_check" name="safety" value="safety" onclick="themeClick('Safety','#safety','safety','#safety_check','theme')">
+                                <input type="checkbox" id="safety_check" name="safety" value="safety" onclick="themeClick('Safety','#safety_check','theme')">
                                 <label for="environment">Safety</label><br>
-                                <input type="checkbox" id="economy_check" name="economy" value="economy" onclick="themeClick('Economy','#economy','economy','#economy_check','theme')">
+                                <input type="checkbox" id="economy_check" name="economy" value="economy" onclick="themeClick('Economy','#economy_check','theme')">
                                 <label for="environment">Economy</label><br>
-                                <input type="checkbox" id="arts_check" name="arts" value="arts" onclick="themeClick('Arts','#arts','arts','#arts_check','theme')">
+                                <input type="checkbox" id="arts_check" name="arts" value="arts" onclick="themeClick('Arts','#arts_check','theme')">
                                 <label for="arts">Arts & Culture</label><br>
-                                <input type="checkbox" id="tech_check" name="tech" value="tech" onclick="themeClick('Tech','#tech','tech','#tech_check','theme')">
+                                <input type="checkbox" id="tech_check" name="tech" value="tech" onclick="themeClick('Tech','#tech_check','theme')">
                                 <label for="tech">Tech. & Innovation</label><br>
-                                <input type="checkbox" id="2018_check" name="tech" value="tech" onclick="themeClick(2018,'#tech','tech','#2018_check','date')">
+                            </div>
+                            <div style="display:inline-block; position:absolute;">
+                                <input type="checkbox" id="2018_check" name="tech" value="tech" onclick="themeClick(2018,'#2018_check','date')">
                                 <label for="tech">2018</label><br>
-                                <input type="checkbox" id="2019_check" name="tech" value="tech" onclick="themeClick(2019,'#tech','tech','#2019_check','date')">
+                                <input type="checkbox" id="2019_check" name="tech" value="tech" onclick="themeClick(2019,'#2019_check','date')">
                                 <label for="tech">2019</label><br>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div id="panel" class="col-xs-12 col-sm-3" style="padding-left: 0; z-index:1; padding-right:0; margin-top:184px;">
-                    <div id="scrollbar" style="padding:10px;">
-                        <div id ="overall">
+                        <div id ="overall" style="padding:5px;">
                             <h2 class="theme_title">Introduction</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                         </div>   
-                        <!--<div id ="environment" style="display:none;">
-                            <h2 class="theme_title">Environment</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>  
-                        <div id ="health" style="display:none;">
-                            <h2 class="theme_title">Health</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>  
-                        <div id ="safety" style="display:none;">
-                            <h2 class="theme_title">Safety</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>  
-                        <div id ="economy" style="display:none;">
-                            <h2 class="theme_title">Economy</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>  
-                        <div id ="arts" style="display:none;">
-                            <h2 class="theme_title">Arts & Culture</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>   
-                        <div id ="tech" style="display:none;">
-                            <h2 class="theme_title">Technology & Innovation</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>  -->
                         <div id="projects"></div>
                     </div>
                 </div>
@@ -155,6 +157,22 @@
     </div>
 
     <script>
+        $('input').val('');
+        $('input:checkbox').prop('checked', false);
+
+        function advSearch(){
+            var display = $('#advancedSearch').css('display');
+            if (display == "none")
+                $('#advancedSearch').css('display','block');
+            if (display == "block")
+                $('#advancedSearch').css('display','none');
+        }
+        
+        function reset(){
+            $('input').val('');
+            $('input:checkbox').prop('checked', false);
+        }
+        
         var container;
         var scrollbarTheme = '#overall';
 
@@ -187,60 +205,66 @@
             transparent:true,
         }).addTo(map);
 
-            var theme_points = $.getJSON("assets/yow/theme_points.geojson", function(data){
-                theme_points = L.geoJson(data, {
-                    pointToLayer: function (feature, latlng) {
-                        return L.circleMarker(latlng, {
-                            color: '#ffffff',
-                            fillColor: '#000000',
-                            radius: 5,
-                            opacity: 1,
-                            fillOpacity: 1,
-                            weight: 1
-                        }).bindPopup('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">')
-                        .bindTooltip('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">');
-                    }
-                }).addTo(map);
-            });
+        var theme_points = $.getJSON("assets/yow/theme_points.geojson", function(data){
+            theme_points = L.geoJson(data, {
+                pointToLayer: function (feature, latlng) {
+                    return L.circleMarker(latlng, {
+                        color: '#ffffff',
+                        fillColor: '#000000',
+                        radius: 5,
+                        opacity: 1,
+                        fillOpacity: 1,
+                        weight: 1
+                    }).bindPopup('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">')
+                    .bindTooltip('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">');
+                }
+            }).addTo(map);
+        });
 
-        var theme_filter = [];
-        var date_filter = [];
+        $("input:text").change(function(){
+            search();
+        });
 
-        function themeClick(theme, select, theme_l, check_ID, filter_type){
+        var searchValue;
+        function search(){
+            searchValue=$("input[type=text]#search").val();
+            themeClick(null,null,"search");
+        }
+
+        var filter = [{
+            name: 'theme',
+            contents: new Array(),
+            variable: 'theme_1'
+        },
+        {
+            name: 'date',
+            contents: new Array(),
+            variable: 'date'
+        }]
+
+        function themeClick(theme, check_ID, filter_type){
             var filter_holder;
-            if (filter_type == 'theme'){
-                if (theme_filter)
-                    filter_holder = theme_filter;
-            }
-            else {
-                if (date_filter)
-                    filter_holder = date_filter;
+            //select filter type
+            for (var i = 0; i < filter.length; i++){
+                if (filter_type == filter[i].name){
+                    if ($(check_ID).prop("checked")){
+                        filter[i].contents.push(theme);
+                    }
+                    else{
+                        var ind; 
+                        for (var j = 0; j < filter[i].contents.length; j++){
+                            if (filter[i].contents[j] == theme)
+                                ind = j;
+                             }
+                        filter[i].contents.splice(ind,1);
+                    }
+                }         
             }
             
             $("#projects").empty();
-            
-            if ($(check_ID).prop("checked"))
-                filter_holder.push(theme);
-            else{
-                var ind; 
-                for (var i = 0; i < filter_holder.length; i++){
-                    if (filter_holder[i] == theme)
-                        ind = i;
-                }
-                filter_holder.splice(ind,1);
-            }
-            
-            if (filter_holder && filter_holder.length > 0)
-                var removal = "selection";
-            else    
-                var removal = "none";
-
-            if (filter_type == 'theme')
-                theme_filter = filter_holder;
-            else
-                date_filter = filter_holder;
 
             map.removeLayer(theme_points);
+
             theme_points = $.getJSON("assets/yow/theme_points.geojson", function(data){
             theme_points = L.geoJson(data, {
                 pointToLayer: function (feature, latlng) {
@@ -255,69 +279,35 @@
                     .bindTooltip('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">');
                 },
                 filter:function(feature,layer){
-                    if (removal == 'none')
-                        return true;
-                    else{
-                        if ($.inArray(feature.properties.theme_1, theme_filter) != -1){
-                            if ($.inArray(feature.properties.date, date_filter) != -1)
-                                return true;
-                            else
-                                return true;
+                        var filter_list = [],
+                            props;
+
+                        for (var i = 0; i < filter.length; i++){
+                            if (filter[i].contents && filter[i].contents.length > 0){
+                                if ($.inArray(feature.properties[filter[i].variable], filter[i].contents) != -1)
+                                    filter_list.push(true);
+                                else
+                                    filter_list.push(false);
+                            }
                         }
-                        else if($.inArray(feature.properties.date, date_filter) != -1){
-                            if ($.inArray(feature.properties.theme_1, theme_filter) != -1)
-                                return true;
+
+                        if (searchValue){
+                            console.log(feature.properties.name.toLowerCase().includes(searchValue.toLowerCase()));
+                            if (feature.properties.name.toLowerCase().includes(searchValue.toLowerCase()) == true || feature.properties.author.toLowerCase().includes(searchValue.toLowerCase()) == true)
+                                filter_list.push(true);
                             else
-                                return true;
+                                filter_list.push(false);
                         }
-                        else    
-                            return false;
-                        
-                        /*return $.inArray(feature.properties.theme_1, theme_filter) != -1 ? true:
-                            $.inArray(feature.properties.date, date_filter) != -1 ? true:
-                                false;*/
+
+                        if ($.inArray(false, filter_list) == -1){
+                            $("#projects").append("<a class='project' href='" + feature.properties.name + "'><div class='project' style='margin-bottom:10px;'><h2 style='margin-bottom:0px; font-weight:bold;'>" + feature.properties.name + "</h2><h3 style='margin:5px 5px 5px 0px; font-weight:normal;'>" + feature.properties.author + "</h3><p>" + feature.properties.descriptio + "</p><img class='project_image' style='width:0px; height:0px; ' src='img/" + feature.properties.image + ".jpg'></div></a>");
+                            return true;       
+                        }
                     }
-                }
                 }).addTo(map);
+                resizeMap();
             });
-
-            for (var i = 0; i in dataTable; i++){
-                for (var j = 0; j < filter_holder.length; j++){
-                    if (filter_holder[j] == dataTable[i].theme_1){
-                        $("#projects").append("<div class='project' style='margin-bottom:10px;'><h2 style='margin-bottom:0px;'>" + dataTable[i].name + "</h2><a href='" + dataTable[i].website + "'>" + dataTable[i].website + "</a><p>" + dataTable[i].descriptio + "</p><img style='width:100%' src='img/" + dataTable[i].image + ".jpg'>'</div>");
-                    }
-                }
-            }
-
-            resizeMap();
         }
-
-        /*function themeRemove(){
-            map.removeLayer(theme_points);
-            theme_points = $.getJSON("assets/yow/theme_points.geojson", function(data){
-            theme_points = L.geoJson(data, {
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, {
-                        color: '#ffffff',
-                        fillColor: '#000000',
-                        radius: 5,
-                        opacity: 1,
-                        fillOpacity: 1,
-                        weight: 1
-                    }).bindPopup('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">')
-                    .bindTooltip('<h3>' + feature.properties.name + '</h3><a href="'+ feature.properties.website +'">' + feature.properties.website +'</a><p>' + feature.properties.descriptio + '</p><img src="img/' + feature.properties.image + '.jpg">');
-                },
-                filter:function(feature,layer){
-                        if (clickTheme){
-                            return feature.properties.theme_1 == clickTheme ? true:
-                                false;
-                        }
-                        else    
-                            return true;
-                    }
-                }).addTo(map);
-            })
-        } */
 
         var dataTable = {};
 
@@ -346,15 +336,20 @@
                     var h = $("#scrollbar").height() - $("#panel").height() + 20;
                     $("#map").css("top",h + "px");
                 }
+                else{
+                    var h = $("#projects").height() + 200;
+                    $("#map").css("top", h + "px");
+                }
+                //console.log("Scrollbar: " + $("#scrollbar").height() + " Panel: " + $("#panel").height() + " Projects: " + $("#projects").height() + " Top: " + h)
             }
             else{
+                //$(".project_image").css('height','auto');
                 $("#map").css("top","120px");
             }
         }
 
         $(document).ready(resizeMap);
-	    $(window).resize(resizeMap);
-
+        $(window).resize(resizeMap);
 	
     </script>
 
