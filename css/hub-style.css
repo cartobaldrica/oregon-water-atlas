@@ -25,7 +25,7 @@ body {
    /* padding-top: 70px;  Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
    font-family: 'Lora', serif;
    height:100%;
-    width:100%;
+	width:100%;
 }
 
 #nav{
@@ -37,6 +37,16 @@ body {
 }
 .navbar-text{
 	margin-left:0;
+}
+
+
+div#background-map{
+	width:100%;
+	height:100%;
+	background:url(../img/oregon_water_hub_big.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position:50% 50%;
 }
 
 	
@@ -61,53 +71,73 @@ body {
 	#scrollbar{
 		height:auto;
 	}
-	#arrow{
-		position:fixed;
-		top:calc(100% - 95px);
-		left:calc(50% - 10px);
-	}
 	div#background{
-		opacity:0.4;
+		background-position:50% 50%;
+		opacity:0.9;
+	}
+	#header{
+		background-position:50% 50% !important;
+	}
+	#logo-row{
+		display:none;
+	}
+	#foot-row{
+		visibility:visible;
 	}
 }
 @media (max-width: 768px) and (min-width: 500px) {
 	#scrollbar{
 		height:auto;
 	}
-	#arrow{
-		position:fixed;
-		top:calc(100% - 140px);
-		left:calc(50% - 10px);
-	}
 	div#background{
+		background-position:95% 65%;
 		opacity:0;
+	}
+	#header{
+		background-position:50% 30% !important;
+	}
+	#logo-row{
+		display:block;
+	}
+	#foot-row{
+		visibility:hidden;
 	}
 }
 @media (max-width:499px) and (min-width: 334px) {
 	#scrollbar{
-		height:calc(100% - 210px);
+		height:auto;
 		
 	}
-	#arrow{
-		position:fixed;
-		top:calc(100% - 140px);
-		left:calc(50% - 10px);
-	}
 	div#background{
+		background-position:95% 65%;
 		opacity:0;
+	}
+	#header{
+		background-position:50% 30% !important;
+	}
+	#logo-row{
+		display:block;
+	}
+	#foot-row{
+		visibility:hidden;
 	}
 }
 @media (max-width:333px) {
 	#scrollbar{
 		height:calc(100% - 290px);
 	}
-	#arrow{
-		position:fixed;
-		top:calc(100% - 180px);
-		left:calc(50% - 10px);
-	}
 	div#background{
+		background-position:95% 65%;
 		opacity:0;
+	}
+	#header{
+		background-position:50% 20% !important;
+	}
+	#logo-row{
+		display:block;
+	}
+	#foot-row{
+		visibility:hidden;
 	}
 }
 
@@ -134,26 +164,24 @@ li {
 
 
 .navbar{
-	height:70px !important;
+	height:110px !important;
 	min-height:auto;
 	border-radius:0;
 	margin-bottom:0;
-	background:black;
+	display:block;
 	position:fixed;
 	width:100%;
-	/*background:url(../img/your-water.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;*/
+	top:0;
+	background:#dfe7ec;
 }
 
 .navbar-brand{
 	padding:12px;
-	padding-top:24px;
+	padding-top:15px;
 	height:45px;
 	color:white;
 	font-weight:900;
 	font-size:30px;
-	float:right;
 }
 .navbar-text{
 	color:white;
@@ -162,6 +190,7 @@ li {
 	float: right;
 	margin: 7px; 
 }
+
 
 .dropdown-menu{
 	left:-130px;
@@ -173,25 +202,15 @@ a.dropdown-item{
 }
 
 #scrollbar{
-	position:absolute;
+	/*position:absolute;*/
 	width:100%;
-	top:80px;
-}
-
-div#background{
-	position:fixed;
-	top:0;
-	left:0;
-	height:100%;
-	width:100%;
-	background:url(columbia_draft2.jpg);
+	top:110px;
+	background:url(../img/oregon_water_hub_big.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position:50% 50%;
-	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-	  filter: grayscale(100%);
-	  opacity:0.4;
 }
+
 
 .container{
 	padding:0;
@@ -220,6 +239,11 @@ div.foot-row{
 	position:absolute;
 	padding-bottom:10px;
 	padding-top:10px;
+	
+}
+
+.project-paragraph{
+	display:inline;
 }
 
 .about{
@@ -231,6 +255,35 @@ div.foot-row{
 	color:black;
 	cursor: pointer;
 	}
+#header{
+	height:100%;
+	display:block;
+	z-index:1000;
+	background:url(../img/title_map.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+.title{
+	display:block;
+}
+
+#title-map{
+	width:50%;
+	display:block;
+	margin:auto;
+}
+
+#main-title{
+	font-family: 'Rufina', serif;
+	color:#354E5A;
+	margin:auto;
+	display:block;
+}
+#sub-title{
+	font-family: 'Galdeano', sans-serif;
+	color:#354E5A;
+	text-align:center;
+}
 
 h1{
 	text-align:left;
@@ -244,6 +297,10 @@ h2{
 	text-align:left;
 	margin-top:10px;
 	font-weight:bold;
+}
+.project-title{
+	font-size:48px;
+	color:#354E5A;
 }
 	
 h3 a{
@@ -283,6 +340,14 @@ h4{
 	}
 p{
 	font-size:20px;
+}
+
+#arrow{
+	background:rgba(255,255,255,0.8);
+	padding:10px;
+	left:calc(50% - 10px);
+	position:fixed;
+
 }
 
 .icon-img{

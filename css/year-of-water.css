@@ -42,7 +42,7 @@ div#background{
 	left:0;
 	height:calc(100% - 213px);
 	width:100%;
-	background:url(../img/oregon_watersheds.jpg);
+	background:url(../img/oregon_watersheds_color.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -89,6 +89,12 @@ div#background{
 		position:fixed;
 		top:120px;
 	}
+	#foot-row{
+		visibility:visible;
+	}
+	#logo-row{
+		display:none;
+	}
 }
 @media (max-width: 768px) {
 	#panel{
@@ -115,6 +121,12 @@ div#background{
 		width:100%;
 		position:fixed;
 		top:120px;
+	}
+	#foot-row{
+		visibility:hidden;
+	}
+	#logo-row{
+		display:block;
 	}
 }
 
@@ -167,7 +179,7 @@ li {
 }
 
 #search{
-	width:calc(100% - 10px);
+	width:calc(100% - 20px);
 	height:35px;
 	margin:5px;
 	padding-top:5px;
@@ -176,6 +188,17 @@ li {
 #searchBar{
 	background:white;
 	z-index:10000;	
+}
+#advSearch{
+	border:none;
+	color:black;
+	background:none;
+	padding-left:5px;
+	font-size:14px;
+	font-weight:normal;
+}
+#advSearch:hover{
+	text-decoration:underline;
 }
 
 .dropdown-menu{
