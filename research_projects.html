@@ -73,7 +73,7 @@
     <div class="row" style="margin-bottom: 20px; height:100%; ">
         <div id="searchBar" style="padding-bottom:5px;">
             <input id="search" list="searchList" type="text" placeholder="Search For a Project..." style="margin-left:10px;">
-            <button id="advSearch" style="margin-left:10px;" onclick="advSearch()">Advanced Search</button>
+            <button id="advSearch" style="margin-left:5px;" onclick="advSearch()">Advanced Search</button>
             <button id="advSearch" style="float:right;" onclick="clearSearch()">Clear Search</button>
             <div id="advancedSearch" style="display:none; margin-bottom:5px;">
                 <div style="display:inline-block; padding-left:15px; padding-top:10px; color:black;">
@@ -116,7 +116,6 @@
         </div>
         <div id="panel" class="col-xs-12 col-sm-12 col-md-3" style="padding-left: 0; z-index:1; padding-right:0; margin-top:180px;">
             <div id="scrollbar" style="padding:10px;">
-                
                 <div id ="overall" style="padding:5px;"></div>   
                 <div id="projects"></div>
             </div>
@@ -247,6 +246,7 @@
                     .on('click', function(){
                         window.open(feature.properties.link, '_blank');
                     })
+                    .bindPopup('<h3>' + feature.properties.title_s + '</h3><p>' + feature.properties.desc + '</p>')//<img src="img/' + feature.properties.pic + '.jpg">')
                     .bindTooltip('<h3>' + feature.properties.title_s + '</h3><p>' + feature.properties.desc + '</p>');//<img src="img/' + feature.properties.pic + '.jpg">');
                 }
             });
@@ -336,8 +336,8 @@
                         opacity: 1,
                         fillOpacity: 1,
                         weight: 1
-                    }).bindPopup('<h3>' + feature.properties.title_s + '</h3><a target="_blank" href="'+ feature.properties.link +'">Link</a><p>' + feature.properties.desc + '</p>')//<img src="img/' + feature.properties.pic + '.jpg">')
-                    .bindTooltip('<h3>' + feature.properties.title_s + '</h3><a target="_blank" href="'+ feature.properties.link +'">Link</a><p>' + feature.properties.desc + '</p>');//<img src="img/' + feature.properties.pic + '.jpg">');
+                    }).bindPopup('<h3>' + feature.properties.title_s + '</h3><p>' + feature.properties.desc + '</p>')//<img src="img/' + feature.properties.pic + '.jpg">')
+                    .bindTooltip('<h3>' + feature.properties.title_s + '</h3><p>' + feature.properties.desc + '</p>');//<img src="img/' + feature.properties.pic + '.jpg">');
                 },
                 filter:function(feature,layer){
                         var filter_list = [],
@@ -386,9 +386,9 @@
         var dataTable = {};
         function doStuff(data) {
             for (var i = 0;i in data;i++){
-                dataTable[i] = data[i];
-                $("#searchList").append($("<option>").attr('value', data[i].name));
-                $("#searchList").append($("<option>").attr('value', data[i].author));
+                $("#searchList").append($("<option>").attr('value', data[i].title_s));
+                $("#searchList").append($("<option>").attr('value', data[i].PI));
+                $("#searchList").append($("<option>").attr('value', data[i].co_PIs));
             }
         }
 
