@@ -28,8 +28,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" /> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/perfect-scrollbar.css" />
 
     <!-- Custom CSS -->
@@ -39,17 +38,21 @@
     <link href="https://fonts.googleapis.com/css?family=Catamaran&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Mukta:300,400,700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@200;400;700&display=swap" rel="stylesheet"> 
 
 
     <!-- jQuery -->
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js" integrity="sha512-WXoSHqw/t26DszhdMhOXOkI7qCiv5QWXhH9R7CgvgZMHz1ImlkVQ3uNsiQKu5wwbbxtPzFXd1hK4tzno2VqhpA==" crossorigin=""></script>    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/papaparse@4.3.6/papaparse.min.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
     <script src="https://d3js.org/topojson.v1.min.js"></script>
     <script src="js/perfect-scrollbar.js"></script>
+
+    <script src="js/leaflet.markercluster-src.js"></script>
+    <link rel="stylesheet" href="css/MarkerCluster.css" />
+    <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -66,49 +69,80 @@
         <a id="backButton" href="year_of_water.html">Back</a>
         <div style="display:block; text-align:center;">
             <a href="year_of_water.html"><img src="img/year-of-water.png" style="height:100px; display:inline-block; vertical-align:top;"></a>
-            <h3 style="display:inline-block;">Oregon Water <br/> Project Inventory</h3>
+            <h3 id="mainTitle" style="font-size:30px; margin-top:10px; margin-bottom:0;">Oregon Water <br/> Project Inventory</h3>
+            <a class="about" data-toggle="modal" data-target="#info-modal"><p style="text-align:center; line-height:0;">About</p></a>
         </div>
     </nav>
+
+    <div class="modal fade" id="info-modal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <p class="modal-title" style="font-size:30px;">About</p>
+                </div>
+                <div class="modal-body">
+                    <p>The Oregon Water Project Inventory is a visual database of water-related projects conducted within Oregon's borders. This includes research from the state's public universities, restoration projects, and other public projects pertaining to water.</p>
+                    <p>The Oregon Water Project Inventory is funded by the Oregon Institute for Natural Resources, and the Institue for Water and Watersheds.</p>
+                    <p style="margin-bottom:0;">Related Databases:</p>
+                    <p style="margin-bottom:0;"><a target="_blank" href="https://tools.oregonexplorer.info/OE_HtmlViewer/Index.html?viewer=owrt">Oregon Watershed Restoration Tool</a></p>
+                    <p style="margin-bottom:0;"><a target="_blank" href="https://oregonexplorer.info/">Oregon Explorer</a></p>
+                </div>
+                <div class="modal-footer">
+                    <p>Created by Gareth Baldrica-Franklin</p>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row" style="margin-bottom: 20px; height:100%; ">
         <div id="searchBar" style="padding-bottom:5px;">
             <input id="search" list="searchList" type="text" placeholder="Search For a Project..." style="margin-left:10px;">
             <button id="advSearch" style="margin-left:5px;" onclick="advSearch()">Advanced Search</button>
             <button id="advSearch" style="float:right;" onclick="clearSearch()">Clear Search</button>
-            <div id="advancedSearch" style="display:none; margin-bottom:5px;">
-                <div style="display:inline-block; padding-left:15px; padding-top:10px; color:black;">
-                    <input type="checkbox" id="environment_check" name="environment" value="environment" onclick="themeClick('Environment','#environment_check','theme')">
-                    <label for="environment">Environment</label><br>
-                    <input type="checkbox" id="health_check" name="health" value="health" onclick="themeClick('Health','#health_check','theme')">
-                    <label for="health">Health</label><br>
-                    <input type="checkbox" id="safety_check" name="safety" value="safety" onclick="themeClick('Safety','#safety_check','theme')">
-                    <label for="environment">Safety</label><br>
-                    <input type="checkbox" id="economy_check" name="economy" value="economy" onclick="themeClick('Economy','#economy_check','theme')">
-                    <label for="environment">Economy</label><br>
-                    <input type="checkbox" id="arts_check" name="arts" value="arts" onclick="themeClick('Arts','#arts_check','theme')">
-                    <label for="arts">Arts & Culture</label><br>
-                    <input type="checkbox" id="comm_check" name="tech" value="tech" onclick="themeClick('Comm','#comm_check','theme')">
-                    <label for="tech">Community</label><br>
-                    <input type="checkbox" id="law_check" name="tech" value="tech" onclick="themeClick('Law','#law_check','theme')">
-                    <label for="tech">Policy & Law</label><br>
-                    <input type="checkbox" id="tech_check" name="tech" value="tech" onclick="themeClick('Tech','#tech_check','theme')">
-                    <label for="tech">Tech. & Innovation</label><br>
-                </div>
-                <div style="display:inline-block; padding-top:15px; position:absolute;">
-                    <input type="checkbox" id="2018_check" name="tech" value="tech" onclick="themeClick(2018,'#2018_check','date')">
-                    <label for="tech">2018</label><br>
-                    <input type="checkbox" id="2019_check" name="tech" value="tech" onclick="themeClick(2019,'#2019_check','date')">
-                    <label for="tech">2019</label><br>
-                    <input type="checkbox" id="2020_check" name="tech" value="tech" onclick="themeClick(2020,'#2020_check','date')">
-                    <label for="tech">2020</label><br>
-                    <input type="checkbox" id="OSU_check" name="tech" value="tech" onclick="themeClick('OSU','#OSU_check','institution')">
-                    <label for="tech">OSU</label><br>
-                    <input type="checkbox" id="PSU_check" name="tech" value="tech" onclick="themeClick('PSU','#PSU_check','institution')">
-                    <label for="tech">PSU</label><br>
-                    <input type="checkbox" id="UO_check" name="tech" value="tech" onclick="themeClick('UO','#UO_check','institution')">
-                    <label for="tech">UofO</label><br>
-                </div>
-                <button id="advSearch" style="position:relative; display:block; padding-left:15px;" onclick="advSearch()">Close</button>
+            <div id="advancedSearch" style="display:none; margin-bottom:5px; margin-left:10px; overflow:auto;">
+                    <div class="search-column">
+                        <input type="checkbox" id="environment_check" name="environment" value="environment" onclick="themeClick('Environment','#environment_check','theme')">
+                        <label for="environment">Environment</label><br>
+                        <input type="checkbox" id="health_check" name="health" value="health" onclick="themeClick('Health','#health_check','theme')">
+                        <label for="health">Health</label><br>
+                        <input type="checkbox" id="safety_check" name="safety" value="safety" onclick="themeClick('Safety','#safety_check','theme')">
+                        <label for="environment">Safety</label><br>
+                        <input type="checkbox" id="economy_check" name="economy" value="economy" onclick="themeClick('Economy','#economy_check','theme')">
+                        <label for="environment">Economy</label><br>
+                        <input type="checkbox" id="arts_check" name="arts" value="arts" onclick="themeClick('Arts','#arts_check','theme')">
+                        <label for="arts">Arts & Culture</label><br>
+                        <input type="checkbox" id="comm_check" name="tech" value="tech" onclick="themeClick('Comm','#comm_check','theme')">
+                        <label for="tech">Community</label><br>
+                        <input type="checkbox" id="law_check" name="tech" value="tech" onclick="themeClick('Law','#law_check','theme')">
+                        <label for="tech">Policy & Law</label><br>
+                        <input type="checkbox" id="tech_check" name="tech" value="tech" onclick="themeClick('Tech','#tech_check','theme')">
+                        <label for="tech">Tech. & Innov.</label><br>
+                    </div>
+                    <div class="search-column">
+                        <input type="checkbox" id="OSU_check" name="tech" value="tech" onclick="themeClick('OSU','#OSU_check','institution')">
+                        <label for="tech">OSU</label><br>
+                        <input type="checkbox" id="PSU_check" name="tech" value="tech" onclick="themeClick('PSU','#PSU_check','institution')">
+                        <label for="tech">PSU</label><br>
+                        <input type="checkbox" id="UO_check" name="tech" value="tech" onclick="themeClick('UO','#UO_check','institution')">
+                        <label for="tech">UofO</label><br>
+                        <input type="checkbox" id="WOU_check" name="tech" value="tech" onclick="themeClick('WOU','#WOU_check','institution')">
+                        <label for="tech">WOU</label><br>
+                        <input type="checkbox" id="OHSU_check" name="tech" value="tech" onclick="themeClick('OHSU','#OHSU_check','institution')">
+                        <label for="tech">OHSU</label><br>
+                    </div>
+                    <div class="search-column">
+                        <input type="checkbox" id="2018_check" name="tech" value="tech" onclick="themeClick(2018,'#2018_check','date')">
+                        <label for="tech">2018</label><br>
+                        <input type="checkbox" id="2019_check" name="tech" value="tech" onclick="themeClick(2019,'#2019_check','date')">
+                        <label for="tech">2019</label><br>
+                        <input type="checkbox" id="2020_check" name="tech" value="tech" onclick="themeClick(2020,'#2020_check','date')">
+                        <label for="tech">2020</label><br><br>
+                        <input type="checkbox" id="state_check" name="tech" value="tech" onclick="themeClick('false','#state_check','geo')">
+                        <label for="tech">Statewide</label><br>
+                    </div>
+                <button id="advSearch" style="position:absolute; left:5px; bottom:0; " onclick="advSearch()">Close</button>
             </div>
             <!--<button style="margin-left:5px;" onclick="reset()">Reset</button>-->
             <!--<button onclick="search()">Search</button>-->
@@ -120,10 +154,11 @@
                 <div id="projects"></div>
             </div>
         </div>
-        
         <div class="col-xs-12 col-sm-12 col-md-9" style="margin-bottom: 25px; height:100%; display:block; padding:0;">
             <div id="map" style="z-index:0; ">
-                <button type="button" class='centerMap' onclick="addBasins()" id="borderToggle" >Toggle Basins</button>
+                <button type="button" class='centerMap' onclick="addBasins()" id="borderToggle" style="bottom:80px;">Toggle Basins</button>
+                <button type="button" class='centerMap' onclick="addCounties()" id="countyToggle">Toggle Counties</button>
+                <a href="https://inr.oregonstate.edu/"><img class="combined-logo" src="img/inr_logo.png"></a>
             </div>
         </div>
     </div>
@@ -150,10 +185,14 @@
 
         function advSearch(){
             var display = $('#advancedSearch').css('display');
-            if (display == "none")
+            if (display == "none"){
                 $('#advancedSearch').css('display','block');
-            if (display == "block")
+                $('#projects').css('margin-top','235px');
+            }
+            if (display == "block"){
                 $('#advancedSearch').css('display','none');
+                $('#projects').css('margin-top','0');
+            }
         }
 
         function clearSearch(){
@@ -162,7 +201,11 @@
             }
             $('input').val('');
             $('input:checkbox').prop('checked', false);
+            if(searchValue)
+                searchValue = null;
             themeClick(null,null,"search");
+
+            map.setView([44.20, -120.55], 7);
         }
         
         var container;
@@ -233,6 +276,75 @@
                 });
             }
 
+        var basinLabels = new L.TopoJSON(null, {
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    interactive:false,
+                }).bindTooltip(feature.properties.Name, {className: 'label-tooltip', permanent:true, direction:'center'});
+            }
+        });
+
+        $.getJSON('assets/yow/oregon_watershed_points.json')
+              .done(addLabelData);
+              
+        function addLabelData(topoData) {  
+            basinLabels.addData(topoData);
+            basinLabels.eachLayer(handleBasinLabel);
+        }
+
+        function handleBasinLabel(layer){
+            layer.setStyle({
+                    weight:0,
+                    opacity: 0,
+                    fillOpacity:0,
+                });
+        }
+
+        var counties = new L.TopoJSON(null, {interactive:false, pane:'tilePane'});
+
+        $.getJSON('assets/yow/or_counties.json')
+  		    .done(addCountyData);
+
+        function addCountyData(topoData) {  
+            counties.addData(topoData);
+            counties.eachLayer(handleCounties);
+        }
+
+        function handleCounties(layer){
+            layer.setStyle({
+                    color:'#b3b3b3',
+                    weight:0.25,
+                    opacity: 1,
+                    fillOpacity:0,
+                });
+            }
+
+        function theme_point_opacity(props){
+            return props.status == 'completed' ? 1:
+                    0;
+        }
+        function theme_point_weight(props){
+            return props.status == 'completed' ? 1:
+                    2;
+        }
+        function theme_point_color(props){
+            if (props.status == 'completed')
+                return '#ffffff'
+            else{
+                return props.type == 'research' ? '#000000':
+                    props.type == 'restoration' ? '#ffffff':
+                    props.type == 'nonresearch' ? '#ffffff':
+                        '#ffffff';
+            }
+        }
+        function theme_point_fill(props){
+            return props.type == 'research' ? '#000000':
+                props.type == 'restoration' ? '#ffffff':
+                props.type == 'nonresearch' ? '#ffffff':
+                    '#ffffff';
+        }
+
+        var markers = L.markerClusterGroup();
         var theme_points = L.geoJson(null, {
                 pointToLayer: function (feature, latlng) {
                     return L.circleMarker(latlng, {
@@ -240,18 +352,20 @@
                         fillColor: '#000000',
                         radius: 5,
                         opacity: 1,
-                        fillOpacity: 1,
-                        weight: 1
-                    })//.bindPopup('<h3>' + feature.properties.title_s + '</h3><a target="_blank" href="'+ feature.properties.link +'">Link</a><p>' + feature.properties.desc + '</p>')//<img src="img/' + feature.properties.pic + '.jpg">')
-                    .on('click', function(){
-                        window.open(feature.properties.link, '_blank');
-                    })
-                    .bindPopup('<h3>' + feature.properties.title_s + '</h3><p>' + feature.properties.desc + '</p>')//<img src="img/' + feature.properties.pic + '.jpg">')
-                    .bindTooltip('<h3>' + feature.properties.title_s + '</h3><p>' + feature.properties.desc + '</p>');//<img src="img/' + feature.properties.pic + '.jpg">');
+                        fillOpacity: theme_point_opacity(feature.properties),
+                        weight: theme_point_weight(feature.properties)
+                    })//.bindPopup('<h3>' + feature.properties.title_s + '</h3><p>' + feature.properties.desc + '</p>')//<img src="img/' + feature.properties.pic + '.jpg">')
+                    .bindTooltip('<h3 style="font-size:20px;">' + feature.properties.title_s + '</h3><p>' + feature.properties.desc + '</p>');//<img src="img/' + feature.properties.pic + '.jpg">');
+                },
+                onEachFeature: function (feature, layer) {
+                    $("#projects").append("<a class='project' target='_blank' id='" + feature.properties.id + "' href='" + feature.properties.link + "' onmouseover='highlightProject(" + feature.properties.id + ")' ' onmouseout='resetProject(" + feature.properties.id + ")'><div class='project' style='margin-bottom:5px;'><h2 style='margin-bottom:0px; margin-top:0px; font-weight:bold; font-size:20px;'>" + feature.properties.title_s + "</h2><h3 style='margin:0px 5px 5px 0px; font-weight:normal; font-size:18px;'>" + feature.properties.PI + "</h3><p>" + feature.properties.desc + "</p></div></a>");
+                    layer.addTo(markers);
                 }
             });
         
-        var runLayer = omnivore.csv('assets/yow/scholars_archive_points.csv', null, theme_points).addTo(map);
+        var runLayer = omnivore.csv('assets/yow/scholars_archive_points.csv', null, theme_points);
+
+        map.addLayer(markers);
 
         $("input:text").change(function(){
             search();
@@ -277,6 +391,11 @@
             name: 'institution',
             contents: new Array(),
             variable: 'institution'
+        },
+        {
+            name: 'geo',
+            contents: new Array(),
+            variable: 'geometry'
         }]
 
         function highlightProject(id){
@@ -298,7 +417,8 @@
                     layer.setStyle({fillColor :'black', radius:5, weight:1}) 
                 }
                 if(layer.feature.properties.geometry == 'FALSE'){
-                    oregon.setStyle({fillOpacity:0})
+                    if (oregon)
+                        oregon.setStyle({fillOpacity:0})
                     $(".statewide_label").css("display","none");
                 }
             });
@@ -315,9 +435,10 @@
                     else{
                         var ind; 
                         for (var j = 0; j < filter[i].contents.length; j++){
-                            if (filter[i].contents[j] == theme)
+                            if (filter[i].contents[j] == theme){
                                 ind = j;
-                             }
+                            }
+                        }
                         filter[i].contents.splice(ind.toString(),1);
                     }
                 }         
@@ -325,7 +446,9 @@
             
             $("#projects").empty();
 
-            map.removeLayer(theme_points);
+            map.removeLayer(markers);
+            markers = null;
+            markers = L.markerClusterGroup();
 
             theme_points = L.geoJson(null, {
                 pointToLayer: function (feature, latlng) {
@@ -334,10 +457,10 @@
                         fillColor: '#000000',
                         radius: 5,
                         opacity: 1,
-                        fillOpacity: 1,
-                        weight: 1
-                    }).bindPopup('<h3>' + feature.properties.title_s + '</h3><p>' + feature.properties.desc + '</p>')//<img src="img/' + feature.properties.pic + '.jpg">')
-                    .bindTooltip('<h3>' + feature.properties.title_s + '</h3><p>' + feature.properties.desc + '</p>');//<img src="img/' + feature.properties.pic + '.jpg">');
+                        fillOpacity: theme_point_opacity(feature.properties),
+                        weight: theme_point_weight(feature.properties)
+                    })//.bindPopup('<h3>' + feature.properties.title_s + '</h3><p>' + feature.properties.desc + '</p>')//<img src="img/' + feature.properties.pic + '.jpg">')
+                    .bindTooltip('<h3 style="font-size:20px;">' + feature.properties.title_s + '</h3><p>' + feature.properties.desc + '</p>');//<img src="img/' + feature.properties.pic + '.jpg">');
                 },
                 filter:function(feature,layer){
                         var filter_list = [],
@@ -354,12 +477,6 @@
                                 }
                                 if (isFalse >= filter[i].contents.length)
                                     filter_list.push(false);                                
-                                /*
-                                if ($.inArray(feature.properties[filter[i].variable], filter[i].contents) != -1)
-                                    filter_list.push(true);
-                                else
-                                    filter_list.push(false);
-                                */
                             }
                         }
 
@@ -371,13 +488,17 @@
                         }
 
                         if ($.inArray(false, filter_list) == -1){
-                            $("#projects").append("<a class='project' target='_blank' id='" + feature.properties.id + "' href='" + feature.properties.linke + "' onmouseover='highlightProject(" + feature.properties.id + ")' ' onmouseout='resetProject(" + feature.properties.id + ")'><div class='project' style='margin-bottom:10px;'><h2 style='margin-bottom:0px; font-weight:bold;'>" + feature.properties.title_s + "</h2><h3 style='margin:5px 5px 5px 0px; font-weight:normal;'>" + feature.properties.PI + "</h3><p>" + feature.properties.desc + "</p></div></a>");
+                            $("#projects").append("<a class='project' target='_blank' id='" + feature.properties.id + "' href='" + feature.properties.link + "' onmouseover='highlightProject(" + feature.properties.id + ")' ' onmouseout='resetProject(" + feature.properties.id + ")'><div class='project' style='margin-bottom:5px;'><h2 style='margin-bottom:0px; margin-top:0px; font-weight:bold; font-size:20px;'>" + feature.properties.title_s + "</h2><h3 style='margin:0px 5px 5px 0px; font-weight:normal; font-size:18px;'>" + feature.properties.PI + "</h3><p>" + feature.properties.desc + "</p></div></a>");
                             return true;       
                         }
-                    }
-                });
+                    },
+                onEachFeature: function (feature, layer) {
+                    layer.addTo(markers);
+                }
+            });
 
-                runLayer = omnivore.csv('assets/yow/scholars_archive_points.csv', null, theme_points).addTo(map);
+                runLayer = omnivore.csv('assets/yow/scholars_archive_points.csv', null, theme_points);
+                markers.addTo(map);
 
                 resizeMap();
 
@@ -403,21 +524,49 @@
             });
         }
 
+        map.on('zoomend', getFeaturesInView);
+        map.on('dragend', getFeaturesInView);
+
+        function getFeaturesInView() {
+            $("#projects").empty();
+
+            var features = [];
+            theme_points.eachLayer(function(l){
+                if(map.getBounds().contains(l.getLatLng())){
+                    $("#projects").append("<a class='project' target='_blank' id='" + l.feature.properties.id + "' href='" + l.feature.properties.link + "' onmouseover='highlightProject(" + l.feature.properties.id + ")' ' onmouseout='resetProject(" + l.feature.properties.id + ")'><div class='project' style='margin-bottom:5px;'><h2 style='margin-bottom:0px; margin-top:0px; font-weight:bold; font-size:20px;'>" + l.feature.properties.title_s + "</h2><h3 style='margin:0px 5px 5px 0px; font-weight:normal; font-size:18px;'>" + l.feature.properties.PI + "</h3><p>" + l.feature.properties.desc + "</p></div></a>");
+                }
+            });
+        }
+
         parseData("assets/yow/scholars_archive_points.csv", doStuff); 
 
         function addBasins() {
             if ($('#borderToggle').prop( "value") == 'selected'){
                 map.removeLayer(basins);
+                map.removeLayer(basinLabels);
                 $('#borderToggle').prop( "value","deselected");
             }
             else {
                 basins.addTo(map);
+                basinLabels.addTo(map);
                 $('#borderToggle').prop( "value","selected");
             }
         } 
 
+        function addCounties() {
+            if ($('#countyToggle').prop( "value") == 'selected'){
+                map.removeLayer(counties);
+                $('#countyToggle').prop( "value","deselected");
+            }
+            else {
+                counties.addTo(map);
+                $('#countyToggle').prop( "value","selected");
+            }
+        } 
+
         function resizeMap(){
-            if ($(window).width() <= 768){
+            if ($(window).width() <= 992){
+                console.log("sup");
                 if ($("#scrollbar").height() > $("#panel").height()){
                     var h = $("#scrollbar").height() - $("#panel").height() + 20;
                     $("#map").css("top",h + "px");
@@ -426,10 +575,8 @@
                     var h = $("#projects").height() + 200;
                     $("#map").css("top", h + "px");
                 }
-                //console.log("Scrollbar: " + $("#scrollbar").height() + " Panel: " + $("#panel").height() + " Projects: " + $("#projects").height() + " Top: " + h)
             }
             else{
-                //$(".project_image").css('height','auto');
                 $("#map").css("top","120px");
             }
         }
