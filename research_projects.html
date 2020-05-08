@@ -532,7 +532,10 @@
 
             var features = [];
             theme_points.eachLayer(function(l){
-                if(map.getBounds().contains(l.getLatLng())){
+                console.log(map.getZoom());
+                if(map.getBounds().contains(l.getLatLng()))
+                    $("#projects").append("<a class='project' target='_blank' id='" + l.feature.properties.id + "' href='" + l.feature.properties.link + "' onmouseover='highlightProject(" + l.feature.properties.id + ")' ' onmouseout='resetProject(" + l.feature.properties.id + ")'><div class='project' style='margin-bottom:5px;'><h2 style='margin-bottom:0px; margin-top:0px; font-weight:bold; font-size:20px;'>" + l.feature.properties.title_s + "</h2><h3 style='margin:0px 5px 5px 0px; font-weight:normal; font-size:18px;'>" + l.feature.properties.PI + "</h3><p>" + l.feature.properties.desc + "</p></div></a>");
+                else if (l.feature.properties.geometry == 'FALSE' && map.getZoom() == 7){
                     $("#projects").append("<a class='project' target='_blank' id='" + l.feature.properties.id + "' href='" + l.feature.properties.link + "' onmouseover='highlightProject(" + l.feature.properties.id + ")' ' onmouseout='resetProject(" + l.feature.properties.id + ")'><div class='project' style='margin-bottom:5px;'><h2 style='margin-bottom:0px; margin-top:0px; font-weight:bold; font-size:20px;'>" + l.feature.properties.title_s + "</h2><h3 style='margin:0px 5px 5px 0px; font-weight:normal; font-size:18px;'>" + l.feature.properties.PI + "</h3><p>" + l.feature.properties.desc + "</p></div></a>");
                 }
             });
@@ -566,7 +569,6 @@
 
         function resizeMap(){
             if ($(window).width() <= 992){
-                console.log("sup");
                 if ($("#scrollbar").height() > $("#panel").height()){
                     var h = $("#scrollbar").height() - $("#panel").height() + 20;
                     $("#map").css("top",h + "px");
