@@ -108,7 +108,7 @@
 
 
 h4{
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 	font-weight:bold;
 	font-size: 100px;
 	margin-top: 10%;
@@ -243,7 +243,7 @@ h4{
     line-height: 16px;
     width: 130px;
     color: #333333;
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
     padding: 6px 8px;
     background: rgba(255,255,255,0.8);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -332,28 +332,28 @@ section {
 body {
 	background-color:#545966;
 	color: #000000;
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 }
 h1{
 	padding-left: 0px;
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 }
 p{
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 	font-size: 20px;
 	font-weight:bold;
 	display: inline;
 
 }
 p2{
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 	color:black;
 }
 h2{
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 }
 h3{
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 	font-size: 50px;
 	font-weight:bold;
 	}
@@ -405,7 +405,7 @@ div.leg p {
     cursor: pointer;
     color:black;
     padding:10px;
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 }
 
 .social:hover {
@@ -422,7 +422,7 @@ div.leg p {
 }
 .label_tooltip {
   background-color: rgba(255,255,255,0);
-  font-family: "Inconsolata", sans-serif;
+  font-family: 'Lora', serif;
   font-weight: bold; 
   font-size: 18px;
   border: 2px solid rgba(255,255,255,0);
@@ -438,7 +438,7 @@ div.leg p {
 }
 .label_tooltip2 {
   background-color: rgba(255,255,255,1);
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
   font-weight: bold; 
   border: 2px solid rgba(255,255,255,1);
   box-shadow: 2px 2px rgba(0,0,0,0.5);

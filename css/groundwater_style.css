@@ -109,7 +109,7 @@
 
 
 h4{
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 	font-weight:bold;
 	font-size: 100px;
 	margin-top: 10%;
@@ -210,7 +210,7 @@ h4{
 .legend {
     line-height: 16px;
     color: #333333;
-	font-family: "Verdana", Geneva, sans-serif;
+	font-family: 'Lora', serif;
     background: rgba(255,255,255,0.8);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
@@ -221,7 +221,7 @@ h4{
     line-height: 16px;
     width: 200px;
     color: #333333;
-	font-family: "Verdana", Geneva, sans-serif;
+	font-family: 'Lora', serif;
     padding: 6px 8px;
     background: rgba(255,255,255,0.8);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -310,30 +310,28 @@ section {
 body {
 	background-color:#545966;
 	color: #ffffff;
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 }
 h1{
 	padding-left: 0px;
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 }
 p{
-	font-family: "Inconsolata", sans-serif;
-	text-shadow: black 0.2em 0.2em 0.3em;
+	font-family: 'Lora', serif;
 	font-size:20px;
 	
 }
 p2{
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 	color:black;
 }
 h2{
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 }
 h3{
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 	font-size: 50px;
 	font-weight:bold;
-text-shadow: black 0.1em 0.1em 0.2em;
 	}
 	
 div.leg {
@@ -375,7 +373,6 @@ div.leg p {
     line-height: 25px;
     height:25px;
     margin: 0;
-    text-shadow: black 0.1em 0.1em 0.2em;
 }
 
 
@@ -385,7 +382,7 @@ div.leg p {
     cursor: pointer;
     color:black;
     padding:10px;
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
 }
 .social:hover {
     color: gray;
@@ -401,7 +398,7 @@ div.leg p {
 }
 .label_tooltip {
   background-color: rgba(255,255,255,1);
-	font-family: "Inconsolata", sans-serif;
+	font-family: 'Lora', serif;
   font-weight: bold; 
   border: 2px solid rgba(255,255,255,1);
   box-shadow: 2px 2px rgba(0,0,0,0.5);
