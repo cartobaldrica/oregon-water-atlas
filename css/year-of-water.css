@@ -185,6 +185,7 @@ li {
 	display:block;
 	position:fixed;
 	width:100%;
+	top:0;
 }
 
 .navbar-brand{
